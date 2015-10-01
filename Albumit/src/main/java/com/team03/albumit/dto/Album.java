@@ -7,7 +7,6 @@ public class Album {
 	private String album_name;
 	private boolean album_publicity;
 	private int thumbnail_no;
-	private int category_no;
 	
 	public int getAlbum_no() {
 		return album_no;
@@ -38,11 +37,5 @@ public class Album {
 	}
 	public void setThumbnail_no(int thumbnail_no) {
 		this.thumbnail_no = thumbnail_no;
-	}
-	public int getCategory_no() {
-		return category_no;
-	}
-	public void setCategory_no(int category_no) {
-		this.category_no = category_no;
 	}
 }
