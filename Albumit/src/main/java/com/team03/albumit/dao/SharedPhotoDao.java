@@ -73,9 +73,4 @@ public class SharedPhotoDao {
 			return rows;
 		}
 		
-	
-	
-
-
-
 }
