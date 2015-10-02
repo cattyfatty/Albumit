@@ -19,7 +19,7 @@ public class AlbumDao {
 	// C
 	public Integer insert(Album album) {
 		Integer pk = null;
-		String sql = "INSERT INTO team3.Album(album_name,album_publicity,thumbnail_no,uid) "
+		String sql = "INSERT INTO Album(album_name,album_publicity,thumbnail_no,uid) "
 				+ "VALUES (?,?,?,?)";
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -82,6 +82,26 @@ public class AlbumDao {
 						return album;
 					}
 				});
+		
+		return list;
+	}
+	
+	public List<Album> selectAlbumByUid(int uid) {
+		String sql = "SELECT * FROM Album WHERE uid=?";
+		List<Album> list = jdbcTemplate.query(sql, new Object[] {uid}, 
+				new RowMapper<Album>() {
+					@Override
+					public Album mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Album album = new Album();
+						album.setAlbum_no(rs.getInt("album_no"));
+						album.setAlbum_name(rs.getString("album_name"));
+						album.setAlbum_publicity(rs.getBoolean("album_publicity"));
+						album.setThumbnail_no(rs.getInt("thumbnail_no"));
+						album.setUid(rs.getInt("uid"));
+						
+						return null;
+					}
+		});
 		
 		return list;
 	}
