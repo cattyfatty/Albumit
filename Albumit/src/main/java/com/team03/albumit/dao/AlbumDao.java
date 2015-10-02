@@ -25,7 +25,7 @@ public class AlbumDao {
 	// C
 	public Integer insert(Album album) {
 		Integer pk = null;
-		String sql = "INSERT INTO Album(album_name,album_publicity,thumbnail_no,uid) "
+		String sql = "INSERT INTO team3.Album(album_name,album_publicity,thumbnail_no,uid) "
 				+ "VALUES (?,?,?,?)";
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -37,7 +37,7 @@ public class AlbumDao {
 				pstmt.setString(1, album.getAlbum_name());
 				pstmt.setBoolean(2, album.isAlbum_publicity());
 				pstmt.setInt(3, album.getThumbnail_no());
-				pstmt.setInt(5, album.getUid());
+				pstmt.setInt(4, album.getUid());
 				return pstmt;
 			}
 		}, keyHolder);
