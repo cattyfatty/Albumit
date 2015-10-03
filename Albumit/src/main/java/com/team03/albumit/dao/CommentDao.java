@@ -18,7 +18,7 @@ public class CommentDao {
 		// 
 		public Integer insert(Comment comment) {
 			Integer pk = null;
-			String sql = "insult into Comment (photo_no, comment_no, cwriter, comment_content) "
+			String sql = "insert into Comment (photo_no, comment_no, cwriter, comment_content) "
 					+ "values (?,?,?,?)";
 			
 			KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -40,12 +40,12 @@ public class CommentDao {
 		}
 		
 		// 
-		public Comment selectByPk(int comment_no) {
+		public Comment selectByPN(int photo_no) {
 			String sql = "select * from Comment where comment_no=?";
 			
 			Comment comment = jdbcTemplate.queryForObject(
 					sql,
-					new Object[] {comment_no},
+					new Object[] {photo_no},
 					new RowMapper<Comment> () {
 						@Override
 						public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -76,7 +76,7 @@ public class CommentDao {
 		
 		// 
 		public int delete(int comment_no) {
-			String sql = "delete from Comment where comment_no=?";
+			String sql = "delete from Comment where comment_no=? and cwirter=uid";
 			int rows = jdbcTemplate.update(
 					sql,
 					comment_no
