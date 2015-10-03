@@ -24,8 +24,7 @@ public class PhotoDao {
 	
 	public Integer insert(Photo photo) {
 		Integer pk = null;
-		String sql = "insert into Photo (photo_place, album_no, photo_date, photo_original_file_name, photo_filesystem_name, photo_content_type, photo_like, photo_hitcount, photo_content, photo_title, uid) "
-				+ "values(?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into Photo (photo_place, album_no, photo_date, photo_original_file_name, photo_filesystem_name, photo_content_type, photo_like, photo_hitcount, photo_content, photo_title, uid) values(?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
@@ -78,9 +77,10 @@ public class PhotoDao {
 	}
 	
 	public int update(Photo photo) {
-		String sql = "update Photo set photo_title=?, photo_content=? where photo_no=?";
+		String sql = "update Photo set photo_place=? photo_title=?, photo_content=? where photo_no=?";
 		int rows = jdbcTemplate.update(
 			sql,
+			photo.getPhoto_place(),
 			photo.getPhoto_title(),
 			photo.getPhoto_content(),
 			photo.getPhoto_no()
@@ -88,7 +88,7 @@ public class PhotoDao {
 		return rows;
 	}
 	
-	public int delete(long photo_no) {
+	public int delete(int photo_no) {
 		String sql = "delete from Photo where photo_no=?";
 		int rows = jdbcTemplate.update(
 			sql,
@@ -97,13 +97,13 @@ public class PhotoDao {
 		return rows;
 	}
 	
-	public int updateHitcount(long photo_no) {
+	public int updateHitcount(int photo_no) {
 		String sql = "update Photo set photo_hitcount=photo_hitcount+1 where photo_no=?";
 		int rows = jdbcTemplate.update(sql, photo_no);
 		return rows;
 	}	
 	
-	public int updateLike(long photo_no) {
+	public int updateLike(int photo_no) {
 		String sql = "update Photo set photo_like=photo_like+1 where photo_no=?";
 		int rows = jdbcTemplate.update(sql, photo_no);
 		return rows;
