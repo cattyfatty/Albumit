@@ -24,8 +24,7 @@ public class PhotoDao {
 	
 	public Integer insert(Photo photo) {
 		Integer pk = null;
-		String sql = "insert into Photo (photo_place, album_no, photo_date, photo_original_file_name, photo_filesystem_name, photo_content_type, photo_like, photo_hitcount, photo_content, photo_title, uid) "
-				+ "values(?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into Photo (photo_place, album_no, photo_date, photo_original_file_name, photo_filesystem_name, photo_content_type, photo_like, photo_hitcount, photo_content, photo_title, uid) values(?, ?, now(), ?, ?, ?, ?, ?, ?, ?, ?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
