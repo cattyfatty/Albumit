@@ -18,7 +18,7 @@ public class CommentDao {
 		// 
 		public Integer insert(Comment comment) {
 			Integer pk = null;
-			String sql = "insult into Comment (photo_no, comment_no, cwriter, comment_content) "
+			String sql = "insert into Comment (photo_no, comment_no, cwriter, comment_content) "
 					+ "values (?,?,?,?)";
 			
 			KeyHolder keyHolder = new GeneratedKeyHolder();
