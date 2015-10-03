@@ -30,7 +30,7 @@ public class ThumbnailDao {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
-				PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"board_no"});
+				PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"thumbnail_no"});
 				pstmt.setString(1, thumbnail.getThumbnail_original_file_name());
 				pstmt.setString(2, thumbnail.getThumbnail_filesystem_name());
 				pstmt.setString(3, thumbnail.getThumbnail_content_type());
