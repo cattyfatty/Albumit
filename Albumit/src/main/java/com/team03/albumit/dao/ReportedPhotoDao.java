@@ -1,6 +1,7 @@
 package com.team03.albumit.dao;
 
 import java.sql.*;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.*;
@@ -47,5 +48,9 @@ public class ReportedPhotoDao {
 				return rows;
 			}
 
-	
+	//
+		public List<Map<String, Object>> selectAll() {
+			return this. jdbcTemplate.queryForList("select * from reportedPhoto");
+			
+		}
 }
