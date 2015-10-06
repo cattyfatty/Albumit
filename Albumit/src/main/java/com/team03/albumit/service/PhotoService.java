@@ -1,5 +1,7 @@
 package com.team03.albumit.service;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -23,6 +25,15 @@ public class PhotoService {
 	
 	public void remove(int photo_no, int album_no) {
 		
+		List<SharedPhoto> sharedphoto = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
+		
+		if(sharedphoto == null){
+			photoDao.delete(photo_no);
+			
+		}else{
+			
+			sharedPhotoDao.delete(photo_no, album_no);
+		}
 		
 	}
 	
@@ -34,6 +45,10 @@ public class PhotoService {
 		photoDao.updateLike(photo_no);
 	}
 	
+	public void showShared(int album_no,int photo_no){
+		sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
+	}
+	
 	public void modify(Photo photo) {
 		photoDao.update(photo);
 	}
@@ -42,6 +57,12 @@ public class PhotoService {
 		sharedPhotoDao.insert(sharedPhoto);
 	}
 	
+	public void report(ReportedPhoto reportedPhoto){
+		reportedPhotoDao.insert(reportedPhoto);		
+	}
 	
+	public void showreported(){
+		reportedPhotoDao.selectAll();
+	}
 	
 }

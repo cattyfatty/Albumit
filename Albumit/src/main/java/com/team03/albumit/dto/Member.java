@@ -4,15 +4,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Member {
 	private int uid;
-	private String email;
-	private String nickname;
-	private String password;
-	private String profile;
-	private String img_original_file_name;
-	private String img_filesystem_name;
-	private String img_content_type;
+	private String member_email;
+	private String member_nickname;
+	private String member_password;
+	private String member_profile;
+	private String member_original_file_name;
+	private String member_filesystem_name;
+	private String member_content_type;
 	private MultipartFile attach;
-	
 	public MultipartFile getAttach() {
 		return attach;
 	}
@@ -25,49 +24,47 @@ public class Member {
 	public void setUid(int uid) {
 		this.uid = uid;
 	}
-	public String getEmail() {
-		return email;
+	public String getMember_email() {
+		return member_email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getMember_nickname() {
+		return member_nickname;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
 	}
-	public String getPassword() {
-		return password;
+	public String getMember_password() {
+		return member_password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setMember_password(String member_password) {
+		this.member_password = member_password;
 	}
-	public String getProfile() {
-		return profile;
+	public String getMember_profile() {
+		return member_profile;
 	}
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setMember_profile(String member_profile) {
+		this.member_profile = member_profile;
 	}
-	public String getImg_original_file_name() {
-		return img_original_file_name;
+	public String getMember_original_file_name() {
+		return member_original_file_name;
 	}
-	public void setImg_original_file_name(String img_original_file_name) {
-		this.img_original_file_name = img_original_file_name;
+	public void setMember_original_file_name(String member_original_file_name) {
+		this.member_original_file_name = member_original_file_name;
 	}
-	public String getImg_filesystem_name() {
-		return img_filesystem_name;
+	public String getMember_filesystem_name() {
+		return member_filesystem_name;
 	}
-	public void setImg_filesystem_name(String img_filesystem_name) {
-		this.img_filesystem_name = img_filesystem_name;
+	public void setMember_filesystem_name(String member_filesystem_name) {
+		this.member_filesystem_name = member_filesystem_name;
 	}
-	public String getImg_content_type() {
-		return img_content_type;
+	public String getMember_content_type() {
+		return member_content_type;
 	}
-	public void setImg_content_type(String img_content_type) {
-		this.img_content_type = img_content_type;
+	public void setMember_content_type(String member_content_type) {
+		this.member_content_type = member_content_type;
 	}
 	
-	
-
 }
