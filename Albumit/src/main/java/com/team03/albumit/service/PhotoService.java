@@ -19,6 +19,12 @@ public class PhotoService {
 	private ThumbnailDao thumbnailDao;
 	
 	
+	public void showPhoto(){
+		
+		
+		
+	}
+	
 	public void add(Photo photo) {
 		photoDao.insert(photo);
 	}

@@ -24,24 +24,22 @@ public class SharedPhotoDao {
 		@Autowired
 		private JdbcTemplate jdbcTemplate;
 		
-		public Integer insert(SharedPhoto sharedPhoto) {
+		public void insert(SharedPhoto sharedPhoto) {
 			Integer pk = null;
-			String sql = "insert into SharedPhoto (photo_no, uid,album_no ) values(?, ?, ?)";
-			KeyHolder keyHolder = new GeneratedKeyHolder();
+			String sql = "insert into SharedPhoto (photo_no, uid, album_no, share_date ) values(?, ?, ?, now())";
+			
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				@Override
 				public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
 					PreparedStatement pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, sharedPhoto.getPhoto_no());
 					pstmt.setInt(2, sharedPhoto.getUid());
-					pstmt.setInt(2, sharedPhoto.getAlbum_no());
+					pstmt.setInt(3, sharedPhoto.getAlbum_no());
 				
 					return pstmt;
 				}
-			},keyHolder);
-			Number keyNumber = keyHolder.getKey();
-			pk = keyNumber.intValue();
-			return pk;
+			});
+			
 		}
 		
 		public List<SharedPhoto> selectByPhotoNo(int photo_no) {
@@ -56,6 +54,7 @@ public class SharedPhotoDao {
 						sharedPhoto.setPhoto_no(rs.getInt("photo_no"));
 						sharedPhoto.setUid(rs.getInt("uid"));
 						sharedPhoto.setAlbum_no(rs.getInt("album_no"));
+						sharedPhoto.setShare_date(rs.getDate("share_date"));
 						return sharedPhoto;
 					}
 				});
@@ -74,6 +73,7 @@ public class SharedPhotoDao {
 						sharedPhoto.setPhoto_no(rs.getInt("photo_no"));
 						sharedPhoto.setUid(rs.getInt("uid"));
 						sharedPhoto.setAlbum_no(rs.getInt("album_no"));
+						sharedPhoto.setShare_date(rs.getDate("share_date"));
 						return sharedPhoto;
 					}
 				});

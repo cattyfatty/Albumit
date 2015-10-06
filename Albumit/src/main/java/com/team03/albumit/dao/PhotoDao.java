@@ -49,8 +49,8 @@ public class PhotoDao {
 	}
 	
 
-	public Photo selectByPk(int photo_no) {
-		String sql = "select * from Photo where photo_no=?";
+	public Photo selectByPk(int photo_no, String byorder) {
+		String sql = "select * from Photo where photo_no=? order by "+byorder+" desc";
 		Photo photo = jdbcTemplate.queryForObject(
 			sql,
 			new Object[] {photo_no},
