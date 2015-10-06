@@ -99,9 +99,9 @@ public class AlbumDao {
 						album.setThumbnail_no(rs.getInt("thumbnail_no"));
 						album.setUid(rs.getInt("uid"));
 						
-						return null;
+						return album;
 					}
-		});
+				});
 		
 		return list;
 	}

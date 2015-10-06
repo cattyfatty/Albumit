@@ -17,9 +17,11 @@ public class AlbumService {
 	private MemberDao memberDao;
 	@Autowired
 	private SharedAlbumDao sharedAlbumDao;
+	@Autowired
+	private LikedAlbumDao likedAlbumDao;
 	
 	// C
-	public Integer addAlbum(Album album) {
+	public Integer makeAlbum(Album album) {
 		Integer albumNo = albumDao.insert(album);
 		
 		return albumNo;		
@@ -44,6 +46,21 @@ public class AlbumService {
 		List<Album> list = new ArrayList<Album>();
 		for(SharedAlbum sa : sharedlist) {
 			Album a = albumDao.selectByAlbumNo(sa.getAlbum_no());
+			list.add(a);
+		}
+		
+		return list;
+	}
+	
+	public List<Album> showMyLikedAlbumList(Member member) {
+		List<LikedAlbum> likedlist = null;
+		
+		int uid = member.getUid();
+		likedlist = likedAlbumDao.selectByUid(uid);
+		
+		List<Album> list = new ArrayList<Album>();
+		for(LikedAlbum la : likedlist) {
+			Album a = albumDao.selectByAlbumNo(la.getAlbum_no());
 			list.add(a);
 		}
 		
@@ -79,7 +96,13 @@ public class AlbumService {
 	//--------------- share an album with friends -------------------//
 	public void shareAlbum(int album_no, int owner_uid, int[] friends_uid) {
 		for(int f : friends_uid) {
-			
+			SharedAlbum sharedAlbum = new SharedAlbum();
+			sharedAlbum.setAlbum_no(album_no);
+			sharedAlbum.setUid(owner_uid);
+			sharedAlbum.setF_uid(f);
+			sharedAlbumDao.insert(sharedAlbum);
 		}
 	}
+	
+	
 }
