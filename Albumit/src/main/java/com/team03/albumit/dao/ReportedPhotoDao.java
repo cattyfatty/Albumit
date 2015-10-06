@@ -37,20 +37,42 @@ public class ReportedPhotoDao {
 	}
 	
 	// 
-		public int update(ReportedPhoto reportedPhoto) {
-			String sql = "update ReportedPhoto set photo_no=?, uid=?, reported_reason=? where photo_no=?";
-				int rows = jdbcTemplate.update(
-						sql,
-						reportedPhoto.getPhoto_no(),
-						reportedPhoto.getUid(), 
-						reportedPhoto.getReported_reason()
-					);
-				return rows;
-			}
+	public int update(ReportedPhoto reportedPhoto) {
+		String sql = "update ReportedPhoto set photo_no=?, uid=?, reported_reason=? where photo_no=?";
+			int rows = jdbcTemplate.update(
+					sql,
+					reportedPhoto.getPhoto_no(),
+					reportedPhoto.getUid(), 
+					reportedPhoto.getReported_reason()
+				);
+			return rows;
+		}
 
 	//
-		public List<Map<String, Object>> selectAll() {
-			return this. jdbcTemplate.queryForList("select * from reportedPhoto");
-			
-		}
+	public List<Map<String, Object>> selectAll() {
+		return this. jdbcTemplate.queryForList("select * from reportedPhoto");
+	}
+
+	//
+	public ReportedPhoto selectByPN(int photo_no) {
+		String sql = "select * from reportedPhoto where photo_no=?";
+		ReportedPhoto reportedphoto = jdbcTemplate.queryForObject(
+			sql,
+			new Object[] {photo_no},
+			new RowMapper<ReportedPhoto>() {
+				@Override
+				public ReportedPhoto mapRow(ResultSet rs, int rowNum) throws SQLException {
+					ReportedPhoto rp = new ReportedPhoto();
+					rp.setPhoto_no(rs.getInt("photo_no"));
+					rp.setUid(rs.getInt("uid"));
+					rp.setReported_reason(rs.getString("reported_reason"));
+					return rp;
+				}
+			}
+		);
+		return reportedphoto;
+	}
+		
+		
+		
 }

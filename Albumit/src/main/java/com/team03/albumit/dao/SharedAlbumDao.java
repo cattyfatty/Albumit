@@ -23,6 +23,7 @@ public class SharedAlbumDao {
 		@Autowired
 		private JdbcTemplate jdbcTemplate;
 		
+		//공유 앨범 추가
 		public void insert(SharedAlbum sharedAlbum) {
 			Integer pk = null;
 			String sql = "insert into SharedAlbum (album_no, uid, f_uid) values(?, ?, ?)";
@@ -39,6 +40,7 @@ public class SharedAlbumDao {
 			});
 		}
 		
+		//
 		public List<SharedAlbum> selectByUid(int uid) {
 			String sql = "select * from SharedAlbum where uid=?";
 			List<SharedAlbum> list = jdbcTemplate.query(
