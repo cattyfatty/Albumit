@@ -62,6 +62,24 @@ public class SharedPhotoDao {
 			return list;
 		}
 		
+		public List<SharedPhoto> selectByAlbumPhotoNo(int album_no,int photo_no) {
+			String sql = "select * from SharedPhoto where album_no=? and photo_no=?";
+			List<SharedPhoto> list = jdbcTemplate.query(
+				sql,
+				new Object[] {album_no, photo_no},
+				new RowMapper<SharedPhoto>() {
+					@Override
+					public SharedPhoto mapRow(ResultSet rs, int rowNum) throws SQLException {
+						SharedPhoto sharedPhoto = new SharedPhoto();
+						sharedPhoto.setPhoto_no(rs.getInt("photo_no"));
+						sharedPhoto.setUid(rs.getInt("uid"));
+						sharedPhoto.setAlbum_no(rs.getInt("album_no"));
+						return sharedPhoto;
+					}
+				});
+			return list;
+		}
+		
 		
 		public int delete(int photo_no, int album_no) {
 			String sql = "delete from SharedPhoto where photo_no=? and album_no=? ";
