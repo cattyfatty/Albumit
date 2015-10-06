@@ -21,8 +21,9 @@ public class PhotoService {
 		photoDao.insert(photo);
 	}
 	
-	public void remove(int photo_no) {
-		photoDao.delete(photo_no);
+	public void remove(int photo_no, int album_no) {
+		
+		
 	}
 	
 	public void addHitcount(int photo_no) {
