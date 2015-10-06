@@ -77,7 +77,9 @@ public class AlbumService {
 	
 	// ETC
 	//--------------- share an album with friends -------------------//
-	public void shareAlbum(Member owner, List<Member> friends) {
-		
+	public void shareAlbum(int album_no, int owner_uid, int[] friends_uid) {
+		for(int f : friends_uid) {
+			
+		}
 	}
 }

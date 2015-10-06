@@ -23,10 +23,9 @@ public class SharedAlbumDao {
 		@Autowired
 		private JdbcTemplate jdbcTemplate;
 		
-		public Integer insert(SharedAlbum sharedAlbum) {
+		public void insert(SharedAlbum sharedAlbum) {
 			Integer pk = null;
 			String sql = "insert into SharedAlbum (album_no, uid, f_uid) values(?, ?, ?)";
-			KeyHolder keyHolder = new GeneratedKeyHolder();
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				@Override
 				public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
@@ -37,10 +36,7 @@ public class SharedAlbumDao {
 				
 					return pstmt;
 				}
-			},keyHolder);
-			Number keyNumber = keyHolder.getKey();
-			pk = keyNumber.intValue();
-			return pk;
+			});
 		}
 		
 		public List<SharedAlbum> selectByUid(int uid) {
