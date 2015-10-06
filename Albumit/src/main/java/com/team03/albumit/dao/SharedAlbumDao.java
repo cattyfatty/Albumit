@@ -25,7 +25,6 @@ public class SharedAlbumDao {
 		
 		//공유 앨범 추가
 		public void insert(SharedAlbum sharedAlbum) {
-			Integer pk = null;
 			String sql = "insert into SharedAlbum (album_no, uid, f_uid) values(?, ?, ?)";
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				@Override
