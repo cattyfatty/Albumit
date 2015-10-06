@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -113,6 +113,35 @@ public class PhotoDao {
 		String sql = "select count(*) from Photo";
 		int rows = jdbcTemplate.queryForObject(sql, Integer.class);
 		return rows;
+	}
+
+
+	public List<Photo> selectByAlbumNo(int album_no) {
+		String sql = "select * from Photo where album_no=?";
+		List<Photo> list = jdbcTemplate.query(
+			sql,
+			new Object[] {album_no},
+			new RowMapper<Photo>() {
+				@Override
+				public Photo mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Photo photo = new Photo();
+					photo.setPhoto_no(rs.getInt("photo_no"));
+					photo.setAlbum_no(rs.getInt("album_no"));
+					photo.setPhoto_date(rs.getDate("photo_date"));
+					photo.setPhoto_original_file_name(rs.getString("photo_original_file_name"));
+					photo.setPhoto_filesystem_name(rs.getString("photo_filesystem_name"));
+					photo.setPhoto_content_type(rs.getString("photo_content_type"));  
+					photo.setPhoto_like(rs.getInt("photo_like"));
+					photo.setPhoto_hitcount(rs.getInt("photo_hitcount"));
+					photo.setPhoto_content(rs.getString("photo_content"));
+					photo.setPhoto_title(rs.getString("photo_title"));
+					photo.setUid(rs.getInt("uid"));
+					return photo;
+				}
+			}
+		);
+		return list;
+		
 	}
 
 }

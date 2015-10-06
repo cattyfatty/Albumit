@@ -19,10 +19,18 @@ public class PhotoService {
 	private ThumbnailDao thumbnailDao;
 	
 	
-	public void showPhoto(){
+	public List<Photo> showPhoto(int album_no, int photo_no){
+		TreeSet<Photo> treeSet = new TreeSet<Photo>();
+		
+		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
+		for(Photo photo : list1){
+			treeSet.add(photo);
+		}
+		
+		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
 		
 		
-		
+		return list;
 	}
 	
 	public void add(Photo photo) {
