@@ -1,8 +1,8 @@
 package com.team03.albumit.dto;
 
-import java.util.Date;
+import java.util.*;
 
-public class Photo {
+public class Photo implements Comparable<Photo>{
 	private int photo_no;
 	private String photo_place;
 	private int album_no;
@@ -89,6 +89,11 @@ public class Photo {
 		this.uid = uid;
 	}
 	
+	//날짜 정렬을 위한 메소드
+	@Override
+	public int compareTo(Photo photo){
+		return photo_date.compareTo(photo.getPhoto_date());
+	}
 	
 	
 	
