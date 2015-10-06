@@ -20,7 +20,6 @@ public class MemberDao {
 @Autowired 
 	private JdbcTemplate jdbcTemplate;
 
-	/********************************����**************************************/
 	public Integer insert(Member member) {
 		Integer pk = null;
 		String sql = "insert into Member ("
@@ -50,7 +49,6 @@ public class MemberDao {
 		return pk;
 	}
 
-	/********************************uid�� Ž��**************************************/
 	public Member selectByUid(int uid){
 		String sql =" select * from Member where uid = ?";
 		Member mem =jdbcTemplate.queryForObject(sql, new Object[]{uid},
@@ -72,7 +70,6 @@ public class MemberDao {
 		return mem;
 	}
 
-	/********************************uid�� �ش��ϴ� ��� �÷� Ž��**************************************/
 	public List<Member> selectAll(int uid){
 		String sql =" select * from Member where uid=?";
 		List<Member> member = jdbcTemplate.query(sql, new Object[]{uid}, new RowMapper<Member>(){
@@ -95,7 +92,6 @@ public class MemberDao {
 		return member;
 	}
 
-	/********************************����**************************************/
 	public Integer update(Member member){
 		String sql ="update Member set member_password=?, member_profile=?,"
 				+ " member_nickname=?, member_filesystem_name=?,"
@@ -110,7 +106,6 @@ public class MemberDao {
 		return rows;
 	}
 
-	/********************************����**************************************/
 	public Integer delete(int uid){
 		String sql= "delete from Member where uid = ?";
 		int rows = jdbcTemplate.update(sql,uid);

@@ -7,6 +7,11 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+		<div>
+		<input type="text">
+		
+		</div>
+
 
 	</body>
 </html>
