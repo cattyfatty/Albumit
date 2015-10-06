@@ -63,14 +63,19 @@ public class SharedPhotoDao {
 		}
 		
 		
-		public int delete(int photo_no, int uid) {
-			String sql = "delete from SharedPhoto where photo_no=? and uid=? ";
+		public int delete(int photo_no, int album_no) {
+			String sql = "delete from SharedPhoto where photo_no=? and album_no=? ";
 			int rows = jdbcTemplate.update(
 				sql,
 				photo_no,
-				uid
+				album_no
 			);
 			return rows;
 		}
 		
+	
+	
+
+
+
 }
