@@ -20,7 +20,7 @@ public class MemberDao {
 @Autowired 
 	private JdbcTemplate jdbcTemplate;
 
-	/********************************»ðÀÔ**************************************/
+	/********************************ï¿½ï¿½ï¿½ï¿½**************************************/
 	public Integer insert(Member member) {
 		Integer pk = null;
 		String sql = "insert into Member ("
@@ -42,6 +42,7 @@ public class MemberDao {
 				pstmt.setString(6,member.getMember_filesystem_name());
 				pstmt.setString(7, member.getMember_content_type());
 				return pstmt;
+	
 			}
 		},keyHolder);
 		Number keyNumber = keyHolder.getKey();
@@ -49,7 +50,7 @@ public class MemberDao {
 		return pk;
 	}
 
-	/********************************uid·Î Å½»ö**************************************/
+	/********************************uidï¿½ï¿½ Å½ï¿½ï¿½**************************************/
 	public Member selectByUid(int uid){
 		String sql =" select * from Member where uid = ?";
 		Member mem =jdbcTemplate.queryForObject(sql, new Object[]{uid},
@@ -71,7 +72,7 @@ public class MemberDao {
 		return mem;
 	}
 
-	/********************************uid¿¡ ÇØ´çÇÏ´Â ¸ðµç ÄÃ·³ Å½»ö**************************************/
+	/********************************uidï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ Å½ï¿½ï¿½**************************************/
 	public List<Member> selectAll(int uid){
 		String sql =" select * from Member where uid=?";
 		List<Member> member = jdbcTemplate.query(sql, new Object[]{uid}, new RowMapper<Member>(){
@@ -94,7 +95,7 @@ public class MemberDao {
 		return member;
 	}
 
-	/********************************¼öÁ¤**************************************/
+	/********************************ï¿½ï¿½ï¿½ï¿½**************************************/
 	public Integer update(Member member){
 		String sql ="update Member set member_password=?, member_profile=?,"
 				+ " member_nickname=?, member_filesystem_name=?,"
@@ -109,7 +110,7 @@ public class MemberDao {
 		return rows;
 	}
 
-	/********************************»èÁ¦**************************************/
+	/********************************ï¿½ï¿½ï¿½ï¿½**************************************/
 	public Integer delete(int uid){
 		String sql= "delete from Member where uid = ?";
 		int rows = jdbcTemplate.update(sql,uid);
