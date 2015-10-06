@@ -38,14 +38,13 @@ public class FriendDao {
 
 	public Integer update(Friend friend){
 		String sql="update Friend set frined_block=? where uid =? and f_uid =?";
-
 		int rows = jdbcTemplate.update(sql,friend.getUid(),friend.getF_uid());
 		return rows;
 	}
 
+	
 	public Integer delete(Friend friend){
 		String sql ="delete from Friend where uid=? and f_uid=?";
-
 		int rows =jdbcTemplate.update(sql,friend.getUid(),friend.getF_uid());
 		return rows;
 
