@@ -69,6 +69,28 @@ public class MemberDao {
 		});
 		return mem;
 	}
+	
+	public Member selectByEmail(String email){
+		String sql =" select * from Member where member_email = ?";
+		Member mem =jdbcTemplate.queryForObject(sql, new Object[]{email},
+				new RowMapper<Member>(){
+			@Override
+			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Member member = new Member();
+				member.setMember_profile(rs.getString("member_profile"));
+				member.setMember_password(rs.getString("member_password"));
+				member.setMember_original_file_name(rs.getString("member_original_file_name"));
+				member.setMember_nickname(rs.getString("member_nickname"));
+				member.setMember_filesystem_name(rs.getString("member_filesystem_name"));
+				member.setMember_email(rs.getString("member_email"));
+				member.setMember_content_type(rs.getString("member_content_type"));
+				member.setUid(rs.getInt("uid"));
+				return member;
+			}
+		});
+		return mem;
+	}
+
 
 	public List<Member> selectAll(int uid){
 		String sql =" select * from Member where uid=?";
@@ -92,20 +114,27 @@ public class MemberDao {
 		return member;
 	}
 
-	public Integer update(Member member){
-		String sql ="update Member set member_password=?, member_profile=?,"
+	public Integer memberUpdate(Member member){
+		String sql ="update Member set member_profile=?,"
 				+ " member_nickname=?, member_filesystem_name=?,"
 				+ " member_content_type =?, member_original_file_name=? "
 				+ " where uid=?";
 
-		int rows = jdbcTemplate.update(sql,member.getMember_password(),member.getMember_profile(),
+		int rows = jdbcTemplate.update(sql,member.getMember_profile(),
 				member.getMember_nickname(),member.getMember_filesystem_name(),
 				member.getMember_content_type(),member.getMember_original_file_name(),
 				member.getUid());
 
 		return rows;
 	}
-
+	
+	public Integer passwordUpdate(String password){////확인필요
+		String sql= "update Member set member_password=? where uid = ?";
+		
+		int rows = jdbcTemplate.update(sql);
+		return rows;
+	} 
+	
 	public Integer delete(int uid){
 		String sql= "delete from Member where uid = ?";
 		int rows = jdbcTemplate.update(sql,uid);
