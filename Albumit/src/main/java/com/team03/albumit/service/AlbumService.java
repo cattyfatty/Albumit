@@ -24,7 +24,9 @@ public class AlbumService {
 	}
 	
 	public List<Album> showMyAlbumList() {
+		List<Album> list = null;
 		
+		return list;
 	}
 	
 	public int modifyAlbum(Album album) {
