@@ -23,15 +23,29 @@ public class PhotoService {
 		TreeSet<Photo> treeSet = new TreeSet<Photo>();
 		
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
+		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
+		for(SharedPhoto sharedphoto : list2){
+			Photo photo = photoDao.selectByPk(sharedphoto.getPhoto_no());
+			
+			photo.setPhoto_date(sharedphoto.getShare_date());
+			photo.setPhoto_like(0);
+			photo.setPhoto_hitcount(0);
+			
+			list1.add(photo);
+		}
+		
 		for(Photo photo : list1){
 			treeSet.add(photo);
 		}
 		
-		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
-		
-		
+		NavigableSet<Photo> descendingSet = treeSet.descendingSet();
+		List<Photo> list = new ArrayList<Photo>();
+		for(Photo photo :  descendingSet){
+			list.add(photo);
+		}
 		return list;
 	}
+	
 	
 	public void add(Photo photo) {
 		photoDao.insert(photo);
