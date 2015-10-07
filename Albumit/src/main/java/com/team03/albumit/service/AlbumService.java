@@ -38,31 +38,27 @@ public class AlbumService {
 	}
 	
 	public List<Album> showMySharedAlbumList(Member member) {
-		List<SharedAlbum> sharedlist = null;
+		/*List<SharedAlbum> sharedlist = null;*/
 		
 		int uid = member.getUid();
-		sharedlist = sharedAlbumDao.selectByFuid(uid);
+		String sql = "a.album_no IN (SELECT b.album_no FROM SharedAlbum b WHERE b.f_uid=?)";
+		/*sharedlist = sharedAlbumDao.selectByFuid(uid);
 		
 		List<Album> list = new ArrayList<Album>();
 		for(SharedAlbum sa : sharedlist) {
 			Album a = albumDao.selectByAlbumNo(sa.getAlbum_no());
 			list.add(a);
-		}
+		}*/
+		
+		List<Album> list = albumDao.selectAlbumByUid(uid, sql);
 		
 		return list;
 	}
 	
 	public List<Album> showMyLikedAlbumList(Member member) {
-		List<LikedAlbum> likedlist = null;
-		
 		int uid = member.getUid();
-		likedlist = likedAlbumDao.selectByUid(uid);
-		
-		List<Album> list = new ArrayList<Album>();
-		for(LikedAlbum la : likedlist) {
-			Album a = albumDao.selectByAlbumNo(la.getAlbum_no());
-			list.add(a);
-		}
+		String sql = "a.album_no IN (SELECT b.album_no FROM LikedPhoto b WHERE b.uid=?)";
+		List<Album> list = albumDao.selectAlbumByUid(uid, sql);
 		
 		return list;
 	}
@@ -104,5 +100,29 @@ public class AlbumService {
 		}
 	}
 	
+	//-------------- Related to liked album ------------------//
+	public void likeAlbum(int album_no, Member member) {
+		likedAlbumDao.insert(album_no, member.getUid());
+	}
+	public void unlikeAlbum(LikedAlbum likedAlbum) {
+		likedAlbumDao.delete(likedAlbum);
+	}
 	
+	//--------------- show friend who share this album -------------------//
+	public List<Member> showShareFriendList(int album_no) {
+		List<SharedAlbum> sharedlist = sharedAlbumDao.selectByAlbumNo(album_no);
+		
+		List<Member> list = new ArrayList<Member>();
+		for(SharedAlbum s : sharedlist) {
+			Member member = memberDao.selectByUid(s.getF_uid());
+			list.add(member);
+		}
+		
+		return list;
+	}
+	
+	//---------------- block friend from shared album -----------------//
+	public void blockFriendFromAlbum(int f_uid, int album_no) {
+		sharedAlbumDao.delete(album_no, f_uid);
+	}
 }
