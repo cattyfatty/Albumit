@@ -18,8 +18,8 @@ public class PhotoService {
 	private ReportedPhotoDao reportedPhotoDao;
 	private ThumbnailDao thumbnailDao;
 	
-	
-	public List<Photo> showPhoto(int album_no, int photo_no){
+	//사진보기 (최신순 정렬)
+	public List<Photo> showLaPhoto(int album_no, int photo_no){
 		TreeSet<Photo> treeSet = new TreeSet<Photo>();
 		
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
@@ -28,8 +28,6 @@ public class PhotoService {
 			Photo photo = photoDao.selectByPk(sharedphoto.getPhoto_no());
 			
 			photo.setPhoto_date(sharedphoto.getShare_date());
-			photo.setPhoto_like(0);
-			photo.setPhoto_hitcount(0);
 			
 			list1.add(photo);
 		}
@@ -46,6 +44,16 @@ public class PhotoService {
 		return list;
 	}
 	
+	//사진보기 (인기순 정렬)
+	public List<Photo> showLiPhoto(int album_no, int photo_no){
+		TreeSet<Photo> treeSet = new TreeSet<Photo>();
+		
+		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
+		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
+		
+		for()
+		
+	}
 	
 	public void add(Photo photo) {
 		photoDao.insert(photo);
