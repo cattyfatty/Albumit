@@ -12,23 +12,23 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import com.team03.albumit.dto.Friend;
+import com.team03.albumit.dto.*;
 
 @Component
 public class FriendDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public Integer insert(Friend friend){
+	public Integer insert(Member umember, Member fmember){
 		Integer pk = null;
-		String sql = "insert into Friend (uid,f_uid,frined_block) values(?,?,?)";
+		String sql = "insert into Friend (uid,f_uid,friend_block) values(?,?,?)";
 		pk = jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1,friend.getUid());
-				pstmt.setInt(2,friend.getF_uid() );
-				pstmt.setBoolean(3,friend.isFrined_block());
+				pstmt.setInt(1,umember.getUid());
+				pstmt.setInt(2,fmember.getUid());
+				pstmt.setBoolean(3,true);
 				return pstmt;
 			}
 		});
@@ -36,23 +36,23 @@ public class FriendDao {
 	}
 
 
-	public Integer update(Friend friend){
+	public Integer update(Member umember,Member fmember, Boolean block){
 		String sql="update Friend set frined_block=? where uid =? and f_uid =?";
-		int rows = jdbcTemplate.update(sql,friend.getUid(),friend.getF_uid());
+		int rows = jdbcTemplate.update(sql,block,umember.getUid(),fmember.getUid());
 		return rows;
 	}
 
 	
-	public Integer delete(Friend friend){
+	public Integer delete(Member umember,Member fmember){
 		String sql ="delete from Friend where uid=? and f_uid=?";
-		int rows =jdbcTemplate.update(sql,friend.getUid(),friend.getF_uid());
+		int rows =jdbcTemplate.update(sql,umember.getUid(),fmember.getUid());
 		return rows;
 
 	}
 
-	public List<Friend> selectAll(Friend friend){
+	public List<Friend> selectAll(Member umember,Member fmember){
 		String sql ="select * from Friend where uid=? and f_uid=? ";
-		List<Friend> friends =jdbcTemplate.query(sql, new Object[]{friend.getUid(),friend.getF_uid()},
+		List<Friend> friends =jdbcTemplate.query(sql, new Object[]{umember.getUid(),fmember.getUid()},
 				new RowMapper<Friend>(){
 			@Override
 			public Friend mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -66,9 +66,9 @@ public class FriendDao {
 		return friends;
 	}
 
-	public Friend select(Friend friend){
+	public Friend select(Member umember,Member fmember){
 		String sql = "select * from Friend where uid=? and f_uid=?";
-		Friend fr = jdbcTemplate.queryForObject(sql, new Object[]{friend.getUid(),friend.getF_uid()},
+		Friend fr = jdbcTemplate.queryForObject(sql, new Object[]{umember.getUid(),fmember.getUid()},
 				new RowMapper<Friend>(){
 			@Override
 			public Friend mapRow(ResultSet rs, int rowNum) throws SQLException {

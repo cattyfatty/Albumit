@@ -42,6 +42,8 @@ public class PhotoService {
 			list.add(photo);
 		}
 		return list;
+		
+		
 	}
 	
 	//사진보기 (인기순 정렬)
