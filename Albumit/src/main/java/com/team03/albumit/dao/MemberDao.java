@@ -128,16 +128,16 @@ public class MemberDao {
 		return rows;
 	}
 	
-	public Integer passwordUpdate(String password){////확인필요
+	public Integer passwordUpdate(Member member){
 		String sql= "update Member set member_password=? where uid = ?";
 		
-		int rows = jdbcTemplate.update(sql);
+		int rows = jdbcTemplate.update(sql,member.getMember_password(),member.getUid());
 		return rows;
 	} 
 	
-	public Integer delete(int uid){
+/*	public Integer delete(int uid){
 		String sql= "delete from Member where uid = ?";
 		int rows = jdbcTemplate.update(sql,uid);
 		return rows;
 	}
-}
+*/}
