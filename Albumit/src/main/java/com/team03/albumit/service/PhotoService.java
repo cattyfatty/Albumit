@@ -28,8 +28,6 @@ public class PhotoService {
 			Photo photo = photoDao.selectByPk(sharedphoto.getPhoto_no());
 			
 			photo.setPhoto_date(sharedphoto.getShare_date());
-			photo.setPhoto_like(0);
-			photo.setPhoto_hitcount(0);
 			
 			list1.add(photo);
 		}
@@ -44,6 +42,8 @@ public class PhotoService {
 			list.add(photo);
 		}
 		return list;
+		
+		
 	}
 	
 	
