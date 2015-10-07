@@ -1,5 +1,9 @@
 package com.team03.albumit.controller;
 
-public class MemberController {
+import org.springframework.stereotype.*;
 
+@Controller
+public class MemberController {
+	
+	
 }
