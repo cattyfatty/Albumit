@@ -66,7 +66,7 @@ public class AlbumDao {
 	}
 	
 	public List<Album> selectAllAlbum() {
-		String sql = "SELECT * FROM Album";
+		String sql = "SELECT * FROM Album WHERE album_publicity=1";
 		List<Album> list = jdbcTemplate.query(sql, 
 				new RowMapper<Album>() {
 	
@@ -87,7 +87,27 @@ public class AlbumDao {
 	}
 	
 	public List<Album> selectAlbumByUid(int uid) {
-		String sql = "SELECT * FROM Album WHERE uid=?";
+		String sql = "SELECT * FROM Album a WHERE a.uid=?";
+		List<Album> list = jdbcTemplate.query(sql, new Object[] {uid}, 
+				new RowMapper<Album>() {
+					@Override
+					public Album mapRow(ResultSet rs, int rowNum) throws SQLException {
+						Album album = new Album();
+						album.setAlbum_no(rs.getInt("album_no"));
+						album.setAlbum_name(rs.getString("album_name"));
+						album.setAlbum_publicity(rs.getBoolean("album_publicity"));
+						album.setThumbnail_no(rs.getInt("thumbnail_no"));
+						album.setUid(rs.getInt("uid"));
+						
+						return album;
+					}
+				});
+		
+		return list;
+	}
+	
+	public List<Album> selectAlbumByUid(int uid, String whereClause) {
+		String sql = "SELECT * FROM Album a WHERE " + whereClause;
 		List<Album> list = jdbcTemplate.query(sql, new Object[] {uid}, 
 				new RowMapper<Album>() {
 					@Override
