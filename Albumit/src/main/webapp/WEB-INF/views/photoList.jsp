@@ -98,8 +98,7 @@
 				
 					<td>${photo.photo_no}</td>
 					<td>${photo.uid}</td>
-					<td>${photo.photo_date}</td>
-					<td>${photo.photo_hitcount}</td>
+				
 					
 				</tr>
 			</c:forEach>
