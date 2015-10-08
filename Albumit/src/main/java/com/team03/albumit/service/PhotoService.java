@@ -32,11 +32,12 @@ public class PhotoService {
 			Photo photo = photoDao.selectByPk(sharedPhoto.getPhoto_no());
 			
 			photo.setPhoto_date(sharedPhoto.getShare_date());
+			photo.setAlbum_no(sharedPhoto.getAlbum_no());
 			
 			list1.add(photo);
 		}
 		
-		for(Photo photo : list1){
+	/*	for(Photo photo : list1){
 			treeSet.add(photo);
 		}
 		
@@ -44,9 +45,9 @@ public class PhotoService {
 		List<Photo> list = new ArrayList<Photo>();
 		for(Photo photo :  descendingSet){
 			list.add(photo);
-		}
+		}*/
 		
-		return list;
+		return list1;
 		
 		
 	}
