@@ -25,18 +25,13 @@ public class PhotoController {
 	@RequestMapping("/photoList")
 	public String Photolist(
 			int album_no,
-			int photo_no,
 			Model model) {
 		
-		List<Photo> list = photoService.showLaPhoto(album_no, photo_no);
+		List<Photo> list = photoService.showLaPhoto(album_no);
 		
 		model.addAttribute("list",list);
 		
 		return "/photoList";
-				
-		
-		
-		
 
 	}
 }

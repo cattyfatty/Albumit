@@ -11,7 +11,7 @@
 		
 		<input type="text">
 		
-		<a href="photoList">포토리스트</a>
+		<a href="photoList?album_no=1">포토리스트</a>
 		</div>
 
 
