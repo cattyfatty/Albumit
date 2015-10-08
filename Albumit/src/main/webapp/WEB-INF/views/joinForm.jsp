@@ -20,7 +20,7 @@ input {
 <body>
 
 	<h4>회원가입</h4>
-	<form:form enctype="multipart/form-data">
+	<form:form commandName="joinMember" enctype="multipart/form-data">
 		<div>
 		<p>E-mail</p>
 		<form:input path="member_email" />
