@@ -34,7 +34,7 @@ public class MemberController {
 		
 		if(loginCheck){
 			session.setAttribute("loginMember", loginMember);
-			return "albumList";
+			return "allAlbumList";
 		}
 		return "loginForm";	
 	}

@@ -8,7 +8,7 @@
 <style type="text/css">
 body {
 	font-size: small;
-	color: white;
+	color: black;
 }
 
 input {
@@ -20,29 +20,30 @@ input {
 <body>
 
 	<h4>회원가입</h4>
-	<form:form commandName="joinMember" enctype="multipart/form-data">
-		
-		<form:input path="member_email" />
+	<form:form commandName="member" enctype="multipart/form-data">
 		
 		<div>
-		<p>Password</p>
+		E-mail
+		<form:input path="member_email" />
+		</div>
+		<div>
+		Password
 		<form:input path="member_password" />
 		</div>
 				
 		<div>
-		<p> NickName </p>
+		NickName
 		<form:input path="member_nickname" />
 		</div>
 			
 		<div>
-		<p>Profile</p>
-		<form:input path="member_profile" />
+		Profile
+		<form:input type="file" path="attach" />
 		</div>		
 							
-		<div>
-		<p>Photo</p>
-		<form:input path="attach" />
-		</div>		
+		
+		
+		
 
 		<br />
 		<div>

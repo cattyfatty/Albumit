@@ -13,14 +13,14 @@
 		
 		
 		<div>
-	<%-- 	<form:form commandName="loginMember">
+	<form:form commandName="member">
 
 		ID <form:input path="member_email"  size="20"/>
 		PW <form:password path="member_password"  size="20"/>
 
 		<input type="submit" value="login"/>
 		</form:form>
-		 --%>
+	
 
 		</div>
 
