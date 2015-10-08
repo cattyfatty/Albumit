@@ -19,11 +19,11 @@ public class PhotoService {
 	private ThumbnailDao thumbnailDao;
 	
 	//사진보기 (최신순 정렬)
-	public List<Photo> showLaPhoto(int album_no, int photo_no){
-		TreeSet<Photo> treeSet = new TreeSet<Photo>();
+	public List<Photo> showLaPhoto(int album_no){
+		//TreeSet<Photo> treeSet = new TreeSet<Photo>();
 		
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
-		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
+		/*List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
 		for(SharedPhoto sharedphoto : list2){
 			Photo photo = photoDao.selectByPk(sharedphoto.getPhoto_no());
 			
@@ -40,8 +40,8 @@ public class PhotoService {
 		List<Photo> list = new ArrayList<Photo>();
 		for(Photo photo :  descendingSet){
 			list.add(photo);
-		}
-		return list;
+		}*/
+		return list1;
 		
 		
 	}
