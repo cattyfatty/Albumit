@@ -7,7 +7,9 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<style type="text/css">
-			
+			body {
+				color: white;
+			}
 			table {
 				width: 100%;
 				border-collapse: collapse;
@@ -89,7 +91,6 @@
 				<th style="width:80px">날짜</th>
 				<th style="width:60px">조회수</th>
 			</tr>
-		
 			
 			
 			<c:forEach var="photo" items="${list}">
@@ -97,6 +98,8 @@
 				
 					<td>${photo.photo_no}</td>
 					<td>${photo.uid}</td>
+					<td>${photo.photo_date}</td>
+					<td>${photo.photo_hitcount}</td>
 					
 				</tr>
 			</c:forEach>
