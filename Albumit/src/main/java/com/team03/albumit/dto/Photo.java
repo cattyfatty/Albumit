@@ -2,6 +2,8 @@ package com.team03.albumit.dto;
 
 import java.util.*;
 
+import org.springframework.web.multipart.*;
+
 public class Photo implements Comparable<Photo>{
 	private int photo_no;
 	private String photo_place;
@@ -10,6 +12,7 @@ public class Photo implements Comparable<Photo>{
 	private String photo_original_file_name;
 	private String photo_filesystem_name;
 	private String photo_content_type;
+	private MultipartFile attach;
 	private int photo_like;
 	private int photo_hitcount;
 	private String photo_content;
@@ -57,6 +60,12 @@ public class Photo implements Comparable<Photo>{
 	}
 	public void setPhoto_content_type(String photo_content_type) {
 		this.photo_content_type = photo_content_type;
+	}
+	public MultipartFile getAttach() {
+		return attach;
+	}
+	public void setAttach(MultipartFile attach) {
+		this.attach = attach;
 	}
 	public int getPhoto_like() {
 		return photo_like;

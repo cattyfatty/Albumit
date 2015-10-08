@@ -11,6 +11,7 @@
 		
 		<input type="text">
 		
+		<a href="photoList">포토리스트</a>
 		</div>
 
 
