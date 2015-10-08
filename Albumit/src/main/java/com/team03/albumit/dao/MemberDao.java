@@ -1,19 +1,15 @@
 package com.team03.albumit.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
+import java.sql.*;
+import java.util.*;
 
-import com.team03.albumit.dto.Member;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.dao.*;
+import org.springframework.jdbc.core.*;
+import org.springframework.jdbc.support.*;
+import org.springframework.stereotype.*;
+
+import com.team03.albumit.dto.*;
 
 @Component
 public class MemberDao {
@@ -72,8 +68,7 @@ public class MemberDao {
 	
 	public Member selectByEmail(String email){
 		String sql =" select * from Member where member_email = ? ";
-		Member mem =null;
-				mem = jdbcTemplate.queryForObject(sql, new Object[]{email},
+		try{ return jdbcTemplate.queryForObject(sql, new Object[]{email},
 				new RowMapper<Member>(){
 			@Override
 			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -85,14 +80,15 @@ public class MemberDao {
 				member.setMember_nickname(rs.getString("member_nickname"));
 				member.setMember_password(rs.getString("member_password"));
 				member.setMember_profile(rs.getString("member_profile"));
-				member.setUid(rs.getInt("uid"));
+			
 				return member;
-			}
-		});
-		return mem;
+				}
+		}	
+		); }catch (EmptyResultDataAccessException e) {
+	           return null;
+	       }
 	}
-
-
+	
 	public List<Member> selectAll(int uid){
 		String sql =" select * from Member where uid=?";
 		List<Member> member = jdbcTemplate.query(sql, new Object[]{uid}, new RowMapper<Member>(){
