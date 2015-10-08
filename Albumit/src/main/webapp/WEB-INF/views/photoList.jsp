@@ -91,14 +91,18 @@
 				<th style="width:80px">날짜</th>
 				<th style="width:60px">조회수</th>
 			</tr>
+			<form action="photoList" method="post">
+			<input type="hidden" name="album_no" value=1/>
+			<input type="hidden" name="photo_no" value="1"/>
+		<input type="submit" value="전송"/>
+			</form>
 			
-			<c:forEach var="board" items="${list}">
+			
+			<c:forEach var="photo" items="${list}">
 				<tr>
-					<td>${board.no}</td>
-					<td><a class="title" href="detail?boardNo=${board.no}">${board.title}</a></td>
-					<td>${board.writer}</td>
-					<td>${board.date}</td>
-					<td>${board.hitcount}</td>
+					<td>${photo.no}</td>
+					<td><img src="${pageContext.request.contextPath}/resources/uploadfiles/${board.filesystemName}" width="100px" height="100px"/></td>
+					
 				</tr>
 			</c:forEach>
 		</table>

@@ -14,6 +14,7 @@
 		PW <form:password path="member_password"  size="20"/>
 
 		</form:form>
+		<a href="photoList">포토리스트</a>
 		</div>
 
 
