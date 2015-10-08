@@ -65,6 +65,30 @@ public class ThumbnailDao {
 		return thumbnail;
 	}
 	
+	public List<Thumbnail> selectInAlbumList(String incluase) {
+		List<Thumbnail> list = null;
+		String sql = "SELECT a.thumbnail_no, thumbnail_original_file_name, "
+				+ "thumbnail_content_type, thumbnail_filesystem_name "
+				+ "FROM Thumbnail a, Album b WHERE a.thumbnail_no IN"
+				+ "(SELECT b.thumbnail_no FROM Album WHERE album_no IN(" + incluase
+				+ ")";
+		list = jdbcTemplate.query(sql, new RowMapper<Thumbnail>(){
+
+			@Override
+			public Thumbnail mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Thumbnail th = new Thumbnail();
+				th.setThumbnail_no(rs.getInt("thumbnail_no"));
+				th.setThumbnail_original_file_name(rs.getString("thumbnail_original_file_name"));
+				th.setThumbnail_filesystem_name(rs.getString("thumbnail_filesystem_name"));
+				th.setThumbnail_content_type(rs.getString("thumbnail_content_type"));
+				
+				return th;
+			}
+			
+		});
+		
+		return list;
+	}
 
 	
 	public int delete(long thumbnail_no) {

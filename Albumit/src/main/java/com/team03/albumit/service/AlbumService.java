@@ -19,6 +19,8 @@ public class AlbumService {
 	private SharedAlbumDao sharedAlbumDao;
 	@Autowired
 	private LikedAlbumDao likedAlbumDao;
+	@Autowired
+	private ThumbnailDao thumbnailDao;
 	
 	// C
 	public Integer makeAlbum(Album album) {
@@ -33,6 +35,17 @@ public class AlbumService {
 		
 		int uid = member.getUid();
 		list = albumDao.selectAlbumByUid(uid);
+		String sql = "";
+		for(int i = 0; i < list.size(); i++) {
+			if(i == list.size()-1) {
+				sql += list.get(i).getAlbum_no();
+			} else {
+				sql += list.get(i).getAlbum_no() + ",";
+			}
+		}
+		
+		
+		Map<Album, Thumbnail> map = new HashMap<Album, Thumbnail>();
 		
 		return list;
 	}
@@ -125,4 +138,6 @@ public class AlbumService {
 	public void blockFriendFromAlbum(int f_uid, int album_no) {
 		sharedAlbumDao.delete(album_no, f_uid);
 	}
+	
+	
 }
