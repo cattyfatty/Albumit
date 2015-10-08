@@ -12,14 +12,12 @@
 	<header>
 		<div>
 			<ul>
-			
 			<li><p>Albumit</p></li>
-			
 			<li><div>
 					<select>
 						<option>Friends</option>
-						<option>....</option>
-						<option>xxxx</option>
+						<option>Album</option>
+						<option>Photo</option>
 					</select>
 			</div></li>
 
@@ -27,12 +25,11 @@
 					<a href="#"><i class="fa fa-plus-square"></i></a>
 			</div></li>
 
-				<div class="input-group margin-bottom-sm">
+			<li><div class="input-group margin-bottom-sm">
 					<span class="input-group-addon"><i
 						class="fa fa-search fa-fw"></i></span> <input class="form-control"
 						type="text" placeholder="Search">
-				</div>
-
+			</div></li>
 			</ul>
 		</div>
 	</header>
