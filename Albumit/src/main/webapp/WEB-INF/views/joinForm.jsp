@@ -21,10 +21,8 @@ input {
 
 	<h4>회원가입</h4>
 	<form:form commandName="joinMember" enctype="multipart/form-data">
-		<div>
-		<p>E-mail</p>
+		
 		<form:input path="member_email" />
-		</div>
 		
 		<div>
 		<p>Password</p>

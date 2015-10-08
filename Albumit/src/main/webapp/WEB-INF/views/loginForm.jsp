@@ -7,19 +7,20 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
+	<a href="photoList?album_no=1">포토리스트</a>
+	<a href="photoList">포토리스트</a>
+		
+		
+		
 		<div>
-		<form:form commandName="loginMember">
-		
-
-		<input type="text">
-		
-		<a href="photoList?album_no=1">포토리스트</a>
+	<%-- 	<form:form commandName="loginMember">
 
 		ID <form:input path="member_email"  size="20"/>
 		PW <form:password path="member_password"  size="20"/>
 
+		<input type="submit" value="login"/>
 		</form:form>
-		<a href="photoList">포토리스트</a>
+		 --%>
 
 		</div>
 
