@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,25 +19,30 @@ input {
 <body>
 
 	<h4>회원가입</h4>
-	<form:form commandName="member" enctype="multipart/form-data">
+	<form method="POST" action="join" enctype="multipart/form-data">
 		
 		<div>
 		E-mail
-		<form:input path="member_email" />
+		<input name="member_email" />
 		</div>
 		<div>
 		Password
-		<form:input path="member_password" />
+		<input name="member_password" />
 		</div>
 				
 		<div>
 		NickName
-		<form:input path="member_nickname" />
+		<input name="member_nickname" />
 		</div>
 			
 		<div>
 		Profile
-		<form:input type="file" path="attach" />
+		<input name="member_profile" />
+		</div>
+			
+		<div>
+		Profile
+		<input type="file" name="attach"/>
 		</div>		
 
 		<br />
@@ -46,7 +50,7 @@ input {
 			<input type="submit" value= "회원가입" />
 			<input type="reset"  value= "다시작성" />
 		</div>
-	</form:form>
+	</form>
 
 </body>
 </html>

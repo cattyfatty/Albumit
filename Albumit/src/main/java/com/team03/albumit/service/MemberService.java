@@ -20,8 +20,10 @@ public class MemberService {
 	//회원 가입
 	public boolean register(Member member){
 		//아이디 중복 체크
-		String email = member.getMember_email();
-		if(memberDao.selectByEmail(email) == null)
+		String emailId = member.getMember_email();
+       
+		logger.info("서비스에서 아디 출력:"+emailId);
+		if( memberDao.selectByEmail(emailId) == null)
 		{
 			memberDao.insert(member);
 			logger.info("회원가입 성공");
