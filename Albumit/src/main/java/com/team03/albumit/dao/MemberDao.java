@@ -71,19 +71,20 @@ public class MemberDao {
 	}
 	
 	public Member selectByEmail(String email){
-		String sql =" select * from Member where member_email = ?";
-		Member mem =jdbcTemplate.queryForObject(sql, new Object[]{email},
+		String sql =" select * from Member where member_email = ? ";
+		Member mem =null;
+				mem = jdbcTemplate.queryForObject(sql, new Object[]{email},
 				new RowMapper<Member>(){
 			@Override
 			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Member member = new Member();
-				member.setMember_profile(rs.getString("member_profile"));
-				member.setMember_password(rs.getString("member_password"));
-				member.setMember_original_file_name(rs.getString("member_original_file_name"));
-				member.setMember_nickname(rs.getString("member_nickname"));
-				member.setMember_filesystem_name(rs.getString("member_filesystem_name"));
-				member.setMember_email(rs.getString("member_email"));
 				member.setMember_content_type(rs.getString("member_content_type"));
+				member.setMember_filesystem_name(rs.getString("member_filesystem_name"));
+				member.setMember_original_file_name(rs.getString("member_original_file_name"));
+				member.setMember_email(rs.getString("member_email"));
+				member.setMember_nickname(rs.getString("member_nickname"));
+				member.setMember_password(rs.getString("member_password"));
+				member.setMember_profile(rs.getString("member_profile"));
 				member.setUid(rs.getInt("uid"));
 				return member;
 			}

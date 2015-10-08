@@ -40,10 +40,6 @@ input {
 		Profile
 		<form:input type="file" path="attach" />
 		</div>		
-							
-		
-		
-		
 
 		<br />
 		<div>

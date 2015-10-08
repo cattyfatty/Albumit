@@ -7,7 +7,8 @@ import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
-import org.springframework.ui.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import com.team03.albumit.dto.*;
@@ -17,7 +18,8 @@ import com.team03.albumit.service.*;
 public class MemberController {
 @Autowired
 	private MemberService memberService;
-	
+private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+
 	@RequestMapping(value="/",method=RequestMethod.GET)
 	public String loginForm(Member loginMember){
 		return "loginForm";
@@ -34,39 +36,48 @@ public class MemberController {
 		
 		if(loginCheck){
 			session.setAttribute("loginMember", loginMember);
+			logger.info("로그인성공");
 			return "allAlbumList";
 		}
-		return "loginForm";	
+		logger.info("로그인 실패");
+		return "redirect:login";	
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.GET)
 	public String joinForm(Member joinMember){
+		logger.info("joinMember.getMember_email()11111");
 		return "joinForm";
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String join(Member joinMember, HttpSession session){
-
+		logger.info("joinMember.getMember_email()33333");
 		ServletContext application =session.getServletContext();
 		String dirPath = application.getRealPath("/resources/uploadfiles");
-		
+		logger.info("Beforefilecheck");
 		if(joinMember.getAttach() !=null){
+			logger.info("joinMember.getMember_email()filecheck");
 			String originalFilename = joinMember.getAttach().getOriginalFilename();
 			String filesystemName = System.currentTimeMillis() +"-" + originalFilename;
 			String contentType = joinMember.getAttach().getContentType();
 			
 			if(!joinMember.getAttach().isEmpty()){
 				try{
-					joinMember.getAttach().transferTo(new File(dirPath+ "/"+ filesystemName));;
+					joinMember.getAttach().transferTo(new File(dirPath+ "/"+ filesystemName));
 				}catch(Exception e) {e.printStackTrace();}
 			}
+			logger.info("joinMember.getMember_email()filecheck222222222");
 			joinMember.setMember_original_file_name(originalFilename);
 			joinMember.setMember_filesystem_name(filesystemName);
 			joinMember.setMember_content_type(contentType);
-		}
 		
-		memberService.register(joinMember);
-		return "loginForm";
+			 if(memberService.register(joinMember)){
+			
+				 return "redirect:/login";
+			 }
+			
+		}
+	return "redirect:/join";
 	}
 }
 

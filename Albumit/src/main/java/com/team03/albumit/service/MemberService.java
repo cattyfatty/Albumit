@@ -2,6 +2,7 @@ package com.team03.albumit.service;
 
 import java.util.*;
 
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -14,30 +15,34 @@ public class MemberService {
 	@Autowired
 	private MemberDao memberDao;
 	private FriendDao friendDao;
+	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
 	//회원 가입
-	public void register(Member member){
+	public boolean register(Member member){
 		//아이디 중복 체크
 		String email = member.getMember_email();
-		Member mem = memberDao.selectByEmail(email);
-		if(mem.getMember_email().equals(email)){
-			return  ;
-
+		if(memberDao.selectByEmail(email) == null)
+		{
+			memberDao.insert(member);
+			logger.info("회원가입 성공");
+			return true;
 		}
-		memberDao.insert(member);
+
+		logger.info("회원가입 실패 아이디 중복");
+		return false;
+
 	}
 
 	//로그인
 	public boolean login(String email, String pw){
-		Member member=	memberDao.selectByEmail(email);
 		//아이디 동일체크
-		if(member.getMember_email().equals(email)){
-			if(member.getMember_password().equals(pw)){
-				return true;
-			}
-			return false;
-		}else
-			return false;
+
+		Member mem =memberDao.selectByEmail(email); 
+		if(mem.getMember_password().equals(pw)){
+			return true;
+		}
+		return false;
+
 	}
 
 	//회원정보 변경
@@ -47,7 +52,9 @@ public class MemberService {
 
 	//회원 검색
 	public Member findMember(String email){
+		
 		Member member = memberDao.selectByEmail(email);
+	
 		if(member == null){
 			return null;
 		} else{
@@ -109,8 +116,9 @@ public class MemberService {
 		String email =fmember.getMember_email();
 
 		//검색 하려는 친구가 회원인지 검색
-		Member mem = memberDao.selectByEmail(email);		
-		if(mem == null){
+		Member member = memberDao.selectByEmail(email);
+
+		if(member == null){
 			return null;
 		}
 		else{
@@ -119,8 +127,8 @@ public class MemberService {
 			if(friend == null){
 				return null;
 			}
-				Member searchedFriend = memberDao.selectByUid(friend.getF_uid());
-				return searchedFriend;
+			Member searchedFriend = memberDao.selectByUid(friend.getF_uid());
+			return searchedFriend;
 		}
 	}
 }
