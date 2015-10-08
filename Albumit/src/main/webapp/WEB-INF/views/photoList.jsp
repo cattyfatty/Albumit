@@ -8,7 +8,7 @@
 		<title>Insert title here</title>
 		<style type="text/css">
 			body {
-				color: white;
+			
 			}
 			table {
 				width: 100%;

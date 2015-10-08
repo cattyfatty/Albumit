@@ -14,18 +14,21 @@ public class PhotoService {
 	
 	@Autowired
 	private PhotoDao photoDao;
+	@Autowired
 	private SharedPhotoDao sharedPhotoDao;
+	@Autowired
 	private ReportedPhotoDao reportedPhotoDao;
+	@Autowired
 	private ThumbnailDao thumbnailDao;
 	
 	//사진보기 (최신순 정렬)
-	public List<SharedPhoto> showLaPhoto(int album_no){
-		/*TreeSet<Photo> treeSet = new TreeSet<Photo>();
+	public List<Photo> showLaPhoto(int album_no){
+		TreeSet<Photo> treeSet = new TreeSet<Photo>();
 		
-		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);*/
-		//
+		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
+		
 		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
-		/*for(SharedPhoto sharedPhoto : list2){
+		for(SharedPhoto sharedPhoto : list2){
 			Photo photo = photoDao.selectByPk(sharedPhoto.getPhoto_no());
 			
 			photo.setPhoto_date(sharedPhoto.getShare_date());
@@ -41,9 +44,9 @@ public class PhotoService {
 		List<Photo> list = new ArrayList<Photo>();
 		for(Photo photo :  descendingSet){
 			list.add(photo);
-		}*/
+		}
 		
-		return list2;
+		return list;
 		
 		
 	}

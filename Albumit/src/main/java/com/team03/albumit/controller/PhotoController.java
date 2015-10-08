@@ -27,12 +27,17 @@ public class PhotoController {
 			int album_no,
 			Model model) {
 		
-		//
-		List<SharedPhoto> list = photoService.showLaPhoto(album_no);
+		
+		List<Photo> list = photoService.showLaPhoto(album_no);
+		logger.info("album_no", album_no);
 		
 		model.addAttribute("list",list);
 		
+	
+		
 		return "/photoList";
+		
+		
 
 	}
 }

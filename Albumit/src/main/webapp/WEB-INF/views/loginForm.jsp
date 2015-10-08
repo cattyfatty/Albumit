@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="photoList?album_no=1">포토리스트</a>
+	<a href="photoList?album_no=2">포토리스트</a>
 	<div>
 		<form:form commandName="member">
 
@@ -16,7 +16,7 @@
 
 			<input type="submit" value="login" />
 		</form:form>
-		<a href="photoList?album_no=1">포토리스트</a>
+		
 	</div>
 
 	<a href="join">SIGN UP!!</a>
