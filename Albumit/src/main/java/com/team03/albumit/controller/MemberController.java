@@ -45,18 +45,15 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	
 	@RequestMapping(value="join", method=RequestMethod.GET)
 	public String joinForm(Member joinMember){
-		logger.info("joinMember.getMember_email()11111");
 		return "joinForm";
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String join(Member joinMember, HttpSession session){
-		logger.info("joinMember.getMember_email()33333");
 		ServletContext application =session.getServletContext();
-		String dirPath = application.getRealPath("/resources/uploadfiles");
+		String dirPath = application.getRealPath("/resources");
 		logger.info("Beforefilecheck");
 		if(joinMember.getAttach() !=null){
-			logger.info("joinMember.getMember_email()filecheck");
 			String originalFilename = joinMember.getAttach().getOriginalFilename();
 			String filesystemName = System.currentTimeMillis() +"-" + originalFilename;
 			String contentType = joinMember.getAttach().getContentType();
@@ -66,16 +63,14 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 					joinMember.getAttach().transferTo(new File(dirPath+ "/"+ filesystemName));
 				}catch(Exception e) {e.printStackTrace();}
 			}
-			logger.info("joinMember.getMember_email()filecheck222222222");
 			joinMember.setMember_original_file_name(originalFilename);
 			joinMember.setMember_filesystem_name(filesystemName);
 			joinMember.setMember_content_type(contentType);
 		
 			 if(memberService.register(joinMember)){
-			
-				 return "redirect:/login";
+				 logger.info(joinMember.getMember_email());
+				 return "redirect:/";
 			 }
-			
 		}
 	return "redirect:/join";
 	}
