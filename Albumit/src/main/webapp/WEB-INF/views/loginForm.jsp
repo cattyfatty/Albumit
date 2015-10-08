@@ -17,6 +17,7 @@
 		<a href="photoList">포토리스트</a>
 		</div>
 
+		<a href="join">SIGN UP!!</a>
 
 	</body>
 </html>
