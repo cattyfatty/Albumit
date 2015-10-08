@@ -91,11 +91,6 @@
 				<th style="width:80px">날짜</th>
 				<th style="width:60px">조회수</th>
 			</tr>
-			<form action="photoList" method="post">
-			<input type="hidden" name="album_no" value=1/>
-			<input type="hidden" name="photo_no" value="1"/>
-		<input type="submit" value="전송"/>
-			</form>
 			
 			
 			<c:forEach var="photo" items="${list}">
