@@ -27,7 +27,8 @@ public class PhotoController {
 			int album_no,
 			Model model) {
 		
-		List<Photo> list = photoService.showLaPhoto(album_no);
+		//
+		List<SharedPhoto> list = photoService.showLaPhoto(album_no);
 		
 		model.addAttribute("list",list);
 		

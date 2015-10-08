@@ -82,7 +82,7 @@ public class SharedPhotoDao {
 		
 		
 		public List<SharedPhoto> selectByAlbumNo(int album_no) {
-			String sql = "select * from SharedPhoto where album_no=?";
+			String sql = "select * from Sharedphoto where album_no=?";
 			List<SharedPhoto> list = jdbcTemplate.query(
 				sql,
 				new Object[] {album_no},
@@ -94,6 +94,7 @@ public class SharedPhotoDao {
 						sharedPhoto.setUid(rs.getInt("uid"));
 						sharedPhoto.setAlbum_no(rs.getInt("album_no"));
 						sharedPhoto.setShare_date(rs.getDate("share_date"));
+						
 						return sharedPhoto;
 					}
 				});

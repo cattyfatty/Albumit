@@ -15,7 +15,7 @@ import com.team03.albumit.service.*;
 
 @Controller
 public class MemberController {
-	@Autowired
+@Autowired
 	private MemberService memberService;
 	
 	@RequestMapping(value="/",method=RequestMethod.GET)
