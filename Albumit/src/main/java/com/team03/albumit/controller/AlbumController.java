@@ -30,7 +30,7 @@ public class AlbumController {
 	
 	@RequestMapping("/myAlbumList")
 	public String myAlbumList(@ModelAttribute("member") Member member, Model model) {
-		List<Album> albumList = albumService.showMyAlbumList(member);
+		Map<Album, Thumbnail> albumList = albumService.showMyAlbumList(member);
 		model.addAttribute(albumList);
 		
 		return "albumList";

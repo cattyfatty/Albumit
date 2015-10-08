@@ -71,7 +71,7 @@ public class ThumbnailDao {
 				+ "thumbnail_content_type, thumbnail_filesystem_name "
 				+ "FROM Thumbnail a, Album b WHERE a.thumbnail_no IN"
 				+ "(SELECT b.thumbnail_no FROM Album WHERE album_no IN(" + incluase
-				+ ")";
+				+ "))";
 		list = jdbcTemplate.query(sql, new RowMapper<Thumbnail>(){
 
 			@Override

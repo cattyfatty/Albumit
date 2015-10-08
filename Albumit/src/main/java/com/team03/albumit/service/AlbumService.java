@@ -30,7 +30,7 @@ public class AlbumService {
 	}
 	
 	// R
-	public List<Album> showMyAlbumList(Member member) {
+	public Map<Album, Thumbnail> showMyAlbumList(Member member) {
 		List<Album> list = null;
 		
 		int uid = member.getUid();
@@ -43,11 +43,14 @@ public class AlbumService {
 				sql += list.get(i).getAlbum_no() + ",";
 			}
 		}
-		
+		List<Thumbnail> thList = thumbnailDao.selectInAlbumList(sql);
 		
 		Map<Album, Thumbnail> map = new HashMap<Album, Thumbnail>();
+		for(int i = 0; i < list.size(); i++) {
+			map.put(list.get(i), thList.get(i));
+		}
 		
-		return list;
+		return map;
 	}
 	
 	public List<Album> showMySharedAlbumList(Member member) {
