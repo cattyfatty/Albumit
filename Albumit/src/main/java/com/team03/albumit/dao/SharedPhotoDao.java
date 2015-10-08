@@ -93,7 +93,7 @@ public class SharedPhotoDao {
 						sharedPhoto.setPhoto_no(rs.getInt("photo_no"));
 						sharedPhoto.setUid(rs.getInt("uid"));
 						sharedPhoto.setAlbum_no(rs.getInt("album_no"));
-						sharedPhoto.setShare_date(rs.getDate("share_date"));
+						sharedPhoto.setShare_date(rs.getTime("share_date"));
 						
 						return sharedPhoto;
 					}

@@ -28,6 +28,7 @@ public class PhotoService {
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
 		
 		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
+		
 		for(SharedPhoto sharedPhoto : list2){
 			Photo photo = photoDao.selectByPk(sharedPhoto.getPhoto_no());
 			
@@ -36,18 +37,18 @@ public class PhotoService {
 			
 			list1.add(photo);
 		}
-		
-	/*	for(Photo photo : list1){
+
+		for(Photo photo : list1){
 			treeSet.add(photo);
 		}
-		
+
 		NavigableSet<Photo> descendingSet = treeSet.descendingSet();
 		List<Photo> list = new ArrayList<Photo>();
 		for(Photo photo :  descendingSet){
 			list.add(photo);
-		}*/
+		}
 		
-		return list1;
+		return list;
 		
 		
 	}
