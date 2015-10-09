@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.ui.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import com.team03.albumit.dto.*;
 import com.team03.albumit.service.*;
 
 @Controller
+@SessionAttributes("member")
 public class MemberController {
 @Autowired
 	private MemberService memberService;
@@ -27,7 +29,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	}
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public String login(Member loginMember, HttpSession session){
+	public String login(Member loginMember, Model model){
 		Boolean loginCheck;
 		
 		//로그인 성공시 세션객체에 등록하기!
@@ -36,12 +38,12 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		loginCheck = memberService.login(email,pw);
 		
 		if(loginCheck){
-			session.setAttribute("loginMember", loginMember);
+			model.addAttribute("member",loginMember);
 			logger.info("로그인성공");
-			return "allAlbumList";
+			return "redirect:/allAlbumList";
 		}
 		logger.info("로그인 실패");
-		return "redirect:login";	
+		return "redirect:/login";	
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.GET)
@@ -61,8 +63,9 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		new JoinValidator().validate(joinMember, bindingResult);
 		if(bindingResult.hasErrors()) {
 			logger.info("validator");
-			return "redirect:/join";
+			return "joinForm";
 		}
+		
 		//파일 경로 구하기
 		if(joinMember.getAttach() !=null){
 			String originalFilename = joinMember.getAttach().getOriginalFilename();
@@ -100,6 +103,11 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		return "";
 	}
 	
+	@RequestMapping(value="searchFriend", method=RequestMethod.GET)
+	public String searchFriend(){
+		
+		return "";
+	}
 	
 }
 
