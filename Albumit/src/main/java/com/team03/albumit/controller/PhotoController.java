@@ -33,10 +33,11 @@ public class PhotoController {
 		logger.info("photoList");
 		
 		List<Photo> Lalist = photoService.showLaPhoto(album_no);
-		List<Photo> Lilist = photoService.showLaPhoto(album_no);
+		List<Photo> Lilist = photoService.showLiPhoto(album_no);
 		logger.info("album_no", album_no);
 		
-		model.addAttribute("list",Lalist);
+		model.addAttribute("Lalist",Lalist);
+		model.addAttribute("Lilist",Lilist);
 		
 	
 		
