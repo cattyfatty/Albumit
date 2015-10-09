@@ -22,44 +22,39 @@ public class PhotoService {
 	
 	//사진보기 (최신순 정렬)
 	public List<Photo> showLaPhoto(int album_no){
-		TreeSet<Photo> treeSet = new TreeSet<Photo>(new Comparator<Photo>(){
-			@Override
-			public int compare(Photo p1, Photo p2) {
-				return p2.getPhoto_date().compareTo(p1.getPhoto_date());
-			}
-		});
-		
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
-		
 		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
 		
 		for(SharedPhoto sharedPhoto : list2){
 			Photo photo = photoDao.selectByPk(sharedPhoto.getPhoto_no());
-			
 			photo.setPhoto_date(sharedPhoto.getShare_date());
 			photo.setAlbum_no(sharedPhoto.getAlbum_no());
-			
 			list1.add(photo);
 		}
 
-		for(Photo photo : list1){
-			treeSet.add(photo);
-		}
-
-		Iterator<Photo> iterator = treeSet.iterator();
-		List<Photo> list = new ArrayList();
-		while(iterator.hasNext()){
-			Photo photo = iterator.next();
-			list.add(photo);
-			
-		}
+		Collections.sort(list1, new Comparator<Photo>() {
+			@Override
+			public int compare(Photo o1, Photo o2) {
+				return o2.getPhoto_date().compareTo(o1.getPhoto_date());
+			}
+		});
 		
-		return list;
+		return list1;
 	}
 	
 	//사진보기 (인기순 정렬)
 	public List<Photo> showLiPhoto(int album_no){
-		TreeSet<Photo> treeSet = new TreeSet<Photo>(new Comparator<Photo>(){
+		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
+		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
+		
+		for(SharedPhoto sharedPhoto : list2){
+			Photo photo = photoDao.selectByPk(sharedPhoto.getPhoto_no());
+			photo.setPhoto_date(sharedPhoto.getShare_date());
+			photo.setAlbum_no(sharedPhoto.getAlbum_no());
+			list1.add(photo);
+		}
+
+		Collections.sort(list1, new Comparator<Photo>(){
 			@Override
 			public int compare(Photo p1, Photo p2) {
 				if(p1.getPhoto_like()<p2.getPhoto_like()) {
@@ -72,32 +67,7 @@ public class PhotoService {
 			}
 		});
 		
-		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
-		
-		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
-		
-		for(SharedPhoto sharedPhoto : list2){
-			Photo photo = photoDao.selectByPk(sharedPhoto.getPhoto_no());
-			
-			photo.setPhoto_date(sharedPhoto.getShare_date());
-			photo.setAlbum_no(sharedPhoto.getAlbum_no());
-			
-			list1.add(photo);
-		}
-
-		for(Photo photo : list1){
-			treeSet.add(photo);
-		}
-
-		Iterator<Photo> iterator = treeSet.iterator();
-		List<Photo> list = new ArrayList();
-		while(iterator.hasNext()){
-			Photo photo = iterator.next();
-			list.add(photo);
-			
-		}
-		
-		return list;
+		return list1;
 	}
 	
 	public Photo getPhoto(int photo_no){
