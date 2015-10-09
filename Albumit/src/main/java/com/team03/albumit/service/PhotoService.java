@@ -5,7 +5,6 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
-
 import com.team03.albumit.dao.*;
 import com.team03.albumit.dto.*;
 
@@ -23,7 +22,12 @@ public class PhotoService {
 	
 	//사진보기 (최신순 정렬)
 	public List<Photo> showLaPhoto(int album_no){
-		TreeSet<Photo> treeSet = new TreeSet<Photo>();
+		TreeSet<Photo> treeSet = new TreeSet<Photo>(new Comparator<Photo>(){
+			@Override
+			public int compare(Photo p1, Photo p2) {
+				return p2.getPhoto_date().compareTo(p1.getPhoto_date());
+			}
+		});
 		
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
 		
@@ -42,28 +46,58 @@ public class PhotoService {
 			treeSet.add(photo);
 		}
 
-		NavigableSet<Photo> descendingSet = treeSet.descendingSet();
-		List<Photo> list = new ArrayList<Photo>();
-		for(Photo photo :  descendingSet){
+		Iterator<Photo> iterator = treeSet.iterator();
+		List<Photo> list = new ArrayList();
+		while(iterator.hasNext()){
+			Photo photo = iterator.next();
 			list.add(photo);
+			
 		}
 		
 		return list;
-		
-		
 	}
 	
 	//사진보기 (인기순 정렬)
-	public List<Photo> showLiPhoto(int album_no, int photo_no){
-		TreeSet<Photo> treeSet = new TreeSet<Photo>();
+	public List<Photo> showLiPhoto(int album_no){
+		TreeSet<Photo> treeSet = new TreeSet<Photo>(new Comparator<Photo>(){
+			@Override
+			public int compare(Photo p1, Photo p2) {
+				if(p1.getPhoto_like()<p2.getPhoto_like()) {
+					return 1;
+				} else if(p1.getPhoto_like()==p2.getPhoto_like()) {
+					return 0;
+				} else {
+					return -1;
+				}
+			}
+		});
 		
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
-		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
 		
+		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
 		
+		for(SharedPhoto sharedPhoto : list2){
+			Photo photo = photoDao.selectByPk(sharedPhoto.getPhoto_no());
+			
+			photo.setPhoto_date(sharedPhoto.getShare_date());
+			photo.setAlbum_no(sharedPhoto.getAlbum_no());
+			
+			list1.add(photo);
+		}
+
+		for(Photo photo : list1){
+			treeSet.add(photo);
+		}
+
+		Iterator<Photo> iterator = treeSet.iterator();
+		List<Photo> list = new ArrayList();
+		while(iterator.hasNext()){
+			Photo photo = iterator.next();
+			list.add(photo);
+			
+		}
 		
-		return list1;
-		
+		return list;
 	}
 	
 	public Photo getPhoto(int photo_no){

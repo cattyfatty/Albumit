@@ -4,7 +4,7 @@ import java.util.*;
 
 import org.springframework.web.multipart.*;
 
-public class Photo implements Comparable<Photo>{
+public class Photo {
 	private int photo_no;
 	private String photo_place;
 	private int album_no;
@@ -98,11 +98,7 @@ public class Photo implements Comparable<Photo>{
 		this.uid = uid;
 	}
 	
-	//날짜 정렬을 위한 메소드
-	@Override
-	public int compareTo(Photo photo){
-		return photo_date.compareTo(photo.getPhoto_date());
-	}
+
 	
 	
 	
