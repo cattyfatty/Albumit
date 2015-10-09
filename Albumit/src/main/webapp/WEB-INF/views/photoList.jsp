@@ -93,7 +93,18 @@
 			</tr>
 			
 			
-			<c:forEach var="photo" items="${list}">
+			<c:forEach var="photo" items="${laList}">
+				<tr>
+				
+					<td>${photo.photo_no}</td>
+					<td>${photo.uid}</td>
+				
+					
+				</tr>
+			</c:forEach>
+			
+			
+			<c:forEach var="photo" items="${liList}">
 				<tr>
 				
 					<td>${photo.photo_no}</td>
