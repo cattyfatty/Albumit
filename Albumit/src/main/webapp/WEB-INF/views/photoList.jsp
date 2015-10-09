@@ -93,6 +93,9 @@
 			</tr>
 			
 			
+<<<<<<< HEAD
+			<c:forEach var="photo" items="${Lalist}">
+=======
 			<c:forEach var="photo" items="${laList}">
 				<tr>
 				
@@ -105,6 +108,7 @@
 			
 			
 			<c:forEach var="photo" items="${liList}">
+>>>>>>> branch 'master' of https://github.com/cattyfatty/Albumit.git
 				<tr>
 				
 					<td>${photo.photo_no}</td>
