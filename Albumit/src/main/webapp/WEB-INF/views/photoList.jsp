@@ -92,10 +92,13 @@
 				<th style="width:60px">조회수</th>
 			</tr>
 			
+<<<<<<< HEAD
 
 
 			
 
+=======
+>>>>>>> branch 'master' of https://github.com/cattyfatty/Albumit.git
 			<c:forEach var="photo" items="${laList}">
 				<tr>
 				
@@ -120,7 +123,10 @@
 	
 			
 			<c:forEach var="photo" items="${liList}">
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/cattyfatty/Albumit.git
 				<tr>
 				
 					<td>${photo.photo_no}</td>
