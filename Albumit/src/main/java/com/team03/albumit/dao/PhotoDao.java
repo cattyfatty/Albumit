@@ -88,6 +88,27 @@ public class PhotoDao {
 		return rows;
 	}
 	
+	public int updateUid(Photo photo, int uid) {
+		String sql = "update Photo set uid=? where photo_no=?";
+		int rows = jdbcTemplate.update(
+			sql,
+			photo.getUid(),
+			photo.getPhoto_no()
+		);
+		return rows;
+	}
+	
+	
+	public int updateAlbum(Photo photo) {
+		String sql = "update Photo set album_no=? where photo_no=?";
+		int rows = jdbcTemplate.update(
+			sql,
+			photo.getAlbum_no(),
+			photo.getPhoto_no()
+		);
+		return rows;
+	}
+	
 	public int delete(int photo_no) {
 		String sql = "delete from Photo where photo_no=?";
 		int rows = jdbcTemplate.update(

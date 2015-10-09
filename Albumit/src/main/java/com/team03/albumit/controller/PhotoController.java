@@ -32,26 +32,25 @@ public class PhotoController {
 		
 		logger.info("photoList");
 		
-		List<Photo> Lalist = photoService.showLaPhoto(album_no);
-		List<Photo> Lilist = photoService.showLiPhoto(album_no);
+		List<Photo> laList = photoService.showLaPhoto(album_no);
+		List<Photo> liList = photoService.showLiPhoto(album_no);
 		logger.info("album_no", album_no);
 		
-		model.addAttribute("Lalist",Lalist);
-		model.addAttribute("Lilist",Lilist);
+		model.addAttribute("laList",laList);
+		model.addAttribute("liList",liList);
 		
 	
 		
 		return "/photoList";
-		
-		
+	
 
 	}
 	
 	//사진 큰화면 보여주기
 	@RequestMapping("/detail")
-	public String detail(int photo_no, Model model){
+	public String detail(int photo_no,int album_no, Model model){
 		
-		photoService.addHitcount(photo_no);
+		photoService.addHitcount(photo_no, album_no);
 		Photo photo = photoService.getPhoto(photo_no);
 		model.addAttribute("photo",photo);
 		return "/detail";
