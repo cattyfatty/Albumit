@@ -2,6 +2,8 @@ package com.team03.albumit.controller;
 
 import java.util.*;
 
+import javax.servlet.http.*;
+
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -21,12 +23,14 @@ public class PhotoController {
 	@Autowired
 	private PhotoService photoService;
 	
-	
+	//사진 보여주기
 	@RequestMapping("/photoList")
-	public String Photolist(
+	public String PhotoList(
 			int album_no,
-			Model model) {
+			Model model,
+			HttpSession session) {
 		
+		logger.info("photoList");
 		
 		List<Photo> list = photoService.showLaPhoto(album_no);
 		logger.info("album_no", album_no);
@@ -40,4 +44,16 @@ public class PhotoController {
 		
 
 	}
+	
+	//사진 큰화면 보여주기
+	@RequestMapping("/detail")
+	public String detail(int photo_no, Model model){
+		
+		photoService.addHitcount(photo_no);
+		Photo photo = photoService.getPhoto(photo_no);
+		model.addAttribute("photo",photo);
+		return "/detail";
+		
+	}
+	
 }

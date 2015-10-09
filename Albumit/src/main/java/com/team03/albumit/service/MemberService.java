@@ -14,7 +14,9 @@ public class MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
+	@Autowired
 	private FriendDao friendDao;
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
 	//회원 가입

@@ -22,7 +22,7 @@ public class AlbumController {
 	
 	@RequestMapping("/allAlbumList")
 	public String allAlbumList(@ModelAttribute("member") Member member, Model model) {
-		List<Album> albumList = albumService.showAllAlbumList();
+		Map<Album, Thumbnail> albumList = albumService.showAllAlbumList();
 		model.addAttribute(albumList);
 		
 		return "albumList";
@@ -38,7 +38,7 @@ public class AlbumController {
 	
 	@RequestMapping("/sharedAlbumList")
 	public String sharedAlbumList(@ModelAttribute("member") Member member, Model model) {
-		List<Album> albumList = albumService.showMySharedAlbumList(member);
+		Map<Album, Thumbnail> albumList = albumService.showMySharedAlbumList(member);
 		model.addAttribute(albumList);
 		
 		return "albumList";
@@ -46,7 +46,7 @@ public class AlbumController {
 	
 	@RequestMapping("/likedAlbumList")
 	public String likedAlbumList(@ModelAttribute("member") Member member, Model model) {
-		List<Album> albumList = albumService.showMyLikedAlbumList(member);
+		Map<Album, Thumbnail> albumList = albumService.showMyLikedAlbumList(member);
 		model.addAttribute(albumList);
 		
 		return "albumList";
