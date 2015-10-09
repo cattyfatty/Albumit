@@ -54,7 +54,7 @@ public class PhotoService {
 	}
 	
 	//사진보기 (인기순 정렬)
-	/*public List<Photo> showLiPhoto(int album_no, int photo_no){
+	public List<Photo> showLiPhoto(int album_no, int photo_no){
 		TreeSet<Photo> treeSet = new TreeSet<Photo>();
 		
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
@@ -64,7 +64,13 @@ public class PhotoService {
 		
 		return list1;
 		
-	}*/
+	}
+	
+	public void getPhoto(int photo_no){
+		
+		photoDao.selectByPk(photo_no);
+	}
+	
 	
 	public void add(Photo photo) {
 		photoDao.insert(photo);
