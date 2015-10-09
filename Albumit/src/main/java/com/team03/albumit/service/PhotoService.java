@@ -20,7 +20,7 @@ public class PhotoService {
 	@Autowired
 	private ThumbnailDao thumbnailDao;
 	
-	//사진보기 (최신순 정렬)
+	//사진목록보기 (최신순 정렬)
 	public List<Photo> showLaPhoto(int album_no){
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
 		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
@@ -42,7 +42,7 @@ public class PhotoService {
 		return list1;
 	}
 	
-	//사진보기 (인기순 정렬)
+	//사진목록보기 (인기순 정렬)
 	public List<Photo> showLiPhoto(int album_no){
 		List<Photo> list1 = photoDao.selectByAlbumNo(album_no);
 		List<SharedPhoto> list2 = sharedPhotoDao.selectByAlbumNo(album_no);
@@ -70,18 +70,19 @@ public class PhotoService {
 		return list1;
 	}
 	
+	//사진 상세 보기
 	public Photo getPhoto(int photo_no){
 		Photo photo= photoDao.selectByPk(photo_no);
 		
 		return photo;
 	}
 	
-	
+	//사진등록
 	public void add(Photo photo) {
 		photoDao.insert(photo);
 	}
 	
-	
+	//사진삭제
 	public void remove(int photo_no, int album_no) {
 		
 		List<SharedPhoto> sharedphoto = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
@@ -95,33 +96,43 @@ public class PhotoService {
 		}
 		
 	}
-	
+	//조회수
 	public void addHitcount(int photo_no) {
 		photoDao.updateHitcount(photo_no);
 	}	
-	
+	//사진 좋아요
 	public void addLike(int photo_no) {
 		photoDao.updateLike(photo_no);
 	}
-	
+	//퍼간 사진 보기
 	public void showShared(int album_no,int photo_no){
 		sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
 	}
-	
+	//사진 수정
 	public void modify(Photo photo) {
 		photoDao.update(photo);
 	}
-
+	//사진 퍼가기
 	public void share(SharedPhoto sharedPhoto){
 		sharedPhotoDao.insert(sharedPhoto);
 	}
+	//사진 옮기기
 	
+	//사진신고
 	public void report(ReportedPhoto reportedPhoto){
 		reportedPhotoDao.insert(reportedPhoto);		
 	}
-	
+	//신고된 사진(관리자)
 	public void showreported(){
 		reportedPhotoDao.selectAll();
 	}
+	
+	//댓글달기
+	
+	//댓글보기
+	
+	//댓글삭제
+	
+	
 	
 }
