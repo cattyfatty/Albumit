@@ -12,21 +12,6 @@
 			}
 		
 			
-			#content1 #frontImage {
-				flex: 1;
-				border: 3px solid #464646;
-				border-radius: 10px;
-				margin-left: 10px;
-				padding: 10px;
-			}
-			
-			#content1 #frontImage img {
-				width: 665px;
-				height: 175px;
-			}
-
-	
-			
 
 </style>
 </head>
@@ -44,7 +29,7 @@
 				<div id="frontImage">
 					<img src="${pageContext.request.contextPath}/resources/image/abcd.jpg"/>
 				</div>
-			</div>
+		</div>
 	</div>
 	<a href="join">SIGN UP!!</a>
 	<a >Do you forget your PassWord?? </a>
