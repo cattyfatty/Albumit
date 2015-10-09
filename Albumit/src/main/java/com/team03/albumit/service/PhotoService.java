@@ -66,15 +66,17 @@ public class PhotoService {
 		
 	}
 	
-	public void getPhoto(int photo_no){
+	public Photo getPhoto(int photo_no){
+		Photo photo= photoDao.selectByPk(photo_no);
 		
-		photoDao.selectByPk(photo_no);
+		return photo;
 	}
 	
 	
 	public void add(Photo photo) {
 		photoDao.insert(photo);
 	}
+	
 	
 	public void remove(int photo_no, int album_no) {
 		
