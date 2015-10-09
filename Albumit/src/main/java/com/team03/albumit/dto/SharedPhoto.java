@@ -7,7 +7,14 @@ public class SharedPhoto {
 	private int uid;
 	private int album_no;
 	private Date share_date;
+	private int share_like;
 	
+	public int getShare_like() {
+		return share_like;
+	}
+	public void setShare_like(int share_like) {
+		this.share_like = share_like;
+	}
 	public Date getShare_date() {
 		return share_date;
 	}

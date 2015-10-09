@@ -26,7 +26,7 @@ public class SharedPhotoDao {
 		
 		public void insert(SharedPhoto sharedPhoto) {
 			Integer pk = null;
-			String sql = "insert into SharedPhoto (photo_no, uid, album_no, share_date ) values(?, ?, ?, now())";
+			String sql = "insert into SharedPhoto (photo_no, uid, album_no, share_date, share_like ) values(?, ?, ?, now(), ?)";
 			
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				@Override
@@ -35,12 +35,20 @@ public class SharedPhotoDao {
 					pstmt.setInt(1, sharedPhoto.getPhoto_no());
 					pstmt.setInt(2, sharedPhoto.getUid());
 					pstmt.setInt(3, sharedPhoto.getAlbum_no());
+					pstmt.setInt(4, sharedPhoto.getShare_like());
 				
 					return pstmt;
 				}
 			});
 			
 		}
+		
+		public int updateLike(int photo_no) {
+			String sql = "update SharedPhoto set share_like=share_like+1 where photo_no=?";
+			int rows = jdbcTemplate.update(sql, photo_no);
+			return rows;
+		}
+		
 		
 		public List<SharedPhoto> selectByPhotoNo(int photo_no) {
 			String sql = "select * from SharedPhoto where photo_no=?";
@@ -112,10 +120,5 @@ public class SharedPhotoDao {
 			);
 			return rows;
 		}
-		
-	
-	
-
-
 
 }
