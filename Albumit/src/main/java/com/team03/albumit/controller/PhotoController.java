@@ -48,9 +48,9 @@ public class PhotoController {
 	
 	//사진 큰화면 보여주기
 	@RequestMapping("/detail")
-	public String detail(int photo_no, Model model){
+	public String detail(int photo_no,int album_no, Model model){
 		
-		photoService.addHitcount(photo_no);
+		photoService.addHitcount(photo_no, album_no);
 		Photo photo = photoService.getPhoto(photo_no);
 		model.addAttribute("photo",photo);
 		return "/detail";

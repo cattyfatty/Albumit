@@ -8,7 +8,14 @@ public class SharedPhoto {
 	private int album_no;
 	private Date share_date;
 	private int share_like;
+	private int share_hitcount;
 	
+	public int getShare_hitcount() {
+		return share_hitcount;
+	}
+	public void setShare_hitcount(int share_hitcount) {
+		this.share_hitcount = share_hitcount;
+	}
 	public int getShare_like() {
 		return share_like;
 	}
