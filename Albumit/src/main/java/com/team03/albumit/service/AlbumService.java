@@ -53,36 +53,72 @@ public class AlbumService {
 		return map;
 	}
 	
-	public List<Album> showMySharedAlbumList(Member member) {
-		/*List<SharedAlbum> sharedlist = null;*/
-		
+	public Map<Album, Thumbnail> showMySharedAlbumList(Member member) {
 		int uid = member.getUid();
 		String sql = "a.album_no IN (SELECT b.album_no FROM SharedAlbum b WHERE b.f_uid=?)";
-		/*sharedlist = sharedAlbumDao.selectByFuid(uid);
-		
-		List<Album> list = new ArrayList<Album>();
-		for(SharedAlbum sa : sharedlist) {
-			Album a = albumDao.selectByAlbumNo(sa.getAlbum_no());
-			list.add(a);
-		}*/
-		
+				
 		List<Album> list = albumDao.selectAlbumByUid(uid, sql);
+		String incluase = "";
+		for(int i = 0; i < list.size(); i++) {
+			if(i == list.size()-1) {
+				incluase += list.get(i).getAlbum_no();
+			} else {
+				incluase += list.get(i).getAlbum_no() + ",";
+			}
+		}
+		List<Thumbnail> thList = thumbnailDao.selectInAlbumList(incluase);
 		
-		return list;
+		Map<Album, Thumbnail> map = new HashMap<>();
+		for(int i = 0; i < list.size(); i++) {
+			map.put(list.get(i), thList.get(i));
+		}
+		
+		return map;
 	}
 	
-	public List<Album> showMyLikedAlbumList(Member member) {
+	public Map<Album, Thumbnail> showMyLikedAlbumList(Member member) {
 		int uid = member.getUid();
 		String sql = "a.album_no IN (SELECT b.album_no FROM LikedPhoto b WHERE b.uid=?)";
+		
 		List<Album> list = albumDao.selectAlbumByUid(uid, sql);
 		
-		return list;
+		String incluase = "";
+		for(int i = 0; i < list.size(); i++) {
+			if(i == list.size()-1) {
+				incluase += list.get(i).getAlbum_no();
+			} else {
+				incluase += list.get(i).getAlbum_no() + ",";
+			}
+		}
+		List<Thumbnail> thList = thumbnailDao.selectInAlbumList(incluase);
+		
+		Map<Album, Thumbnail> map = new HashMap<>();
+		for(int i = 0; i < list.size(); i++) {
+			map.put(list.get(i), thList.get(i));
+		}
+		
+		return map;
 	}
 	
-	public List<Album> showAllAlbumList() {
+	public Map<Album, Thumbnail> showAllAlbumList() {
 		List<Album> list = albumDao.selectAllAlbum();
 		
-		return list;
+		String incluase = "";
+		for(int i = 0; i < list.size(); i++) {
+			if(i == list.size()-1) {
+				incluase += list.get(i).getAlbum_no();
+			} else {
+				incluase += list.get(i).getAlbum_no() + ",";
+			}
+		}
+		List<Thumbnail> thList = thumbnailDao.selectInAlbumList(incluase);
+		
+		Map<Album, Thumbnail> map = new HashMap<>();
+		for(int i = 0; i < list.size(); i++) {
+			map.put(list.get(i), thList.get(i));
+		}
+		
+		return map;
 	}
 	
 	// U
