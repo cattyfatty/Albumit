@@ -126,12 +126,12 @@ public class PhotoController {
 	}
 	
 	//댓글 달기
-	/*@RequestMapping("/addComment")
-	public String addComment(Comment comment, HttpSession session){
+	@RequestMapping("/addComment")
+	public String addComment(Comment comment,Photo photo, HttpSession session){
 		photoService.addComment(comment);
 		
-		return "redirect:/photoDetail?photo_no=" ;
-	}*/
+		return "redirect:/photoDetail?photo_no=" + photo.getPhoto_no();
+	}
 	
 	
 }
