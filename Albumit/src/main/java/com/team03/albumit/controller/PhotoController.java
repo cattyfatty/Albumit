@@ -25,7 +25,7 @@ public class PhotoController {
 	//사진 등록
 	@RequestMapping(value="/addPhoto",method=RequestMethod.GET)
 	public String PhotoWriteForm() {
-		return "/writeForm";
+		return "/photoWriteForm";
 	}
 	@RequestMapping(value="/addPhoto",method=RequestMethod.POST)	
 	public String write(Photo photo, HttpSession session) {	
@@ -50,6 +50,7 @@ public class PhotoController {
 		}
 		
 		photoService.addPhoto(photo);
+		
 		
 		return "redirect:/photoList";
 	}
@@ -132,6 +133,7 @@ public class PhotoController {
 		
 		return "redirect:/photoDetail?photo_no=" + photo.getPhoto_no();
 	}
+	
 	
 	
 }
