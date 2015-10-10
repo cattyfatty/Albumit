@@ -58,4 +58,12 @@ public class PhotoController {
 		
 	}
 	
+	//사진 옮기기
+	/*@RequestMapping("/")
+	public String move(int photo_no, int album_no, Model model){
+		
+		
+		
+	}*/
+	
 }
