@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import com.team03.albumit.dto.*;
 import com.team03.albumit.service.*;
 
-
-
-
 @Controller
 public class PhotoController {
 	private static final Logger logger = LoggerFactory.getLogger(PhotoController.class);
@@ -47,14 +44,26 @@ public class PhotoController {
 	}
 	
 	//사진 큰화면 보여주기
-	@RequestMapping("/detail")
-	public String detail(int photo_no,int album_no, Model model){
+	@RequestMapping("/photoDetail")
+	public String photoDetail(
+					int photo_no,
+					int album_no,
+					Model model,
+					HttpSession session){
 		
 		photoService.addHitcount(photo_no, album_no);
 		Photo photo = photoService.getPhoto(photo_no);
 		model.addAttribute("photo",photo);
-		return "/detail";
+		return "/photoDetail";
 		
 	}
+	
+	//사진 옮기기
+	/*@RequestMapping("/photoMove")
+	public String movePhoto(int photo_no, int album_no, Model model, HttpSession session){
+		
+		
+		
+	}*/
 	
 }

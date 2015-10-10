@@ -70,6 +70,8 @@ public class SharedPhotoDao {
 						sharedPhoto.setUid(rs.getInt("uid"));
 						sharedPhoto.setAlbum_no(rs.getInt("album_no"));
 						sharedPhoto.setShare_date(rs.getDate("share_date"));
+						sharedPhoto.setShare_like(rs.getInt("share_like"));
+						sharedPhoto.setShare_hitcount(rs.getInt("share_hitcount"));
 						return sharedPhoto;
 					}
 				});
@@ -89,6 +91,8 @@ public class SharedPhotoDao {
 						sharedPhoto.setUid(rs.getInt("uid"));
 						sharedPhoto.setAlbum_no(rs.getInt("album_no"));
 						sharedPhoto.setShare_date(rs.getDate("share_date"));
+						sharedPhoto.setShare_like(rs.getInt("share_like"));
+						sharedPhoto.setShare_hitcount(rs.getInt("share_hitcount"));
 						return sharedPhoto;
 					}
 				});
@@ -109,6 +113,8 @@ public class SharedPhotoDao {
 						sharedPhoto.setUid(rs.getInt("uid"));
 						sharedPhoto.setAlbum_no(rs.getInt("album_no"));
 						sharedPhoto.setShare_date(rs.getTime("share_date"));
+						sharedPhoto.setShare_like(rs.getInt("share_like"));
+						sharedPhoto.setShare_hitcount(rs.getInt("share_hitcount"));
 						
 						return sharedPhoto;
 					}
