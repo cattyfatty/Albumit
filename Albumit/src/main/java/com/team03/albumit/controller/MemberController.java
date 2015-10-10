@@ -126,7 +126,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	        
 	        else if(check==3){
 	        	logger.info("친구추가할건데...왜안되지??");
-	       Member friend = memberService.searchFriend(mem, femail);
+	        	Member friend = memberService.searchFriend(mem, femail);
 	        	session.setAttribute("friend", friend);
 	        	
 	        }
