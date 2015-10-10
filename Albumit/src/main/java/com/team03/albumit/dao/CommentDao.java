@@ -1,6 +1,7 @@
 package com.team03.albumit.dao;
 
 import java.sql.*;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.jdbc.core.*;
@@ -40,10 +41,10 @@ public class CommentDao {
 		}
 		
 		// 
-		public Comment selectByPN(int photo_no) {
+		public List<Comment> selectByPN(int photo_no) {
 			String sql = "select * from Comment where comment_no=?";
 			
-			Comment comment = jdbcTemplate.queryForObject(
+			List<Comment> comment = jdbcTemplate.query(
 					sql,
 					new Object[] {photo_no},
 					new RowMapper<Comment> () {
