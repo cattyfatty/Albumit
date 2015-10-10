@@ -18,6 +18,7 @@ import com.team03.albumit.service.*;
 
 @Controller
 @SessionAttributes("member")
+
 public class MemberController {
 @Autowired
 	private MemberService memberService;
@@ -29,7 +30,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	}
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public String login(Member loginMember, Model model){
+	public String login(Member loginMember, Model model,HttpSession session){
 		Boolean loginCheck;
 		
 		//로그인 성공시 세션객체에 등록하기!
@@ -37,8 +38,11 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		String pw = loginMember.getMember_password();
 		loginCheck = memberService.login(email,pw);
 		
+		
+		
 		if(loginCheck){
 			model.addAttribute("member",loginMember);
+		//	session.setAttribute("friends",);
 			logger.info("로그인성공");
 			return "redirect:/allAlbumList";
 		}
@@ -47,7 +51,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.GET)
-	public String joinForm(Member joinMember){
+	public String joinForm(Member m){
 		return "joinForm";
 	}
 	
@@ -103,11 +107,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		return "";
 	}
 	
-	@RequestMapping(value="searchFriend", method=RequestMethod.GET)
-	public String searchFriend(){
-		
-		return "";
-	}
+	
 	
 }
 
