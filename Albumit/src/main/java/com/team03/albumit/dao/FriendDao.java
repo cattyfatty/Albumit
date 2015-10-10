@@ -70,9 +70,9 @@ public class FriendDao {
 		return friends;
 	}
 
-	public Friend select(Member umember,Member fmember){
+	public Friend select(Member umember,int fuid){
 		String sql = "select * from Friend where uid=? and f_uid=?";
-		try{ return jdbcTemplate.queryForObject(sql, new Object[]{umember.getUid(),fmember.getUid()},
+		try{ return jdbcTemplate.queryForObject(sql, new Object[]{umember.getUid(),fuid},
 				new RowMapper<Friend>(){
 			@Override
 			public Friend mapRow(ResultSet rs, int rowNum) throws SQLException {

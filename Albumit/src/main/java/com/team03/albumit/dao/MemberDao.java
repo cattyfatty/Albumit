@@ -80,7 +80,7 @@ public class MemberDao {
 				member.setMember_nickname(rs.getString("member_nickname"));
 				member.setMember_password(rs.getString("member_password"));
 				member.setMember_profile(rs.getString("member_profile"));
-			
+				member.setUid(rs.getInt("uid"));
 				return member;
 				}
 		}	

@@ -76,7 +76,7 @@ public class MemberService {
 		Member fr = memberDao.selectByEmail(friendId);
 		if(fr != null){
 				int frUid = fr.getUid();
-				Friend friend =friendDao.select(umember, fr);
+				Friend friend =friendDao.select(umember, frUid);
 			
 			if(friend ==null)
 			{	friendDao.insert(umember,frUid);
@@ -126,7 +126,8 @@ public class MemberService {
 		}
 		else{
 			//두 회원이 친구인지 확인	
-			Friend friend = friendDao.select(umember, fr);
+			int fuid = fr.getUid();
+			Friend friend = friendDao.select(umember, fuid);
 			if(friend == null){
 				return null;
 			}
