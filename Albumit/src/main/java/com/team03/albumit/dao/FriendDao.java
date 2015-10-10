@@ -50,9 +50,9 @@ public class FriendDao {
 
 	}
 
-	public List<Friend> selectAll(Member umember,Member fmember){
-		String sql ="select * from Friend where uid=? and f_uid=? ";
-		List<Friend> friends =jdbcTemplate.query(sql, new Object[]{umember.getUid(),fmember.getUid()},
+	public List<Friend> selectAll(Member umember){
+		String sql ="select * from Friend where uid=?  ";
+		List<Friend> friends =jdbcTemplate.query(sql, new Object[]{umember.getUid()},
 				new RowMapper<Friend>(){
 			@Override
 			public Friend mapRow(ResultSet rs, int rowNum) throws SQLException {

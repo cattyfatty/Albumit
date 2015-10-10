@@ -143,7 +143,8 @@
 					<a href="#">FriendList</a>
 			</div>
 			<div id="tabs-2">
-				
+				<input type="text" placeholder="Enter Friend's email"/>
+				<input type="button" value="Add Friend"/>
 			</div>
 		</div>
 	</div>

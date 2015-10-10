@@ -72,25 +72,25 @@ public class MemberService {
 	}
 
 	//친구 등록
-	public void addFriend(Member umember,Member fmember){
+	public void addFriend(Member umember,String freindId){
+		Member fr = memberDao.selectByEmail(freindId);
+		
 
-		//입력한 친구 아이디가 존재 하지 않을때 친구 등록X
-		Member mem = memberDao.selectByUid(fmember.getUid());
-		Friend friend =friendDao.select(umember, fmember);
-		if(mem == null){
+		Friend friend =friendDao.select(umember, fr);
+		if(fr == null){
 			return;
 		}
 		//이미 등록된 친구 친구등록X
 		else if(friend != null){
 			return;
 		}
-		friendDao.insert(umember,fmember);
+		friendDao.insert(umember,fr);
 	}
 
 	//친구 목록 보기
-	public List<FriendList> friendList (Member umember, Member fmember) {
+	public List<FriendList> friendList (Member umember) {
 		List<FriendList> friendLists = new ArrayList<FriendList>();
-		List<Friend> fr= friendDao.selectAll(umember, fmember);
+		List<Friend> fr= friendDao.selectAll(umember);
 
 		for(Friend f : fr){
 			FriendList friends = new FriendList();
@@ -116,18 +116,15 @@ public class MemberService {
 	}
 
 	//친구 검색
-	public Member searchFriend (Member umember,Member fmember){
-		String email =fmember.getMember_email();
-
+	public Member searchFriend (Member umember,String friendId){
 		//검색 하려는 친구가 회원인지 검색
-		Member member = memberDao.selectByEmail(email);
-
-		if(member == null){
+		Member fr = memberDao.selectByEmail(friendId);
+		if(fr == null){
 			return null;
 		}
 		else{
 			//두 회원이 친구인지 확인	
-			Friend friend = friendDao.select(umember, fmember);
+			Friend friend = friendDao.select(umember, fr);
 			if(friend == null){
 				return null;
 			}
