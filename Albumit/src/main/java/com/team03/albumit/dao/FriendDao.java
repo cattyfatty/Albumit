@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -68,7 +69,7 @@ public class FriendDao {
 
 	public Friend select(Member umember,Member fmember){
 		String sql = "select * from Friend where uid=? and f_uid=?";
-		Friend fr = jdbcTemplate.queryForObject(sql, new Object[]{umember.getUid(),fmember.getUid()},
+		try{ return  jdbcTemplate.queryForObject(sql, new Object[]{umember.getUid(),fmember.getUid()},
 				new RowMapper<Friend>(){
 			@Override
 			public Friend mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -78,7 +79,10 @@ public class FriendDao {
 				friends.setFrined_block(rs.getBoolean("friend_block"));
 				return friends;
 			}
-		});
-		return fr;
-	}
+		}
+		); }catch(EmptyResultDataAccessException e) {
+	           return null;
+	       }
+		}
 }
+	

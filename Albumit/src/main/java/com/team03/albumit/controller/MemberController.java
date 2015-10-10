@@ -1,6 +1,7 @@
 package com.team03.albumit.controller;
 
 import java.io.*;
+import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
 
 import com.team03.albumit.dao.*;
 import com.team03.albumit.dto.*;
@@ -42,7 +44,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		
 		if(loginCheck){
 			model.addAttribute("member",loginMember);
-		//	session.setAttribute("friends",);
+			session.setAttribute("loginmember",loginMember);
 			logger.info("로그인성공");
 			return "redirect:/allAlbumList";
 		}
@@ -107,8 +109,30 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		return "";
 	}
 	
-	
-	
+	@RequestMapping(value="addFriend", method=RequestMethod.POST)
+	public String addFriend(@RequestParam("femail")String femail,HttpSession session ){
+			Member mem=(Member) session.getAttribute("loginmember");
+	        int check= memberService.addFriend(mem, femail);
+	        
+	        if(check ==1){
+	        	logger.info(femail);
+	        	logger.info("notRegister");
+	        	return "notRegister";
+	        }
+	        else if(check ==2){
+	        	logger.info("addedFriend");
+	        	return "addedFriend";
+	        }
+	        
+	        else if(check==3){
+	        	logger.info("친구추가할건데...왜안되지??");
+	        	memberService.addFriend(mem, femail);
+	        	List<FriendList> friendList = memberService.friendList(mem);
+	        	session.setAttribute("friendList", friendList);
+	        }
+	        
+		return "friendTable";
+	}
 }
 
 

@@ -37,6 +37,24 @@
 			$("#dialog").dialog("open");
 			$("#tabs").tabs();
 		});
+		
+		
+		$("#addfriend").click(function(){
+			
+				var contextpath= $("#contextpath").val();
+				console.log(contextpath);
+				$.ajax({
+					type: "post",
+					url: contextpath+"/addFriend",
+					  data : { "femail" :$("#femail").val() },
+					dataType : "html",
+					success : function(data){
+						console.log(data);
+						$("#frtable").html(data);
+					}
+				});
+			});
+		
 	});
 	
 	function search() {
@@ -62,6 +80,10 @@
 			//이동할 페이지 주소 입력
 		}
 	}
+	
+	//친구 목록, 추가 기능 Ajax
+
+	
 </script>
 <style type="text/css">
 .menu {
@@ -143,8 +165,12 @@
 					<a href="#">FriendList</a>
 			</div>
 			<div id="tabs-2">
-				<input type="text" placeholder="Enter Friend's email"/>
-				<input type="button" value="Add Friend"/>
+			<div id="frtable">
+			
+			</div>
+				<input type="text" id="femail" placeholder="Enter Friend's email"/>
+				<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
+				<button id="addfriend">Add Friend</button>
 			</div>
 		</div>
 	</div>

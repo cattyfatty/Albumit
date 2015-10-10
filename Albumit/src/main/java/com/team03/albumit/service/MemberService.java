@@ -72,19 +72,22 @@ public class MemberService {
 	}
 
 	//친구 등록
-	public void addFriend(Member umember,String freindId){
+	public int addFriend(Member umember,String freindId){
 		Member fr = memberDao.selectByEmail(freindId);
-		
+		if(fr == null){
+			return 1;
+		}
 
 		Friend friend =friendDao.select(umember, fr);
-		if(fr == null){
-			return;
-		}
+		
 		//이미 등록된 친구 친구등록X
-		else if(friend != null){
-			return;
+		if(friend != null){
+			return 2;
 		}
+		else{
 		friendDao.insert(umember,fr);
+		return 3;
+		}
 	}
 
 	//친구 목록 보기
