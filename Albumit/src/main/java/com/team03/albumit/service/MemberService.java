@@ -16,14 +16,14 @@ public class MemberService {
 	private MemberDao memberDao;
 	@Autowired
 	private FriendDao friendDao;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(MemberService.class);
 
 	//회원 가입
 	public boolean register(Member member){
 		//아이디 중복 체크
 		String emailId = member.getMember_email();
-       
+
 		logger.info("서비스에서 아디 출력:"+emailId);
 		if( memberDao.selectByEmail(emailId) == null)
 		{
@@ -56,9 +56,9 @@ public class MemberService {
 
 	//회원 검색
 	public Member findMember(String email){
-		
+
 		Member member = memberDao.selectByEmail(email);
-	
+
 		if(member == null){
 			return null;
 		} else{
@@ -72,23 +72,21 @@ public class MemberService {
 	}
 
 	//친구 등록
-	public int addFriend(Member umember,String freindId){
-		Member fr = memberDao.selectByEmail(freindId);
-	
-		if(fr == null ){
-			return 1;
+	public int addFriend(Member umember,String friendId){
+		Member fr = memberDao.selectByEmail(friendId);
+		if(fr != null){
+				int frUid = fr.getUid();
+				Friend friend =friendDao.select(umember, fr);
+			
+			if(friend ==null)
+			{	friendDao.insert(umember,frUid);
+				return 3;
+			}	
+			else{
+				return 2;
+			}
 		}
-
-		Friend friend =friendDao.select(umember, fr);
-		
-		//이미 등록된 친구 친구등록X
-		 if(friend == null){
-			 friendDao.insert(umember,fr);
-			return 2;
-		}
-		else{
-		return 3;
-		}
+		return 1;
 	}
 
 	//친구 목록 보기

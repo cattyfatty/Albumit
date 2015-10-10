@@ -11,6 +11,7 @@ import org.springframework.dao.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.*;
 import org.springframework.stereotype.Component;
 
 import com.team03.albumit.dto.*;
@@ -20,19 +21,21 @@ public class FriendDao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public Integer insert(Member umember, Member fmember){
+	public Integer insert(Member umember, int fUid){
 		Integer pk = null;
-		String sql = "insert into Friend (uid,f_uid,friend_block) values(?,?,?)";
+		String sql = "insert into Friend ( f_uid, friend_block) values(?,?)";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
 		pk = jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
-				PreparedStatement pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1,umember.getUid());
-				pstmt.setInt(2,fmember.getUid());
-				pstmt.setBoolean(3,true);
+				PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"uid"});
+				pstmt.setInt(1,fUid);
+				pstmt.setBoolean(2,true);
 				return pstmt;
 			}
-		});
+		},keyHolder);
+		Number keyNumber = keyHolder.getKey();
+		pk = keyNumber.intValue();
 		return pk;
 	}
 
