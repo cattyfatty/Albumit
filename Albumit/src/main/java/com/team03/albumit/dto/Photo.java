@@ -98,10 +98,5 @@ public class Photo {
 		this.uid = uid;
 	}
 	
-
-	
-	
-	
-	
 	
 }

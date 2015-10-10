@@ -92,6 +92,10 @@
 				<th style="width:60px">조회수</th>
 			</tr>
 			
+
+
+
+		
 			<c:forEach var="photo" items="${laList}">
 				<tr>
 				
@@ -102,8 +106,23 @@
 				</tr>
 			</c:forEach>
 			
+		</table>
+		<table>
+		<tr>
+				<th style="width:50px">번호</th>
+				<th>제목</th>
+				<th style="width:60px">글쓴이</th>
+				<th style="width:80px">날짜</th>
+				<th style="width:60px">조회수</th>
+			</tr>
+			
+
+	
 			
 			<c:forEach var="photo" items="${liList}">
+
+
+
 				<tr>
 				
 					<td>${photo.photo_no}</td>
@@ -112,4 +131,6 @@
 					
 				</tr>
 			</c:forEach>
-		</table>
+		</table> 
+			
+		

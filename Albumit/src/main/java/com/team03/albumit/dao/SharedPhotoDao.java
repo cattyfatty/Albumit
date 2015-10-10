@@ -26,7 +26,7 @@ public class SharedPhotoDao {
 		
 		public void insert(SharedPhoto sharedPhoto) {
 			Integer pk = null;
-			String sql = "insert into SharedPhoto (photo_no, uid, album_no, share_date ) values(?, ?, ?, now())";
+			String sql = "insert into SharedPhoto (photo_no, uid, album_no, share_date, share_like, share_hitcount ) values(?, ?, ?, now(), ?, ?)";
 			
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				@Override
@@ -35,12 +35,27 @@ public class SharedPhotoDao {
 					pstmt.setInt(1, sharedPhoto.getPhoto_no());
 					pstmt.setInt(2, sharedPhoto.getUid());
 					pstmt.setInt(3, sharedPhoto.getAlbum_no());
+					pstmt.setInt(4, sharedPhoto.getShare_like());
+					pstmt.setInt(5, sharedPhoto.getShare_hitcount());
 				
 					return pstmt;
 				}
 			});
 			
 		}
+		
+		public int updateLike(int photo_no, int album_no) {
+			String sql = "update SharedPhoto set share_like=share_like+1 where photo_no=?";
+			int rows = jdbcTemplate.update(sql, photo_no, album_no);
+			return rows;
+		}
+		
+		public int updateHitcount(int photo_no, int album_no) {
+			String sql = "update SharedPhoto set share_hitcount=share_hitcount+1 where photo_no=? and album_no=?";
+			int rows = jdbcTemplate.update(sql, photo_no, album_no);
+			return rows;
+		}
+		
 		
 		public List<SharedPhoto> selectByPhotoNo(int photo_no) {
 			String sql = "select * from SharedPhoto where photo_no=?";
@@ -112,10 +127,5 @@ public class SharedPhotoDao {
 			);
 			return rows;
 		}
-		
-	
-	
-
-
 
 }
