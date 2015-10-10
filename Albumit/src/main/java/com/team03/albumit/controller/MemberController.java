@@ -18,6 +18,7 @@ import com.team03.albumit.service.*;
 
 @Controller
 @SessionAttributes("member")
+
 public class MemberController {
 @Autowired
 	private MemberService memberService;
@@ -47,7 +48,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.GET)
-	public String joinForm(Member joinMember){
+	public String joinForm(Member m){
 		return "joinForm";
 	}
 	

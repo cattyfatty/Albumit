@@ -37,7 +37,7 @@ input {
 				
 		<div>
 		NickName
-			<form:input path="member_nickname" />
+		<form:input path="member_nickname" />
 		<form:errors path="member_nickname"/>
 		</div>
 			

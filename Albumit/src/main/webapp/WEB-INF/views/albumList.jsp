@@ -36,9 +36,9 @@
 		$("#opener").click(function() {
 			$("#dialog").dialog("open");
 			$("#tabs").tabs();
-
 		});
 	});
+	
 	function search() {
 		var selection = $("#search").val();
 		var content = $("#searchContent").val();
@@ -80,6 +80,8 @@
 	left: 0px !important;
 	top: 30px !important;
 }
+
+
 </style>
 </head>
 <body>
@@ -141,7 +143,7 @@
 					<a href="#">FriendList</a>
 			</div>
 			<div id="tabs-2">
-			//친구목록 가져오기
+				
 			</div>
 		</div>
 	</div>
