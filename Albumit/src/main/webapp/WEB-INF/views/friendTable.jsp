@@ -8,11 +8,11 @@
 		<td>block</td>
 	</tr>
 
-	<c:forEach var="friend" items="${friendList}">
+
 		<tr>
 			<td>${friend.member_eamil}</td>
 			<td>${friend.member_profile}</td>
 			<td>${friend.friend_block}</td>
 		</tr>
-	</c:forEach>
+	
 </table>

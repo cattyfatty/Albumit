@@ -109,7 +109,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		return "";
 	}
 	
-	@RequestMapping(value="addFriend", method=RequestMethod.POST)
+	@RequestMapping(value="addFriend", method={RequestMethod.POST,RequestMethod.GET})
 	public String addFriend(@RequestParam("femail")String femail,HttpSession session ){
 			Member mem=(Member) session.getAttribute("loginmember");
 	        int check= memberService.addFriend(mem, femail);
@@ -126,9 +126,9 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	        
 	        else if(check==3){
 	        	logger.info("친구추가할건데...왜안되지??");
-	        	memberService.addFriend(mem, femail);
-	        	List<FriendList> friendList = memberService.friendList(mem);
-	        	session.setAttribute("friendList", friendList);
+	       Member friend = memberService.searchFriend(mem, femail);
+	        	session.setAttribute("friend", friend);
+	        	
 	        }
 	        
 		return "friendTable";

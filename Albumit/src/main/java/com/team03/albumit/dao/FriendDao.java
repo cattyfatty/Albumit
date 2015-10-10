@@ -69,7 +69,7 @@ public class FriendDao {
 
 	public Friend select(Member umember,Member fmember){
 		String sql = "select * from Friend where uid=? and f_uid=?";
-		try{ return  jdbcTemplate.queryForObject(sql, new Object[]{umember.getUid(),fmember.getUid()},
+		try{ return jdbcTemplate.queryForObject(sql, new Object[]{umember.getUid(),fmember.getUid()},
 				new RowMapper<Friend>(){
 			@Override
 			public Friend mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -79,10 +79,11 @@ public class FriendDao {
 				friends.setFrined_block(rs.getBoolean("friend_block"));
 				return friends;
 			}
-		}
-		); }catch(EmptyResultDataAccessException e) {
+		}); }catch(EmptyResultDataAccessException e) {
 	           return null;
 	       }
-		}
+	
+	}	
 }
+	
 	
