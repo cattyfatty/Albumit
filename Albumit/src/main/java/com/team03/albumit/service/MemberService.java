@@ -121,6 +121,7 @@ public class MemberService {
 	public Member searchFriend (Member umember,String friendId){
 		//검색 하려는 친구가 회원인지 검색
 		Member fr = memberDao.selectByEmail(friendId);
+		
 		if(fr == null){
 			return null;
 		}
@@ -128,12 +129,22 @@ public class MemberService {
 			//두 회원이 친구인지 확인	
 			int fuid = fr.getUid();
 			Friend friend = friendDao.select(umember, fuid);
+			
 			if(friend == null){
 				return null;
 			}
+			else{
 			Member searchedFriend = memberDao.selectByUid(friend.getF_uid());
 			return searchedFriend;
+			}
 		}
+	}
+	
+	public Friend friendStatus (Member umember,String friendId){
+		Member fr = memberDao.selectByEmail(friendId);
+		int fuid = fr.getUid();
+		Friend friend = friendDao.select(umember, fuid);
+		return friend;
 	}
 }
 

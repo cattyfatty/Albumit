@@ -23,20 +23,18 @@ public class FriendDao {
 
 	public Integer insert(Member umember, int fUid){
 		Integer pk = null;
-		String sql = "insert into Friend ( f_uid, friend_block) values(?,?)";
-		KeyHolder keyHolder = new GeneratedKeyHolder();
+		String sql = "insert into Friend ( f_uid, uid, friend_block) values(?,?,?)";
 		pk = jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
-				PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"uid"});
+				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1,fUid);
-				pstmt.setBoolean(2,true);
+				pstmt.setInt(2, umember.getUid());
+				pstmt.setBoolean(3,true);
 				return pstmt;
 			}
-		},keyHolder);
-		Number keyNumber = keyHolder.getKey();
-		pk = keyNumber.intValue();
-		return pk;
+		});
+	return pk;
 	}
 
 
