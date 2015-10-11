@@ -79,7 +79,10 @@ public class MemberService {
 				Friend friend =friendDao.select(umember, frUid);
 			
 			if(friend ==null)
-			{	friendDao.insert(umember,frUid);
+			{	
+				System.out.println("****Service****umemberUid:*****"+umember.getUid());
+				System.out.println("****Service****friendId:*****"+frUid);
+				friendDao.insert(umember,frUid);
 				return 3;
 			}	
 			else{

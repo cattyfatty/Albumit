@@ -24,6 +24,7 @@ public class FriendDao {
 	public Integer insert(Member umember, int fUid){
 		Integer pk = null;
 		String sql = "insert into Friend ( f_uid, uid, friend_block) values(?,?,?)";
+		System.out.println("********umemberUid:*****"+umember.getUid());
 		pk = jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {

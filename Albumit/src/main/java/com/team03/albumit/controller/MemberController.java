@@ -43,8 +43,11 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		
 		
 		if(loginCheck){
-			model.addAttribute("member",loginMember);
-			session.setAttribute("loginmember",loginMember);
+			Member loginMem=memberService.findMember(email);
+			model.addAttribute("member",loginMem);
+			session.setAttribute("loginmember",loginMem);
+			Member m =(Member) session.getAttribute("loginmember");
+			System.out.println("로그인시 session: "+m.getMember_email());
 			logger.info("로그인성공");
 			return "redirect:/allAlbumList";
 		}
@@ -112,6 +115,9 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	@RequestMapping(value="addFriend", method={RequestMethod.POST,RequestMethod.GET})
 	public String addFriend(@RequestParam("femail")String femail,HttpSession session ,Model model){
 			Member mem=(Member) session.getAttribute("loginmember");
+			System.out.println("****Controller****umemberUid:*****"+mem.getUid());
+			System.out.println("****Controller****umemberUid:*****"+mem.getMember_email());
+
 	        int check= memberService.addFriend(mem, femail);
 	        
 	        if(check ==1){
@@ -125,11 +131,8 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	        }
 	        
 	        else if(check==3){
-	        	logger.info("친구추가할건데...왜안되지??");
+	        	logger.info("친구추가");
 	        	List<FriendList> flist= memberService.friendList(mem);
-	        	for(FriendList f : flist){
-	        		System.out.println("블롭릅ㄹㄹ로로"+f.getFriend_block());
-	        	}
 	        	model.addAttribute("friendsList",flist);
 	        }
 	        
