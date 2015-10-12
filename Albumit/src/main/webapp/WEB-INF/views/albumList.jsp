@@ -199,8 +199,12 @@
 	
 	<div>
 	<p>앨범 예시</p>
-	<a href="photoList">album1</a>	
-	<a href="photoList">album2</a>	
+
+	
+	<a href="photoList?album_no=1">album1</a>	
+	<a href="photoList?album_no=2">album2</a>	
+	
+
 	</div>
 </body>
 </html>

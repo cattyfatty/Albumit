@@ -142,7 +142,7 @@ public class AlbumService {
 	
 	// ETC
 	//--------------- share an album with friends -------------------//
-	public void shareAlbum(int album_no, int owner_uid, int[] friends_uid) {
+	public void shareAlbum(int album_no, int owner_uid, Integer[] friends_uid) {
 		for(int f : friends_uid) {
 			SharedAlbum sharedAlbum = new SharedAlbum();
 			sharedAlbum.setAlbum_no(album_no);

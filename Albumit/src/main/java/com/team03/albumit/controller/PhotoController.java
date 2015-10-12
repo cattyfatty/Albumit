@@ -25,7 +25,7 @@ public class PhotoController {
 	//사진 등록
 	@RequestMapping(value="/addPhoto",method=RequestMethod.GET)
 	public String PhotoWriteForm() {
-		return "/writeForm";
+		return "/photoWriteForm";
 	}
 	@RequestMapping(value="/addPhoto",method=RequestMethod.POST)	
 	public String write(Photo photo, HttpSession session) {	
@@ -33,6 +33,8 @@ public class PhotoController {
 		
 		Member m = (Member)session.getAttribute("loginmember");
 		photo.setUid(m.getUid());
+	
+		
 		
 		
 		//파일 정보 얻기
@@ -55,7 +57,7 @@ public class PhotoController {
 		
 		photoService.addPhoto(photo);
 		
-		return "redirect:/photoList";
+		return "redirect:/photoList?album_no="+photo.getAlbum_no();
 	}
 	
 	//사진 보여주기
@@ -91,6 +93,7 @@ public class PhotoController {
 		
 		photoService.addHitcount(photo_no, album_no);
 		Photo photo = photoService.getPhoto(photo_no);
+		photo = photoService.getPhoto(album_no);
 		model.addAttribute("photo",photo);
 		return "/photoDetail";
 		

@@ -19,6 +19,8 @@ public class AlbumController {
 	
 	@Autowired
 	private AlbumService albumService;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping("/allAlbumList")
 	public String allAlbumList(@ModelAttribute("member") Member member, Model model) {
@@ -53,10 +55,23 @@ public class AlbumController {
 	}
 	
 	@RequestMapping("/makeAlbum")
-	public String makeAlbum(Album album) {
+	public String makeAlbum(Album album, MemberList memberList) {
 		Integer album_no = albumService.makeAlbum(album);
 		// TODO: when owner want to make shared album which is shared with friends at creation
+		if(memberList != null) {
+			List<Integer> friends_uid = new ArrayList<>();
+			for(Member m : memberList.getMemberList()) {
+				friends_uid.add(m.getUid());
+			}
+			albumService.shareAlbum(album_no, album.getUid(), friends_uid.toArray(new Integer[0]));
+		}
 		
 		return "redirect:/myAlbumList";
+	}
+	
+	@RequestMapping("/showFriendsList")
+	public String showFriendsList(Member member) {
+		
+		return "";
 	}
 }
