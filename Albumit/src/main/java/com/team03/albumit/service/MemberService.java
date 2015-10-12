@@ -149,6 +149,15 @@ public class MemberService {
 		Friend friend = friendDao.select(umember, fuid);
 		return friend;
 	}
+	
+	//회원 탈퇴
+	public boolean leave(int uid){
+		int row = memberDao.delete(uid);
+		if(row>0){
+			return true;
+		}
+		return false;
+	}
 }
 
 

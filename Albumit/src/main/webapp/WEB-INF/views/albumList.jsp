@@ -135,6 +135,7 @@
 		</div>
 	</div>
 
+	
 
 
 	<div id="dialog">
@@ -162,7 +163,7 @@
 					src="${pageContext.request.contextPath}/resources/image/${member.member_filesystem_name}"
 					width="100px" height="100px" /><br /> 
 					<a href="#">pw ?</a> 
-					<a href="#">FriendList</a>
+					<a href="leave">leave Albumit</a>
 			</div>
 			<div id="tabs-2">
 			<div id="frtable">
@@ -173,6 +174,13 @@
 				<button id="addfriend">Add Friend</button>
 			</div>
 		</div>
+	</div>
+	
+	<div>
+	<p>앨범 예시</p>
+	<a href="photoList">album1</a>	
+	<a href="photoList">album2</a>	
+	
 	</div>
 </body>
 </html>

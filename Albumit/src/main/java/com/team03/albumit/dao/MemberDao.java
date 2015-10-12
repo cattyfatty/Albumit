@@ -132,9 +132,10 @@ public class MemberDao {
 		return rows;
 	} 
 	
-/*	public Integer delete(int uid){
+	public int delete(int uid){
 		String sql= "delete from Member where uid = ?";
 		int rows = jdbcTemplate.update(sql,uid);
 		return rows;
 	}
-*/}
+
+}
