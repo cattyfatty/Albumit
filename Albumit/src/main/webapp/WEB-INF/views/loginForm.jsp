@@ -93,6 +93,7 @@
             <a href="join">Sign Up</a>
          </div>
             <a href="photoList?album_no=1">포토리스트</a>
+            <a href="addPhoto">사진올리</a>
       </div> 
 </body>
 </html>

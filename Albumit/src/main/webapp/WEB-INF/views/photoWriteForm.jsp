@@ -24,7 +24,7 @@
 			<table>
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="photo_title"/></td>
+					<td><input type="photo_title" name="photo_title"/></td>
 				</tr>
 				<tr>
 					<td>내용</td>
@@ -32,7 +32,11 @@
 				</tr>
 				<tr>
 					<td>장소</td>
-					<td><input type="place" name="photo_title"/></td>
+					<td><input type="photo_place" name="photo_title"/></td>
+				</tr>
+				<tr>
+					<td>앨범</td>
+					<td><input type="album_no" name="photo_title"/></td>
 				</tr>
 				<tr>
 					<td>첨부</td>

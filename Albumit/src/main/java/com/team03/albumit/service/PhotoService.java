@@ -163,7 +163,7 @@ public class PhotoService {
 		
 		return photo;
 	}
-<<<<<<< HEAD
+
 	
 	//사진등록
 	public void add(Photo photo) {
@@ -195,31 +195,7 @@ public class PhotoService {
 		
 	}
 	
-	//조회수
-	public void addHitcount(int photo_no, int album_no) {
-		List<SharedPhoto> sharedphoto = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
-		
-		if(sharedphoto == null){
-			photoDao.updateHitcount(photo_no);
-			
-		}else{
-			
-			sharedPhotoDao.updateHitcount(photo_no, album_no);
-		}
-	}	
-	
-	//사진 좋아요
-	public void addLike(int photo_no, int album_no) {
-		List<SharedPhoto> sharedphoto = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
-		
-		if(sharedphoto == null){
-			photoDao.updateLike(photo_no);
-			
-		}else{
-			
-			sharedPhotoDao.updateLike(photo_no, album_no);
-		}
-	}
+
 	
 
 	//퍼간 사진 보기
