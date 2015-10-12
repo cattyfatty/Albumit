@@ -81,7 +81,8 @@
 	</head>
 	
 	<body>
-		<h4>게시물 목록</h4>
+		<h4>최신순</h4>
+		<hr/>
 		
 		<table>
 			<tr>
@@ -112,6 +113,9 @@
 			</c:forEach>
 			
 		</table>
+		
+		
+		<hr/><h4>좋아요순</h4><hr/>
 		<table>
 		<tr>
 				<th style="width:50px">번호</th>

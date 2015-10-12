@@ -19,6 +19,8 @@ public class AlbumController {
 	
 	@Autowired
 	private AlbumService albumService;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping("/allAlbumList")
 	public String allAlbumList(@ModelAttribute("member") Member member, Model model) {
@@ -67,5 +69,9 @@ public class AlbumController {
 		return "redirect:/myAlbumList";
 	}
 	
-	
+	@RequestMapping("/showFriendsList")
+	public String showFriendsList(Member member) {
+		
+		return "";
+	}
 }
