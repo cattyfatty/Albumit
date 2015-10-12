@@ -25,7 +25,7 @@ public class PhotoController {
 	//사진 등록
 	@RequestMapping(value="/addPhoto",method=RequestMethod.GET)
 	public String PhotoWriteForm() {
-		return "/photoWriteForm";
+		return "/writeForm";
 	}
 	@RequestMapping(value="/addPhoto",method=RequestMethod.POST)	
 	public String write(Photo photo, HttpSession session) {	
@@ -50,7 +50,6 @@ public class PhotoController {
 		}
 		
 		photoService.addPhoto(photo);
-		
 		
 		return "redirect:/photoList";
 	}
@@ -104,7 +103,7 @@ public class PhotoController {
 	}
 	//사진 수정
 	@RequestMapping("/updatePhoto")
-	public String updatePhoto(Photo photo){
+	public String updatePhoto(Photo photo, HttpSession session){
 		photoService.modifyPhoto(photo);
 		
 		return "redirect:/photoDetail?photo_no="+photo.getPhoto_no();
@@ -133,7 +132,21 @@ public class PhotoController {
 		
 		return "redirect:/photoDetail?photo_no=" + photo.getPhoto_no();
 	}
+	//댓글 지우기
+	@RequestMapping("/removeComment")
+	public String removeComment(int comment_no, HttpSession session){
+		photoService.removeComment(comment_no);
+		
+		return "redirect:/photoList";
+	}
 	
+	//댓글 수정
+	@RequestMapping("/modifyComment")
+	public String modifyComment(Comment comment, Photo photo, HttpSession session){
+		photoService.modifyComment(comment);
+		
+		return "redirect:/photoDetail?photo_no=" + photo.getPhoto_no();
+	}
 	
 	
 }
