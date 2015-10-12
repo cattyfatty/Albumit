@@ -105,7 +105,7 @@
 					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
 					<td>${photo.photo_date}</td>
-					<td><a class="title" href="photoDetail?photo_no=${photo_no}">${photo.photo_original_file_name}</a></td>
+					<td><a class="title" href="photoDetail?photo_no=${photo.photo_no}">${photo.photo_original_file_name}</a></td>
 				
 					
 				</tr>

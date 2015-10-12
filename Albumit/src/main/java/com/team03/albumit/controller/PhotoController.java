@@ -93,6 +93,7 @@ public class PhotoController {
 		
 		photoService.addHitcount(photo_no, album_no);
 		Photo photo = photoService.getPhoto(photo_no);
+		photo = photoService.getPhoto(album_no);
 		model.addAttribute("photo",photo);
 		return "/photoDetail";
 		
