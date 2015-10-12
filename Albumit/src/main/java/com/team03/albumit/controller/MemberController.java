@@ -23,6 +23,7 @@ import com.team03.albumit.service.*;
 
 public class MemberController {
 	@Autowired
+
 	private MemberService memberService;
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
@@ -141,14 +142,64 @@ public class MemberController {
 
 	@RequestMapping(value="leave",method={RequestMethod.POST,RequestMethod.GET})
 	public String leave(HttpSession session){
-	Member leaveMember = (Member) session.getAttribute("loginmember");
-	boolean leave_check = memberService.leave(leaveMember.getUid());
-	if(leave_check){
-		System.out.println("컨트롤러-----회원탈퇴 성공!!!!!");
-		return "redirect:/";
-	}
-		System.out.println("컨트롤러-----회원탈퇴 실!!!!!");
+		Member leaveMember = (Member) session.getAttribute("loginmember");
+		boolean leave_check = memberService.leave(leaveMember.getUid());
+		if(leave_check){
+			System.out.println("컨트롤러-----회원탈퇴 성공!!!!!");
+			return "redirect:/";
+		}
+		System.out.println("컨트롤러-----회원탈퇴 실패!!!!!");
 		return "error_leave";
+	}
+
+	@RequestMapping(value="modifyProfile", method={RequestMethod.GET,RequestMethod.POST})
+	public String modifyProfile(@RequestParam("email")String email,Model model){
+		System.out.println("modifyProfile controller femail :"+email);
+		Member Modifiedmem = memberService.findMember(email);	
+		System.out.println("모디파이 프로필 컨트롤러 :"+Modifiedmem.getMember_email());
+		model.addAttribute("Modifiedmem",Modifiedmem);
+		return "modifyForm_mem";
+	}
+	@RequestMapping(value="showProfile", method={RequestMethod.GET})
+	public String showProfile(@RequestParam("email")String email,Model model)
+	{
+		Member memProfile = memberService.findMember(email);
+		model.addAttribute("memProfile",memProfile);
+		return "showProfile";
+	}
+	
+	@RequestMapping(value="modifyMember", method={RequestMethod.POST})
+	public String modifyMember(Member member, HttpSession session){
+		System.out.println("컨트롤러 modify:"+member.getMember_email()+"멤버 이메일");
+		System.out.println("컨트롤러 modify:"+member.getMember_nickname()+"멤버 닉네임");
+		System.out.println("컨트롤러 modify:"+member.getMember_profile()+"멤버 profile");
+		System.out.println("컨트롤러 modify:"+member.getUid()+"멤버 uid");
+		System.out.println("컨트롤러 modify:"+member.getMember_original_file_name());
+		System.out.println("컨트롤러 modify:"+member.getMember_original_file_name());
+
+		ServletContext application =session.getServletContext();
+		String dirPath = application.getRealPath("/resources/image");
+
+		//파일 경로 구하기
+		if(member.getAttach() !=null){
+			String originalFilename = member.getAttach().getOriginalFilename();
+			String filesystemName = System.currentTimeMillis() +"-" + originalFilename;
+			String contentType = member.getAttach().getContentType();
+
+			if(!member.getAttach().isEmpty()){
+				try{
+					member.getAttach().transferTo(new File(dirPath+ "/"+ filesystemName));
+				}catch(Exception e) {e.printStackTrace();}
+			}
+
+			member.setMember_original_file_name(originalFilename);
+			member.setMember_filesystem_name(filesystemName);
+			member.setMember_content_type(contentType);
+			memberService.memberModify(member);
+		}
+		
+		System.out.println("멤버 수정 완료  modify- 컨트롤러!!!");
+		return  "redirect:/allAlbumList";
 	}
 }
 

@@ -38,7 +38,7 @@
 			$("#tabs").tabs();
 		});
 		
-		
+		//친구 목록, 추가 기능 Ajax
 		$("#addfriend").click(function(){
 			
 				var contextpath= $("#contextpath").val();
@@ -46,7 +46,7 @@
 				$.ajax({
 					type: "post",
 					url: contextpath+"/addFriend",
-					  data : { "femail" :$("#femail").val() },
+					data : { "femail" :$("#femail").val() },
 					dataType : "html",
 					success : function(data){
 						console.log(data);
@@ -54,6 +54,25 @@
 					}
 				});
 			});
+		
+		
+		//회원정보수정
+		$("#modifyProfile").click(function(){
+			//컨텍스트 경로 얻기
+			var contextpath = $("#contextpath").val();
+						
+			
+			$.ajax({
+				type: "post",
+				url: contextpath+"/modifyProfile",
+				data: {"email" : $("#loginEmail").val()},
+				dataType : "html",
+				success : function(data){
+					$("#mypage").html(data);
+				}
+			});
+			
+		});
 		
 	});
 	
@@ -81,7 +100,7 @@
 		}
 	}
 	
-	//친구 목록, 추가 기능 Ajax
+
 
 	
 </script>
@@ -141,10 +160,10 @@
 	<div id="dialog">
 		<div id="tabs">
 			<ul>
-				<li><a href="#tabs-1">MyPage</a></li>
-				<li><a href="#tabs-2">Friends</a></li>
+				<li><a href="#mypage">MyPage</a></li>
+				<li><a href="#aboutFriends">Friends</a></li>
 			</ul>
-			<div id="tabs-1">
+			<div id="mypage">
 				<div id="nickname">
 					nickname :
 					<c:out value="${member.member_nickname }" />
@@ -152,6 +171,7 @@
 				<div id="email">
 					email :
 					<c:out value="${member.member_email}" />
+					<input type="hidden" id="loginEmail" value="${member.member_email}"/>
 				</div>
 				<div id="profile">
 					profile :
@@ -164,9 +184,9 @@
 					width="100px" height="100px" /><br /> 
 					<a href="#">pw ?</a> 
 					<a href="leave">leave Albumit</a>
-					<a href="modifyProfile">Modify Profile</a>
+					<button id="modifyProfile">Modify Profile</button>
 			</div>
-			<div id="tabs-2">
+			<div id="aboutFriends">
 			<div id="frtable">
 			
 			</div>
