@@ -92,8 +92,10 @@ public class PhotoService {
 		List<SharedPhoto> sharedphoto = sharedPhotoDao.selectByAlbumPhotoNo(album_no, photo_no);
 		
 		
-		if(sharedphoto == null){
-			if(sharedPhotoDao.selectByPhotoNo(photo_no) == null){
+		if(sharedphoto.size() == 0){
+			
+			List<SharedPhoto> list= sharedPhotoDao.selectByPhotoNo(photo_no);
+			if(list.size() == 0){
 				photoDao.delete(photo_no);
 			}else{
 				
