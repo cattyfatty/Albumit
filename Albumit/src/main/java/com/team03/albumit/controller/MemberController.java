@@ -1,6 +1,7 @@
 package com.team03.albumit.controller;
 
 import java.io.*;
+import java.util.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
 
 import com.team03.albumit.dao.*;
 import com.team03.albumit.dto.*;
@@ -18,6 +20,7 @@ import com.team03.albumit.service.*;
 
 @Controller
 @SessionAttributes("member")
+
 public class MemberController {
 @Autowired
 	private MemberService memberService;
@@ -29,7 +32,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	}
 	
 	@RequestMapping(value="/",method=RequestMethod.POST)
-	public String login(Member loginMember, Model model){
+	public String login(Member loginMember, Model model,HttpSession session){
 		Boolean loginCheck;
 		
 		//로그인 성공시 세션객체에 등록하기!
@@ -37,8 +40,14 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		String pw = loginMember.getMember_password();
 		loginCheck = memberService.login(email,pw);
 		
+		
+		
 		if(loginCheck){
-			model.addAttribute("member",loginMember);
+			Member loginMem=memberService.findMember(email);
+			model.addAttribute("member",loginMem);
+			session.setAttribute("loginmember",loginMem);
+			Member m =(Member) session.getAttribute("loginmember");
+			System.out.println("로그인시 session: "+m.getMember_email());
 			logger.info("로그인성공");
 			return "redirect:/allAlbumList";
 		}
@@ -47,7 +56,7 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.GET)
-	public String joinForm(Member joinMember){
+	public String joinForm(Member m){
 		return "joinForm";
 	}
 	
@@ -103,12 +112,32 @@ private static final Logger logger = LoggerFactory.getLogger(MemberController.cl
 		return "";
 	}
 	
-	@RequestMapping(value="searchFriend", method=RequestMethod.GET)
-	public String searchFriend(){
-		
-		return "";
+	@RequestMapping(value="addFriend", method={RequestMethod.POST,RequestMethod.GET})
+	public String addFriend(@RequestParam("femail")String femail,HttpSession session ,Model model){
+			Member mem=(Member) session.getAttribute("loginmember");
+			System.out.println("****Controller****umemberUid:*****"+mem.getUid());
+			System.out.println("****Controller****umemberUid:*****"+mem.getMember_email());
+
+	        int check= memberService.addFriend(mem, femail);
+	        
+	        if(check ==1){
+	        	logger.info(femail);
+	        	logger.info("notRegister");
+	        	return "notRegister";
+	        }
+	        else if(check ==2){
+	        	logger.info("addedFriend");
+	        	return "addedFriend";
+	        }
+	        
+	        else if(check==3){
+	        	logger.info("친구추가");
+	        	List<FriendList> flist= memberService.friendList(mem);
+	        	model.addAttribute("friendsList",flist);
+	        }
+	        
+		return "friendTable";
 	}
-	
 }
 
 
