@@ -33,8 +33,8 @@ public class PhotoController {
 		
 		Member m = (Member)session.getAttribute("loginmember");
 		photo.setUid(m.getUid());
+	
 		
-		photo.setAlbum_no(photo.getAlbum_no());
 		
 		
 		//파일 정보 얻기
@@ -57,7 +57,7 @@ public class PhotoController {
 		
 		photoService.addPhoto(photo);
 		
-		return "redirect:/photoList";
+		return "redirect:/photoList?album_no="+photo.getAlbum_no();
 	}
 	
 	//사진 보여주기
