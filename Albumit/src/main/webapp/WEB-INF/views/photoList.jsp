@@ -132,5 +132,12 @@
 				</tr>
 			</c:forEach>
 		</table> 
-			
+		
+		
+		<div id="buttonGroup">
+			<a href="addPhoto">글쓰기</a>
+		</div>
+		
+	</body>
+</html>		
 		

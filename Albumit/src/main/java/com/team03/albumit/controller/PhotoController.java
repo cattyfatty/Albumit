@@ -31,6 +31,10 @@ public class PhotoController {
 	public String write(Photo photo, HttpSession session) {	
 		logger.info("addPhoto()");
 		
+		Member m = (Member)session.getAttribute("loginmember");
+		photo.setUid(m.getUid());
+		
+		
 		//파일 정보 얻기
 		ServletContext application = session.getServletContext();
 		String dirPath = application.getRealPath("/resources/uploadfiles");

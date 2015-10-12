@@ -194,7 +194,6 @@ public class PhotoService {
 		}
 		
 	}
-		
 
 	//퍼간 사진 보기
 	public void showShared(int album_no,int photo_no){

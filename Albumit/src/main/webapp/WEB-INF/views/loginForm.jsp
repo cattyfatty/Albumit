@@ -116,6 +116,7 @@
             <a href="join">Sign Up</a>
          </div>
             
+            <a href="addPhoto">사진올리</a>
       </div> 
       
       <footer>
