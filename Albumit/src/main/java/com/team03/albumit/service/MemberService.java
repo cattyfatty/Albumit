@@ -143,6 +143,13 @@ public class MemberService {
 		}
 	}
 	
+	public List<Member> showMyFriendsList(Member member) {
+		List<Member> list = null;
+		list = memberDao.selectFriendsMember(member.getUid());
+		
+		return list;
+	}
+	
 	public Friend friendStatus (Member umember,String friendId){
 		Member fr = memberDao.selectByEmail(friendId);
 		int fuid = fr.getUid();

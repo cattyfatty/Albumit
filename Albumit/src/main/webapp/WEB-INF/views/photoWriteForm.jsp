@@ -24,19 +24,19 @@
 			<table>
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="photo_title"/></td>
+					<td><input type="text" name="photo_title" value="${photo.photo_title}"/></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="text" rows="5" cols="50"></textarea></td>
+					<td><textarea name="text" rows="5" cols="50" value="${photo.photo_content}"></textarea></td>
 				</tr>
 				<tr>
 					<td>장소</td>
-					<td><input type="text" name="photo_place"/></td>
+					<td><input type="text" name="photo_place" value="${photo.photo_place}"/></td>
 				</tr>
 				<tr>
 					<td>앨범</td>
-					<td><input type="text" name="album_no"/></td>
+					<td><input type="text" name="album_no" value="${photo.album_no}"/></td>
 				</tr>
 				<tr>
 					<td>첨부</td>

@@ -54,7 +54,7 @@
 			
 			#pager a {
 				text-decoration: none;
-				color: white;
+				
 			}
 			
 			#pager a:hover {
@@ -90,7 +90,9 @@
 				<th>제목</th>
 				<th style="width:60px">글쓴이</th>
 				<th style="width:80px">날짜</th>
-				<th style="width:60px">조회수</th>
+				<th style="width:60px">사진</th>
+				
+				
 			</tr>
 			
 
@@ -101,7 +103,10 @@
 				<tr>
 				
 					<td>${photo.photo_no}</td>
+					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
+					<td>${photo.photo_date}</td>
+					<td><a class="title" href="photoDetail?photo_no=${photo_no}">${photo.photo_original_file_name}</a></td>
 				
 					
 				</tr>
@@ -117,7 +122,7 @@
 				<th>제목</th>
 				<th style="width:60px">글쓴이</th>
 				<th style="width:80px">날짜</th>
-				<th style="width:60px">조회수</th>
+				<th style="width:60px">사진</th>
 			</tr>
 			
 
@@ -130,7 +135,10 @@
 				<tr>
 				
 					<td>${photo.photo_no}</td>
+					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
+					<td>${photo.photo_date}</td>
+					<td>${photo.photo_original_file_name}</td>
 				
 					
 				</tr>
