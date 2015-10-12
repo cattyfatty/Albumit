@@ -164,6 +164,7 @@
 					width="100px" height="100px" /><br /> 
 					<a href="#">pw ?</a> 
 					<a href="leave">leave Albumit</a>
+					<a href="modifyProfile">Modify Profile</a>
 			</div>
 			<div id="tabs-2">
 			<div id="frtable">
@@ -178,10 +179,12 @@
 	
 	<div>
 	<p>앨범 예시</p>
+
 	
 	<a href="photoList?album_no=1">album1</a>	
 	<a href="photoList?album_no=2">album2</a>	
 	
+
 	</div>
 </body>
 </html>
