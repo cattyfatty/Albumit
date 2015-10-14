@@ -92,8 +92,8 @@ function commitBlock(){
 }
 
 function ab(){
-	var a = $(".a").val();
-	alert("a:"+a);
+	var a = $(this).index();
+	console.log("a:::"+a);
 }
 
 </script>
@@ -113,14 +113,13 @@ function ab(){
 			<td>${f.member_nickname}</td>
 			<td>${f.friend_block}</td>
 			<td><label id="sliderLabel">
-    			<input type="checkbox" onclick="ab()" />
-    			<input type="hidden" value="${f.member_email}" class="a"/>
+    			<input type="checkbox" onclick="ab(this)" />
+    			
     			<span id="slider"></span>
     			<span id="sliderOn">Block</span>
     			<span id="sliderOff">UnBlock</span>
 				</label></td>
 		</tr>
-		
        
 	</c:forEach>
 </table>
