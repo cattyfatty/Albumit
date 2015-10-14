@@ -35,8 +35,7 @@
 					<td><input type="text" name="photo_place" value="${photo.photo_place}"/></td>
 				</tr>
 				<tr>
-					<td>앨범</td>
-					<td><input type="text" name="album_no" value="${photo.album_no}"/></td>
+					<td><input type="number" name="album_no" value="${photo.album_no}"/>${photo.album_no}</td>
 				</tr>
 				<tr>
 					<td>첨부</td>

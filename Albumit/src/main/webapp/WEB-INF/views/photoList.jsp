@@ -100,8 +100,7 @@
 
 		
 			<c:forEach var="photo" items="${laList}">
-				<tr>
-				
+				<tr> 
 					<td>${photo.photo_no}</td>
 					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
@@ -129,11 +128,7 @@
 	
 			
 			<c:forEach var="photo" items="${liList}">
-
-
-
 				<tr>
-				
 					<td>${photo.photo_no}</td>
 					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
@@ -147,7 +142,7 @@
 		
 		
 		<div id="buttonGroup">
-			<a href="addPhoto">글쓰기</a>
+			<a href="addPhoto?album_no=${album_no}">글쓰기</a>
 		</div>
 		
 	</body>
