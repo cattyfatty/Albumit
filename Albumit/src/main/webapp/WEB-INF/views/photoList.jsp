@@ -80,16 +80,20 @@
 			}
 		</style>
 		<script type="text/javascript">
-			function arrayfun() {
-			    var x = document.getElementById("photoArray");
-			    var i = x.selectedIndex;
-			    if(x.options[i].text.equals("lately")){
+			function arrayfun(sel) {
+			    var x = sel.options[sel.selectedIndex].value;
+			  
+			    if(x == "latest"){
 			    	
-			    	document.getElementById("lately");
+			    	document.all["latest"].style.display="";
+			    	document.all["popularity"].style.display="none";
 			    }
-			    if(x.options[i].text.equals("like")){
+			    
+			    if(x == "popularity"){
 			    	
-			    	document.getElementById("like");
+			    	document.all["latest"].style.display="none";
+			    	document.all["popularity"].style.display="";
+			    	
 			    }
 			}
 		
@@ -98,15 +102,14 @@
 	
 	<body>
 	
-		<select id="photoArray" size="1" onchange="arrayfun()">
-			<option>최신순</option>
-			<option>인기순</option>
+		<select id="photoArray" size="1" onchange="arrayfun(this)">
+			<option value="latest">최신순</option>
+			<option value="popularity">인기순</option>
 		</select>
 		
-		<button onclick="arrayfun()">Try it</button>
 		
 		
-		<div id="lately">
+		<div id="latest">
 		<h4>최신순</h4>
 		<hr/>
 		
@@ -133,11 +136,11 @@
 					
 				</tr>
 			</c:forEach>
-
-
 		</table>
+		</div>
 		
-		<div id="like">
+		
+		<div id="popularity">
 		<hr/><h4>좋아요순</h4><hr/>
 		<table>
 		<tr>
