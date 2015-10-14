@@ -24,7 +24,8 @@ public class PhotoController {
 	
 	//사진 등록
 	@RequestMapping(value="/addPhoto",method=RequestMethod.GET)
-	public String PhotoWriteForm() {
+	public String PhotoWriteForm(int album_no, Model model) {
+		model.addAttribute("album_no",album_no);
 		return "/photoWriteForm";
 	}
 	@RequestMapping(value="/addPhoto",method=RequestMethod.POST)	
@@ -75,6 +76,7 @@ public class PhotoController {
 		
 		model.addAttribute("laList",laList);
 		model.addAttribute("liList",liList);
+		model.addAttribute("album_no", album_no);
 		
 	
 		

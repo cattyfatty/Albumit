@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -78,9 +79,37 @@
 				color: orange;
 			}
 		</style>
+		<script type="text/javascript">
+			function arrayfun(sel) {
+			    var x = sel.options[sel.selectedIndex].value;
+			  
+			    if(x == "latest"){
+			    	
+			    	document.all["latest"].style.display="";
+			    	document.all["popularity"].style.display="none";
+			    }
+			    
+			    if(x == "popularity"){
+			    	
+			    	document.all["latest"].style.display="none";
+			    	document.all["popularity"].style.display="";
+			    	
+			    }
+			}
+		
+		</script>
 	</head>
 	
 	<body>
+	
+		<select id="photoArray" size="1" onchange="arrayfun(this)">
+			<option value="latest">최신순</option>
+			<option value="popularity">인기순</option>
+		</select>
+		
+		
+		
+		<div id="latest">
 		<h4>최신순</h4>
 		<hr/>
 		
@@ -96,12 +125,8 @@
 			</tr>
 			
 
-
-
-		
-			<c:forEach var="photo" items="${laList}">
+			<c:forEach  var="photo" items="${laList}">
 				<tr>
-				
 					<td>${photo.photo_no}</td>
 					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
@@ -111,10 +136,11 @@
 					
 				</tr>
 			</c:forEach>
-			
 		</table>
+		</div>
 		
 		
+		<div id="popularity">
 		<hr/><h4>좋아요순</h4><hr/>
 		<table>
 		<tr>
@@ -129,11 +155,7 @@
 	
 			
 			<c:forEach var="photo" items="${liList}">
-
-
-
 				<tr>
-				
 					<td>${photo.photo_no}</td>
 					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
@@ -144,10 +166,11 @@
 				</tr>
 			</c:forEach>
 		</table> 
+		</div>
 		
 		
 		<div id="buttonGroup">
-			<a href="addPhoto">글쓰기</a>
+			<a href="addPhoto?album_no=${album_no}">글쓰기</a>
 		</div>
 		
 	</body>

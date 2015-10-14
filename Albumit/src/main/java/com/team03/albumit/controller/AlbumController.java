@@ -70,8 +70,10 @@ public class AlbumController {
 	}
 	
 	@RequestMapping("/showFriendsList")
-	public String showFriendsList(Member member) {
+	public String showFriendsList(Member member, Model model) {
+		List<Member> friendsList = memberService.showMyFriendsList(member);
+		model.addAttribute("friendsList", friendsList);
 		
-		return "";
+		return "showFriendsList_json";
 	}
 }
