@@ -43,6 +43,7 @@
 			$("#modifyProfile").click(function(){
 				var contextpath= $("#contextpath").val();
 				console.log(contextpath);
+				console.log( "adaf"+$("#email").val() );
 				$.ajax({
 					type: "post",
 					url: contextpath+"/modifyProfile",
@@ -212,13 +213,13 @@
 						<li><a href="#mypage">MyPage</a></li>
 						<li><a href="#flist">Friends</a></li>
 					</ul>
-					
+					<input type="hidden" id="email" value="${member.member_email}"/>
 					<div id="mypage">
 						<div id="nickname">
 							nickname :
 							<c:out value="${member.member_nickname }" />
 						</div>
-						<div id="email">
+						<div>
 							email :
 							<c:out value="${member.member_email}" />
 						</div>
