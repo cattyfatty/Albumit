@@ -69,12 +69,7 @@
 </style>
 
 <script>
-function block(){
-	$(".blockCheck").css("display","block");
-	$("#blockBtn").css("display","none");
-	$("#commitBlock").css("display","block");
-	
-}
+
 function commitBlock(){
 	alert("commitBlock !!! check~!!#!");
 	var contextpath = $("#contextpath").val();
@@ -91,15 +86,24 @@ function commitBlock(){
 	
 }
 
-function ab(){
-	var a = $(this).index();
-	console.log("a:::"+a);
+function ab(a){
+	 alert("row:  "+a.rowIndex);
+	 var ab= a.rowIndex;
+	 alert("email:  "+document.getElementById("myTable").rows[ab].cells.namedItem("email").innerHTML);
+	var ce= $( "input:checked" ).val();
+	if(ce=="on"){
+		alert("차단");
+	}
+	else{
+		alert("차단해제");
+	}
+	 
 }
 
 </script>
 
 <input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
-<table>
+<table id="myTable">
 	<tr>
 		<td>email</td>
 		<td>profile</td>
@@ -108,12 +112,12 @@ function ab(){
 	
 	
 	<c:forEach var="f" items="${friendsList}">
-		<tr id="status">
-			<td class="email">${f.member_email}</td>
+		<tr id="status" onclick="ab(this)"  >
+			<td id="email">${f.member_email}</td>
 			<td>${f.member_nickname}</td>
 			<td>${f.friend_block}</td>
 			<td><label id="sliderLabel">
-    			<input type="checkbox" onclick="ab(this)" />
+    			<input type="checkbox" />
     			
     			<span id="slider"></span>
     			<span id="sliderOn">Block</span>
