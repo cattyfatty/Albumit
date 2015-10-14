@@ -261,73 +261,59 @@
 					</div>
 					
 		<!-- --------------------------------------------------------------------------------------------------------- -->
-					<div id="tabs-2">
-						<div id="frtable">
-						
-						</div>
+					<div id="flist">
 						<input type="text" id="femail" placeholder="Enter Friend's email"/>
 						<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
 						<button id="addfriend">Add Friend</button>
+							<div id="frtable">
+							</div>
 					</div>
-						<div id="flist">
-					
-							<input type="text" id="femail" placeholder="Enter Friend's email"/>
-							<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
-							<button id="addfriend">Add Friend</button>
-					
-								<div id="frtable">
-								</div>
-						</div>
 				</div>
-				</div>
-				</div>
-		<!-- --------------------------------------------------------------------------------------------------------- -->
-			<div id="addAlbumBox" title="Create a new Album">
-				<form>
-					<fieldset>
-						<label for="album_name">Album Name</label>
-						<input type="text" id="album_name" name="album_name" size="20"/><br/>
-						<hr/>
-						<p>Would you like to open this album to public?</p>
-						<input type="radio" name="album_publicity" value="true"/>yes
-						<input type="radio" name="album_publicity" value="false"/>no<br/>
-						<hr/>
-						<p>Invite Your friends to this Album!!!</p>
-						<a href="#" id="showMyFriendsList">show my friends</a>
-					</fieldset>
-				</form>
-			</div>
-		<!-- --------------------------------------------------------------------------------------------------------- -->
-			<div>
-				<a href="photoList" class="album">
-					<input type="image" />
-				</a>	
-				<a href="photoList" class="album">
-					<input type="image" />
-				</a>	
-				<a href="photoList" class="album">
-					<input type="image" />
-				</a>		
-				<a href="photoList" class="album">
-					<input type="image" />
-				</a>	
-				<a href="photoList" class="album">
-					<input type="image" />
-				</a>	
-				<a href="photoList" class="album">
-					<input type="image" />
-				</a>	
-				<a href="photoList" class="album">
-					<input type="image" />
-				</a>	
-				<a href="photoList" class="album">
-					<input type="image" />
-				</a>	
 			</div>
 		</div>
-	</body>
-	</div>
-	
+		<!-- --------------------------------------------------------------------------------------------------------- -->
+		<div id="addAlbumBox" title="Create a new Album">
+			<form>
+				<fieldset>
+					<label for="album_name">Album Name</label>
+					<input type="text" id="album_name" name="album_name" size="20"/><br/>
+					<hr/>
+					<p>Would you like to open this album to public?</p>
+					<input type="radio" name="album_publicity" value="true"/>yes
+					<input type="radio" name="album_publicity" value="false"/>no<br/>
+					<hr/>
+					<p>Invite Your friends to this Album!!!</p>
+					<a href="#" id="showMyFriendsList">show my friends</a>
+				</fieldset>
+			</form>
+		</div>
+	<!-- --------------------------------------------------------------------------------------------------------- -->
+		<div>
+			<a href="photoList" class="album">
+				<input type="image" />
+			</a>	
+			<a href="photoList" class="album">
+				<input type="image" />
+			</a>	
+			<a href="photoList" class="album">
+				<input type="image" />
+			</a>		
+			<a href="photoList" class="album">
+				<input type="image" />
+			</a>	
+			<a href="photoList" class="album">
+				<input type="image" />
+			</a>	
+			<a href="photoList" class="album">
+				<input type="image" />
+			</a>	
+			<a href="photoList" class="album">
+				<input type="image" />
+			</a>	
+			<a href="photoList" class="album">
+				<input type="image" />
+			</a>	
+		</div>
 	<div>
 	<p>앨범 예시</p>
 	
