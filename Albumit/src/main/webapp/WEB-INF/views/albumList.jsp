@@ -40,7 +40,13 @@
 		
 		//친구 목록, 추가 기능 Ajax
 		$("#addfriend").click(function(){
-			
+			var femail = $("#femail").val();
+			var loginEmail= $("#loginEmail").val();
+			if(femail == loginEmail){
+				alert("It's you!!! Please enter other email");
+				$("#femail").val("");
+			}
+			else{
 				var contextpath= $("#contextpath").val();
 				console.log(contextpath);
 				$.ajax({
@@ -53,6 +59,7 @@
 						$("#frtable").html(data);
 					}
 				});
+			}
 			});
 		
 		
@@ -199,7 +206,6 @@
 	
 	<div>
 	<p>앨범 예시</p>
-
 	
 	<a href="photoList?album_no=1">album1</a>	
 	<a href="photoList?album_no=2">album2</a>	

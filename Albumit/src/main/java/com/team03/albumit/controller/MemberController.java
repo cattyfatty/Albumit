@@ -201,6 +201,13 @@ public class MemberController {
 		System.out.println("멤버 수정 완료  modify- 컨트롤러!!!");
 		return  "redirect:/allAlbumList";
 	}
+	
+	@RequestMapping(value="blockFriend", method={RequestMethod.GET,RequestMethod.POST})
+	public String blockFriend (@RequestParam("blockFriend")String blockFriend, Model model, HttpSession session){
+		Member member = (Member) session.getAttribute("loginmember");
+		memberService.block(member, blockFriend);
+		return "";
+	}
 }
 
 
