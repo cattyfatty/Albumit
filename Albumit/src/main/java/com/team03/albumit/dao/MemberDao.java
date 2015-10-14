@@ -137,12 +137,12 @@ public class MemberDao {
 	public Integer memberUpdate(Member member){
 		String sql ="update Member set member_profile=?,"
 				+ " member_nickname=?, member_filesystem_name=?,"
-				+ " member_content_type =?, member_original_file_name=? "
+				+ " member_content_type =?, member_original_file_name=?, member_password=? "
 				+ " where uid=?";
 
 		int rows = jdbcTemplate.update(sql,member.getMember_profile(),
 				member.getMember_nickname(),member.getMember_filesystem_name(),
-				member.getMember_content_type(),member.getMember_original_file_name(),
+				member.getMember_content_type(),member.getMember_original_file_name(),member.getMember_password(),
 				member.getUid());
 
 		return rows;

@@ -39,7 +39,13 @@
 				$("#dialog").dialog("open");
 				$("#tabs").tabs();
 			});
-			
+			var femail = $("#femail").val();
+			var loginEmail= $("#loginEmail").val();
+			if(femail == loginEmail){
+				alert("It's you!!! Please enter other email");
+				$("#femail").val("");
+			}
+			else{
 			$("#addfriend").click(function(){
 				
 					var contextpath= $("#contextpath").val();
@@ -55,6 +61,7 @@
 						}
 					});
 				});
+			}
 			
 		});
 		
@@ -259,7 +266,6 @@
 	
 	<div>
 	<p>앨범 예시</p>
-
 	
 	<a href="photoList?album_no=1">album1</a>	
 	<a href="photoList?album_no=2">album2</a>	

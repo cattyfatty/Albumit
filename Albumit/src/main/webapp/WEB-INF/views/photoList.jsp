@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -78,9 +79,34 @@
 				color: orange;
 			}
 		</style>
+		<script type="text/javascript">
+			function arrayfun() {
+			    var x = document.getElementById("photoArray");
+			    var i = x.selectedIndex;
+			    if(x.options[i].text.equals("lately")){
+			    	
+			    	document.getElementById("lately");
+			    }
+			    if(x.options[i].text.equals("like")){
+			    	
+			    	document.getElementById("like");
+			    }
+			}
+		
+		</script>
 	</head>
 	
 	<body>
+	
+		<select id="photoArray" size="1" onchange="arrayfun()">
+			<option>최신순</option>
+			<option>인기순</option>
+		</select>
+		
+		<button onclick="arrayfun()">Try it</button>
+		
+		
+		<div id="lately">
 		<h4>최신순</h4>
 		<hr/>
 		
@@ -96,11 +122,8 @@
 			</tr>
 			
 
-
-
-		
-			<c:forEach var="photo" items="${laList}">
-				<tr> 
+			<c:forEach  var="photo" items="${laList}">
+				<tr>
 					<td>${photo.photo_no}</td>
 					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
@@ -110,10 +133,11 @@
 					
 				</tr>
 			</c:forEach>
-			
+
+
 		</table>
 		
-		
+		<div id="like">
 		<hr/><h4>좋아요순</h4><hr/>
 		<table>
 		<tr>
@@ -139,6 +163,7 @@
 				</tr>
 			</c:forEach>
 		</table> 
+		</div>
 		
 		
 		<div id="buttonGroup">

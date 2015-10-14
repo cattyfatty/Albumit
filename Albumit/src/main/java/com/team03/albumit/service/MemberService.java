@@ -115,9 +115,10 @@ public class MemberService {
 
 	//친구 차단
 
-	public void block(Member umember, Member fmember, Boolean block){
-		block = false;   //차단
-		friendDao.update(umember, fmember,block);
+	public void block(Member umember, String blockFriend){
+		Boolean block = false;   //차단
+		Member blockmem = memberDao.selectByEmail(blockFriend);
+		friendDao.update(umember, blockmem,block);
 	}
 
 	//친구 검색
