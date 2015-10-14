@@ -40,16 +40,6 @@
          }
          
          #emailform, #passwordform, #nicknameform, #Smessageform {
-/*          padding: 10px;
-            margin: 3px;
-            width: 90%;
-            height: 10px;
-            border-radius: 5px;
-            background-color: rgba(255,255,255,0);
-            font-family: Verdana,sans-serif;
-            text-align: center;
-            font-color: rgba(255,255,255,1);
-            font-color: rgb(255,255,255); */
 			margin: 5px 0px;
 			height: 30px;
 			width: 100%;
@@ -90,44 +80,57 @@
 		    /* padding :10px; */
 		    margin: auto;
 		}         
-		
-		/* 기본버튼 숨기기 */
-		#uploadfile{
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip:rect(0,0,0,0);
-		border: 0;
-		}
-		
-		.filebox label {
-		  display: inline-block;
-		  padding: .5em .75em;
-		  color: #999;
-		  font-size: inherit;
-		  line-height: normal;
-		  vertical-align: middle;
-		  background-color: #fdfdfd;
-		  cursor: pointer;
-		  border: 1px solid #ebebeb;
-		  border-bottom-color: #e2e2e2;
-		  border-radius: .25em;
-		}
-		
-		.filebox input[type="file"] {  /* 파일 필드 숨기기 */
-		  position: absolute;
-		  width: 1px;
-		  height: 1px;
-		  padding: 0;
-		  margin: -1px;
-		  overflow: hidden;
-		  clip:rect(0,0,0,0);
-		  border: 0;
-		}
-		
+		/* --------파일업로드 부분--------------------------------------------------- */
+			
+			.file_input_textbox{
+				 float: left;
+				 border-radius: 5px; 
+				 height: 30px;
+				width: 70%;
+				background-color: rgba(255,255,255,0.4); 
+				font-family: Verdana,sans-serif;
+				text-align: center;
+				color: rgba(204, 0, 82, 1);
+				}
+				
+			.file_input_div{
+			 position: relative; 
+			 width: 100px; 
+			 height: 23px; 
+			 overflow: hidden;
+			}
+			
+			.file_input_button{
+			 width: 100px;
+			 height: 30px; 
+			 position: absolute; 
+			 top: 0px;
+			 background-color: rbga(255, 255, 255, 0.5);
+			 color: rgb(204, 0, 82);
+			 border-radius: 5px; 
+			 
+			}
+			
+			.file_input_hidden{
+			 font-size: 45px; 
+			 position: absolute; 
+			 right: 0px; 
+			 top: 0px; 
+			 opacity: 0; 
+			 filter: alpha(opacity=0); 
+			 -ms-filter: "alpha(opacity=0)"; 
+			 -khtml-opacity: 0; 
+			 -moz-opacity: 0;
+			 
+			 
+			}
+			
+			#uploadtitle{
+		  	   text-align: center;
+          		color: white;
+         	   text-shadow: 5px 5px 5px purple;
+			}				
+				 
 		/* ------------------------------------------------------------------ */
 	.btn{
 		margin: 5px 3px 5px 3px;
@@ -198,15 +201,26 @@
             
             </div>
    <!--  --------------------------------------------------------------------------------- -->
-            <div class="filebox">
-               Upload your Photo<br/>
-               <lable for="ex_file">업로드</lable>
-               <input type="file" name="attach" id="uploadfile"/>
-            </div>      
+            
+<!--             <div class="filebox preview-image">
+			  <input class="upload-name" value="파일선택" disabled="disabled" >
+				Upload your Photo<br/>
+			  <input type="file" id="input-file" class="upload-hidden"> 
+			</div>
+ -->
+<!-- /// -->
+			<h3 id="uploadtitle">Upload your Photo!!</h3>
+			<br/>
+			<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+			 
+			<div class="file_input_div">
+			  <input type="button" value="Search files" class="file_input_button" />
+			  <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
+			</div>
    <!--  --------------------------------------------------------------------------------- -->         
 			<div>
-             	<input type="reset"  value= "Reret"  id="reset" class="btn"/>
-               <input type="submit" value="Join" id="join" class="btn"/>
+             	<input type="reset"  value= "Reset"  id="reset" class="btn"/>
+                <input type="submit" value="Join" id="join" class="btn"/>
             </div>
          </form:form>
       </div>
