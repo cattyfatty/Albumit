@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -82,17 +82,17 @@
 		<script type="text/javascript">
 			function arrayfun(sel) {
 			    var x = sel.options[sel.selectedIndex].value;
-			  
+			    
 			    if(x == "latest"){
 			    	
-			    	document.all["latest"].style.display="";
-			    	document.all["popularity"].style.display="none";
+			    	document.getElementById("latest").style.display="";
+			    	document.getElementById("popularity").style.display="none";
 			    }
 			    
 			    if(x == "popularity"){
 			    	
-			    	document.all["latest"].style.display="none";
-			    	document.all["popularity"].style.display="";
+			    	document.getElementById("latest").style.display="none";
+			    	document.getElementById("popularity").style.display="";
 			    	
 			    }
 			}
@@ -103,7 +103,7 @@
 	<body>
 	
 		<select id="photoArray" size="1" onchange="arrayfun(this)">
-			<option value="latest">최신순</option>
+			<option value="latest" selected="selected" >최신순</option>
 			<option value="popularity">인기순</option>
 		</select>
 		
@@ -130,7 +130,7 @@
 					<td>${photo.photo_no}</td>
 					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
-					<td>${photo.photo_date}</td>
+					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td>
 					<td><a class="title" href="photoDetail?photo_no=${photo.photo_no}">${photo.photo_original_file_name}</a></td>
 				
 					
@@ -140,7 +140,7 @@
 		</div>
 		
 		
-		<div id="popularity">
+		<div id="popularity" style="display: none;">
 		<hr/><h4>좋아요순</h4><hr/>
 		<table>
 		<tr>
@@ -159,7 +159,7 @@
 					<td>${photo.photo_no}</td>
 					<td>${photo.photo_title}</td>
 					<td>${photo.uid}</td>
-					<td>${photo.photo_date}</td>
+					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td>
 					<td>${photo.photo_original_file_name}</td>
 				
 					
