@@ -124,10 +124,6 @@
       color: white;
    }
    
-   footer{
-   	text-align: center;
-   } /* 나중에 지우기 */
-
 </style>
 </head>
 
@@ -166,11 +162,6 @@
 	         </div>
          </div>
       </div> 
-      
-      <footer>
-        <a href="photoList?album_no=1">포토리스트</a>
-        <a href="addPhoto">사진올리기</a> 
-      </footer>
    </div>
 </body>
 </html>

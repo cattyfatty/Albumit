@@ -6,7 +6,7 @@
 <html>
    <head>
       <meta charset="UTF-8">
-      <title>Albumit - SignUp</title>
+      <title>Albumit</title>
       <style type="text/css">
          * {
             margin: 0px;
@@ -28,7 +28,7 @@
          #pagewrapper{
             margin: 0px auto;
             padding: 50px;
-            background-color: rgba(255,255,255,0.5);
+            background-color: rgba(255,255,255,0);
             border-radius: 30px; 
             width: 400px; 
             height: 350px;
@@ -40,7 +40,7 @@
          }
          
          #emailform, #passwordform, #nicknameform, #Smessageform {
-            padding: 10px;
+/*          padding: 10px;
             margin: 3px;
             width: 90%;
             height: 10px;
@@ -49,12 +49,27 @@
             font-family: Verdana,sans-serif;
             text-align: center;
             font-color: rgba(255,255,255,1);
+            font-color: rgb(255,255,255); */
+			margin: 5px 0px;
+			height: 30px;
+			width: 100%;
+			background-color: rgba(255,255,255,0.4); 
+			border-bottom: 0.5px solid white;  	 
+			border-left: 0px solid;
+			border-top:0.5px solid white;
+			border-right: 0px solid;
+			border-radius: 5px;
+			font-family: Verdana,sans-serif;
+			text-align: center;
+			box-shadow: 2px 2px 10px purple;
          }
          
          ::-webkit-input-placeholder{color:rgb(204, 0, 82);}
          
          .signup{
             text-align: left;
+            color: white;
+            text-shadow: 5px 5px 5px purple;
          }
          
          #albumit {
@@ -67,7 +82,78 @@
             margin: 10px 0px 10px 0px;
             /*  top-right-bottom-left]; */
          }
-               
+       
+          #logo{
+		    width: 80%;
+		    height: 80%;
+		    text-align: center;
+		    /* padding :10px; */
+		    margin: auto;
+		}         
+		
+		/* 기본버튼 숨기기 */
+		#uploadfile{
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip:rect(0,0,0,0);
+		border: 0;
+		}
+		
+		.filebox label {
+		  display: inline-block;
+		  padding: .5em .75em;
+		  color: #999;
+		  font-size: inherit;
+		  line-height: normal;
+		  vertical-align: middle;
+		  background-color: #fdfdfd;
+		  cursor: pointer;
+		  border: 1px solid #ebebeb;
+		  border-bottom-color: #e2e2e2;
+		  border-radius: .25em;
+		}
+		
+		.filebox input[type="file"] {  /* 파일 필드 숨기기 */
+		  position: absolute;
+		  width: 1px;
+		  height: 1px;
+		  padding: 0;
+		  margin: -1px;
+		  overflow: hidden;
+		  clip:rect(0,0,0,0);
+		  border: 0;
+		}
+		
+		/* ------------------------------------------------------------------ */
+	.btn{
+		margin: 5px 3px 5px 3px;
+		height: 30px;
+		width: 48%;
+		background-color: rgba(255,255,255,0.5);
+		border-color: rgba(255,255,255,0);
+		border-radius: 5px;
+		text-align: center;
+		vertical-align: middle;
+		cursor: pointer;
+		font-size: 14pt;
+		color: rgba(204, 0, 82, 0.8);
+		font-family: Verdana,sans-serif;
+		float: left;
+		box-shadow: 2px 2px 10px purple;
+		}
+	.btn:hover {
+		background-color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		box-shadow: 2px 2px 2px silver;
+	}
+	.btn:active {
+		background: rgba(135, 80, 25, 0.3); /* 지금은 브라운임! */
+		text-decoration: none;
+	} 
       </style>
    </head>
    
@@ -75,7 +161,7 @@
       <div id="pagewrapper">
       
          <div id="albumit">
-            <img src="#" alt="Albumit" title="Albumit"  >
+            <img src="${pageContext.request.contextPath}/resources/image/logo.png"  alt="Albumit" title="Albumit" id="logo"/>
          </div>
          
          <div>      
@@ -112,15 +198,15 @@
             
             </div>
    <!--  --------------------------------------------------------------------------------- -->
-            <div>
+            <div class="filebox">
                Upload your Photo<br/>
-               <input type="file" name="attach"/>
+               <lable for="ex_file">업로드</lable>
+               <input type="file" name="attach" id="uploadfile"/>
             </div>      
    <!--  --------------------------------------------------------------------------------- -->         
-            <br />
-            <div>
-               <input type="submit" value= "회원가입" />
-               <input type="reset"  value= "다시작성" />
+			<div>
+             	<input type="reset"  value= "Reret"  id="reset" class="btn"/>
+               <input type="submit" value="Join" id="join" class="btn"/>
             </div>
          </form:form>
       </div>
