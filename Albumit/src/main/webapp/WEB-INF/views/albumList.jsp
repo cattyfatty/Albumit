@@ -63,6 +63,31 @@
 				});
 			}
 			
+			addAlbumBox = $("#addAlbumBox").dialog({
+				autoOpen : false,
+				height : 300,
+				width : 500,
+				modal: true,
+				buttons: {
+					Create : function() {},
+					Cancel: function() {
+						addAlbumBox.dialog("close");
+					}
+				},
+				close: function() {
+					form[0].reset();
+				}
+			});
+			
+			$("#addAlbumButton").on("click", function() {
+				console.log("addAlbumButton");
+				$("#addAlbumBox").dialog("open");
+			});
+			
+			form = addAlbumBox.find("form").on("submit", function(event){
+				event.preventDefault();
+			});
+			
 		});
 		
 		function search() {
@@ -148,6 +173,7 @@
 			  border-color: white;
 			}
 			
+			fieldset {padding:0; border:0; margin-top: 5px;}
 		</style>
 	
 	</head>
@@ -160,7 +186,7 @@
 					<input type="button" id="opener" value="${member.member_email}" />
 		
 					<div class="menu">
-						<a href="#"><i class="fa fa-plus-square"></i></a>
+						<a href="#" id="addAlbumButton"><i class="fa fa-plus-square"></i></a>
 					</div>
 				</div>
 				
@@ -224,14 +250,30 @@
 					
 		<!-- --------------------------------------------------------------------------------------------------------- -->
 					<div id="tabs-2">
-					<div id="frtable">
-					
-					</div>
+						<div id="frtable">
+						
+						</div>
 						<input type="text" id="femail" placeholder="Enter Friend's email"/>
 						<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
 						<button id="addfriend">Add Friend</button>
 					</div>
 				</div>
+			</div>
+		<!-- --------------------------------------------------------------------------------------------------------- -->
+			<div id="addAlbumBox" title="Create a new Album">
+				<form>
+					<fieldset>
+						<label for="album_name">Album Name</label>
+						<input type="text" id="album_name" name="album_name" size="20"/><br/>
+						<hr/>
+						<p>Would you like to open this album to public?</p>
+						<input type="radio" name="album_publicity" value="true"/>yes
+						<input type="radio" name="album_publicity" value="false"/>no<br/>
+						<hr/>
+						<p>Invite Your friends to this Album!!!</p>
+						<a href="#" id="showMyFriendsList">show my friends</a>
+					</fieldset>
+				</form>
 			</div>
 		<!-- --------------------------------------------------------------------------------------------------------- -->
 			<div>
