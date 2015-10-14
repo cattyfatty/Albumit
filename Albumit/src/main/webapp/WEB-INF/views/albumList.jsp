@@ -39,15 +39,29 @@
 				$("#dialog").dialog("open");
 				$("#tabs").tabs();
 			});
-			var femail = $("#femail").val();
-			var loginEmail= $("#loginEmail").val();
-			if(femail == loginEmail){
-				alert("It's you!!! Please enter other email");
-				$("#femail").val("");
-			}
-			else{
+		
+			$("#modifyProfile").click(function(){
+				var contextpath= $("#contextpath").val();
+				console.log(contextpath);
+				$.ajax({
+					type: "post",
+					url: contextpath+"/modifyProfile",
+					  data : { "email" :$("#email").val() },
+					dataType : "html",
+					success : function(data){
+						console.log(data);
+						$("#mypage").html(data);
+					}
+				});
+			});	
+			
 			$("#addfriend").click(function(){
-				
+				var femail = $("#femail").val();
+				var loginEmail= $("#loginEmail").val();
+				if(femail == loginEmail){
+					alert("It's you!!! Please enter other email");
+					$("#femail").val("");
+				}else{
 					var contextpath= $("#contextpath").val();
 					console.log(contextpath);
 					$.ajax({
@@ -60,8 +74,10 @@
 							$("#frtable").html(data);
 						}
 					});
+				}
 				});
-			}
+			
+			
 			
 		});
 		
@@ -189,17 +205,15 @@
 				
 			</header>
 		
-		<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->	
 		<!-- --------------------------------------------------------------------------------------------------------- -->
 			<div id="dialog">
-		<!-- --------------------------------------------------------------------------------------------------------- -->
 				<div id="tabs">
 					<ul>
-						<li><a href="#tabs-1">MyPage</a></li>
-						<li><a href="#tabs-2">Friends</a></li>
+						<li><a href="#mypage">MyPage</a></li>
+						<li><a href="#flist">Friends</a></li>
 					</ul>
 					
-					<div id="tabs-1">
+					<div id="mypage">
 						<div id="nickname">
 							nickname :
 							<c:out value="${member.member_nickname }" />
@@ -219,20 +233,24 @@
 							width="100px" height="100px" /><br /> 
 							<a href="#">pw ?</a> 
 							<a href="leave">leave Albumit</a>
-							<a href="modifyProfile">Modify Profile</a>
+							<button id="modifyProfile">modifyProfile</button>
 					</div>
 					
-		<!-- --------------------------------------------------------------------------------------------------------- -->
-					<div id="tabs-2">
-					<div id="frtable">
+						<div id="flist">
 					
-					</div>
-						<input type="text" id="femail" placeholder="Enter Friend's email"/>
-						<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
-						<button id="addfriend">Add Friend</button>
-					</div>
+							<input type="text" id="femail" placeholder="Enter Friend's email"/>
+							<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
+							<button id="addfriend">Add Friend</button>
+					
+								<div id="frtable">
+								</div>
+						</div>
 				</div>
-			</div>
+				</div>
+				</div>
+		<!-- --------------------------------------------------------------------------------------------------------- -->
+			
+				
 		<!-- --------------------------------------------------------------------------------------------------------- -->
 			<div>
 				<a href="photoList" class="album">

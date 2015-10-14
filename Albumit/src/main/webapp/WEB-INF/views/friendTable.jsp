@@ -11,6 +11,61 @@
 #commitBlock{
 	display:none;
 }
+/****************************** slider Button CSS  ********************************/
+/*********************************************************************************/
+
+#sliderLabel {
+     border: 2px solid black;
+    border-radius: 7px;
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    margin: 20px auto;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+}
+#sliderLabel input {
+    display: none;
+}
+#sliderLabel input:checked + #slider {
+    left: 52px;
+}
+#slider {
+    background: #457FCE;
+    -moz-border-radius: 7px;
+    display: block;
+    height: 30px;
+    position: absolute;
+    top: 0px;
+    -moz-transition: left .25s ease-out;
+    transition: left .25s ease-out;
+    width: 49px;
+    z-index: 1;
+}
+#sliderOn, #sliderOff {
+    display: block;
+    font-family: verdana, arial, sans-serif;
+    font-weight: bold;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+    font-size: 10px;
+    width: 50px;
+    color: black;
+}
+}
+#sliderOn {
+ 
+    left: 0px;
+}
+#sliderOff {
+
+    right: 0px;
+}
+
+/*********************************************************************************/
 </style>
 
 <script>
@@ -36,6 +91,11 @@ function commitBlock(){
 	
 }
 
+function ab(){
+	var a = $(".a").val();
+	alert("a:"+a);
+}
+
 </script>
 
 <input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
@@ -49,14 +109,20 @@ function commitBlock(){
 	
 	<c:forEach var="f" items="${friendsList}">
 		<tr id="status">
-			<td>${f.member_email}</td>
+			<td class="email">${f.member_email}</td>
 			<td>${f.member_nickname}</td>
 			<td>${f.friend_block}</td>
-			<td><input type="checkbox" class ="blockCheck"/></td>
+			<td><label id="sliderLabel">
+    			<input type="checkbox" onclick="ab()" />
+    			<input type="hidden" value="${f.member_email}" class="a"/>
+    			<span id="slider"></span>
+    			<span id="sliderOn">Block</span>
+    			<span id="sliderOff">UnBlock</span>
+				</label></td>
 		</tr>
+		
+       
 	</c:forEach>
 </table>
 
 <input type="hidden" id="blockfriend" value="${f.member_email}"/>
-<input type="button" onclick="block()" id ="blockBtn" value="Block!"/>
-<input type="button" onclick="commitBlock()" id="commitBlock" value="commit!"/>

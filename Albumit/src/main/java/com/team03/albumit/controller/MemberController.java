@@ -153,8 +153,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="modifyProfile", method={RequestMethod.GET,RequestMethod.POST})
-	public String modifyProfile(@RequestParam("email")String email,Model model){
-		System.out.println("modifyProfile controller femail :"+email);
+	public String modifyProfile(@RequestParam("email")String email,HttpSession session, Model model) {
 		Member Modifiedmem = memberService.findMember(email);	
 		System.out.println("모디파이 프로필 컨트롤러 :"+Modifiedmem.getMember_email());
 		model.addAttribute("Modifiedmem",Modifiedmem);
@@ -169,7 +168,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="modifyMember", method={RequestMethod.POST})
-	public String modifyMember(Member member, HttpSession session){
+	public String modifyMember(Member member,Model model,HttpSession session){
 		System.out.println("컨트롤러 modify:"+member.getMember_email()+"멤버 이메일");
 		System.out.println("컨트롤러 modify:"+member.getMember_nickname()+"멤버 닉네임");
 		System.out.println("컨트롤러 modify:"+member.getMember_profile()+"멤버 profile");
