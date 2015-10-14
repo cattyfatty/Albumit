@@ -63,6 +63,7 @@ function commit(){
 	
 }
 </script>
+
 email: <c:out value="${Modifiedmem.member_email}" />
 <form id="modifyForm" action="modifyMember" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}" /> 
