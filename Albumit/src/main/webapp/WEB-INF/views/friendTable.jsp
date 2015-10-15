@@ -87,17 +87,12 @@ function commitBlock(){
 }
 
 function ab(a){
-	 alert("row:  "+a.rowIndex);
+	 console.log("row:  "+a.rowIndex);
 	 var ab= a.rowIndex;
-	 alert("email:  "+document.getElementById("myTable").rows[ab].cells.namedItem("email").innerHTML);
+	 console.log("email:  "+document.getElementById("myTable").rows[ab].cells.namedItem("email").innerHTML);
 	var ce= $( "input:checked" ).val();
-	if(ce=="on"){
-		alert("차단");
-	}
-	else{
-		alert("차단해제");
-	}
-	 
+	
+	alert(ce);
 }
 
 </script>

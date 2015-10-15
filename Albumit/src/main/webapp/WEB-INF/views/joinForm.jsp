@@ -199,6 +199,11 @@
                   <form:errors path="member_profile"/>
                </div>
             
+            
+            	<div id="fileUpload">
+            		
+            		파일 등록 : <input type="file" name="attach" />
+            	</div>
             </div>
    <!--  --------------------------------------------------------------------------------- -->
             
@@ -208,16 +213,18 @@
 			  <input type="file" id="input-file" class="upload-hidden"> 
 			</div>
  -->
-<!-- /// -->
+
+			<!-- 지인언니 여기서 자꾸 오류가 나내요;;; 주석처리 해놨어요
+			
 			<h3 id="uploadtitle">Upload your Photo!!</h3>
 			<br/>
-			<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+			<input type="text" name="attach" id="fileName" class="file_input_textbox" readonly="readonly">
 			 
 			<div class="file_input_div">
 			  <input type="button" value="Search files" class="file_input_button" />
-			  <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
-			</div>
-   <!--  --------------------------------------------------------------------------------- -->         
+			  <input type="file"  class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
+			</div> -->
+			
 			<div>
              	<input type="reset"  value= "Reset"  id="reset" class="btn"/>
                 <input type="submit" value="Join" id="join" class="btn"/>
