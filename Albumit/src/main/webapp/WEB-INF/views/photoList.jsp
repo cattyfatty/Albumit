@@ -127,11 +127,11 @@
 
 			<c:forEach  var="photo" items="${laList}">
 				<tr>
-					<td>${photo.photo_no}</td>
-					<td>${photo.photo_title}</td>
+					<td><a class="title" href="photoDetail">${photo.photo_no}</a></td>
+					<td>${photo.album_no}</td>
 					<td>${photo.uid}</td>
 					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td>
-					<td><a class="title" href="photoDetail?photo_no=${photo.photo_no}">${photo.photo_original_file_name}</a></td>
+					<td>${photo.photo_original_file_name}</td>
 				
 					
 				</tr>
@@ -139,7 +139,12 @@
 		</table>
 		</div>
 		
+		<div>
+		<input type="hidden" value="${photo.photo_no}"/ name="photo_no"/>
+		<input type="hidden" value="${album_no}"/ name="album_no"/>
 		
+		
+		</div>
 		<div id="popularity" style="display: none;">
 		<hr/><h4>좋아요순</h4><hr/>
 		<table>

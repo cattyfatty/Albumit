@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -52,7 +53,7 @@
 			<span class="content">${photo.uid}</span> <br/>
 			
 			<span class="title">날짜:</span> 
-			<span class="content">${photo.photo_date}</span> <br/>
+			<span class="content"><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></span> <br/>
 			
 			<span class="title">조회수:</span> 
 			<span class="content">${photo.photo_hitcount}</span> <br/>
