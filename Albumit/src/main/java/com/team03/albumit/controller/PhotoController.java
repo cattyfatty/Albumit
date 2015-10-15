@@ -157,5 +157,6 @@ public class PhotoController {
 		return "redirect:/photoDetail?photo_no=" + photo.getPhoto_no();
 	}
 	
+
 	
 }

@@ -16,9 +16,49 @@
 				font-size: 12px;
 			}
 		</style>
+		<script type="text/javascript"
+		src='${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js'></script>
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		
+		<script>
+		$(function() {
+			$("#opener").click(function() {
+				$("#dialog").dialog("open");
+			
+		});
+			
+		$("#dialog").dialog({
+				autoOpen : false,
+				height : 500,
+				width : 350,
+				left : 0,
+				aspectRatio : true,
+				show : {
+					effect : "blind",
+					duration : 1000
+				},
+				hide : {
+					effect : "explode",
+					duration : 1000
+				}
+	
+			});
+			
+		});
+		
+		</script>
+		
 	</head>
 	
 	<body>
+		
+		<div id="dialog">
+				<p>첨부</p>
+				<input type="file" name="attach"/>
+		</div>
+		
+		
 		<h4>글쓰기</h4>
 		<form method="post" action="addPhoto" enctype="multipart/form-data">
 			<table>
@@ -27,20 +67,26 @@
 					<td><input type="text" name="photo_title" value="${photo.photo_title}"/></td>
 				</tr>
 				<tr>
-					<td>내용</td>
-					<td><textarea name="text" rows="5" cols="50" value="${photo.photo_content}"></textarea></td>
-				</tr>
-				<tr>
 					<td>장소</td>
 					<td><input type="text" name="photo_place" value="${photo.photo_place}"/></td>
 				</tr>
 				<tr>
-					<td><input type="number" name="album_no" value="${photo.album_no}"/>${photo.album_no}</td>
+					<td>날짜</td>
+					<td><input type="date" name="photo_place" value="${photo.photo_date}"/></td>
 				</tr>
 				<tr>
-					<td>첨부</td>
-					<td><input type="file" name="attach"/></td>
+					<td>내용</td>
+					<td><textarea name="text" rows="5" cols="50" value="${photo.photo_content}"></textarea></td>
 				</tr>
+				<tr>
+					<td><input type="hidden" name="album_no" value="${album_no}"/></td>
+				</tr>
+				<tr>
+					<td>
+					<input type="button" id="opener"/>
+					</td>
+				</tr>
+				
 				<tr>
 					<td colspan="2" style="text-align: center;">
 						<br/>
@@ -50,5 +96,7 @@
 				</tr>
 			</table>
 		</form>
+		
+			
 	</body>
 </html>
