@@ -32,6 +32,7 @@
 					<td>장소</td>
 					<td><input type="text" name="photo_place" value="${photo.photo_place}"/></td>
 				</tr>
+		
 				<tr>
 					<td>앨범</td>
 					<td><input type="text" name="album_no" value="${photo.album_no}"/></td>
@@ -43,8 +44,10 @@
 				<tr>
 					<td colspan="2" style="text-align: center;">
 						<br/>
-						<input type="submit" value="글올리기"/>
-						<input type="reset" value="다시작성"/>					
+						
+					<a href="photoList?album_no=${photo.album_no }">목록</a>
+					<a href="photoUpdateForm?photo_no=${photo.photo_no}">수정</a>
+					<a href="delete?photo_no=${photo.photo_no}">삭제</a>					
 					</td>
 				</tr>
 			</table>

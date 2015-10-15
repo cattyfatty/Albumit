@@ -26,7 +26,7 @@ public class SharedPhotoDao {
 		
 		public void insert(SharedPhoto sharedPhoto) {
 			Integer pk = null;
-			String sql = "insert into SharedPhoto (photo_no, uid, album_no, share_date, share_like, share_hitcount ) values(?, ?, ?, now(), ?, ?)";
+			String sql = "insert into Sharedphoto (photo_no, uid, album_no, share_date, share_like, share_hitcount ) values(?, ?, ?, now(), ?, ?)";
 			
 			jdbcTemplate.update(new PreparedStatementCreator() {
 				@Override
@@ -45,20 +45,20 @@ public class SharedPhotoDao {
 		}
 		
 		public int updateLike(int photo_no, int album_no) {
-			String sql = "update SharedPhoto set share_like=share_like+1 where photo_no=?";
+			String sql = "update Sharedphoto set share_like=share_like+1 where photo_no=?";
 			int rows = jdbcTemplate.update(sql, photo_no, album_no);
 			return rows;
 		}
 		
 		public int updateHitcount(int photo_no, int album_no) {
-			String sql = "update SharedPhoto set share_hitcount=share_hitcount+1 where photo_no=? and album_no=?";
+			String sql = "update Sharedphoto set share_hitcount=share_hitcount+1 where photo_no=? and album_no=?";
 			int rows = jdbcTemplate.update(sql, photo_no, album_no);
 			return rows;
 		}
 		
 		
 		public List<SharedPhoto> selectByPhotoNo(int photo_no) {
-			String sql = "select * from SharedPhoto where photo_no=?";
+			String sql = "select * from Sharedphoto where photo_no=?";
 			List<SharedPhoto> list = jdbcTemplate.query(
 				sql,
 				new Object[] {photo_no},
@@ -79,7 +79,7 @@ public class SharedPhotoDao {
 		}
 		
 		public List<SharedPhoto> selectByAlbumPhotoNo(int album_no,int photo_no) {
-			String sql = "select * from SharedPhoto where album_no=? and photo_no=?";
+			String sql = "select * from Sharedphoto where album_no=? and photo_no=?";
 			List<SharedPhoto> list = jdbcTemplate.query(
 				sql,
 				new Object[] {album_no, photo_no},
@@ -125,7 +125,7 @@ public class SharedPhotoDao {
 		
 		
 		public int delete(int photo_no, int album_no) {
-			String sql = "delete from SharedPhoto where photo_no=? and album_no=? ";
+			String sql = "delete from Sharedphoto where photo_no=? and album_no=? ";
 			int rows = jdbcTemplate.update(
 				sql,
 				photo_no,

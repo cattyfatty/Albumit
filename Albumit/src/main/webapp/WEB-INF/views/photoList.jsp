@@ -128,10 +128,10 @@
 			<c:forEach  var="photo" items="${laList}">
 				<tr>
 					<td>${photo.photo_no}</td>
-					<td>${photo.photo_title}</td>
+					<td>${photo.album_no}</td>
 					<td>${photo.uid}</td>
 					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td>
-					<td><a class="title" href="photoDetail?photo_no=${photo.photo_no}">${photo.photo_original_file_name}</a></td>
+					<td><a class="title" href="photoDetail?album_no=${photo.album_no}&&photo_no=${photo.photo_no}">${photo.photo_original_file_name}</a></td>
 				
 					
 				</tr>
