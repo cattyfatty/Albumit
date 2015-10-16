@@ -22,7 +22,7 @@
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		
 		<script>
-		$(function() {
+		/*$(function() {
 			$("#opener").click(function() {
 				$("#dialog").dialog("open");
 			
@@ -42,10 +42,12 @@
 					effect : "explode",
 					duration : 1000
 				}
-	
+				
+				
 			});
+			event.preventDefault();
 			
-		});
+		});*/
 		
 		</script>
 		
@@ -54,8 +56,12 @@
 	<body>
 		
 		<div id="dialog">
+		<form method="post" action="preaddPhoto" enctype="multipart/form-data">
+		<input type="hidden" name="album_no" value="${album_no}"/>
 				<p>첨부</p>
 				<input type="file" name="attach"/>
+				<input type="submit" value="확인"/>
+		</form>
 		</div>
 		
 		
@@ -76,7 +82,7 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="text" rows="5" cols="50" value="${photo.photo_content}"></textarea></td>
+					<td><textarea name="photo_content" rows="5" cols="50""></textarea></td>
 				</tr>
 				<tr>
 					<td><input type="hidden" name="album_no" value="${album_no}"/></td>
@@ -86,7 +92,11 @@
 					<input type="button" id="opener"/>
 					</td>
 				</tr>
-				
+				<tr>
+				<td>
+					<input type="file" name="attach"/>
+				</td>
+				</tr>
 				<tr>
 					<td colspan="2" style="text-align: center;">
 						<br/>

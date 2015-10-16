@@ -132,8 +132,6 @@
 					<td>${photo.uid}</td>
 					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td>
 					<td>${photo.photo_original_file_name}</td>
-				
-					
 				</tr>
 			</c:forEach>
 		</table>

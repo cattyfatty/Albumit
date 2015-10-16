@@ -26,8 +26,42 @@ public class PhotoController {
 	@RequestMapping(value="/addPhoto",method=RequestMethod.GET)
 	public String PhotoWriteForm(int album_no, Model model) {
 		model.addAttribute("album_no",album_no);
+		
+		
+		
 		return "/photoWriteForm";
 	}
+	
+	//사진 미리보기 등록
+		@RequestMapping(value="/preaddPhoto",method=RequestMethod.POST)
+		public String PhotoWriteForm2(Photo photo, Model model, HttpSession session) {
+			Member m = (Member)session.getAttribute("loginmember");
+			photo.setUid(m.getUid());
+			
+			//파일 정보 얻기
+			ServletContext application = session.getServletContext();
+			String dirPath = application.getRealPath("/resources/uploadfiles");
+			if(photo.getAttach() != null) {
+				String photo_original_file_name = photo.getAttach().getOriginalFilename();
+				String photo_filesystem_name = System.currentTimeMillis() + "-" + photo_original_file_name;
+				String photo_content_type = photo.getAttach().getContentType();
+				if(!photo.getAttach().isEmpty()) {	
+					//파일에 저장하기
+					try {
+						photo.getAttach().transferTo(new File(dirPath + "/" + photo_filesystem_name));
+					} catch (Exception e) { e.printStackTrace(); }
+				}
+				photo.setPhoto_original_file_name(photo_original_file_name);
+				photo.setPhoto_filesystem_name(photo_filesystem_name);
+				photo.setPhoto_content_type(photo_content_type);
+			}
+			
+			photoService.addPhoto(photo);
+			
+			return "/photoWriteForm";
+		}
+	
+	//사진 등록 
 	@RequestMapping(value="/addPhoto",method=RequestMethod.POST)	
 	public String write(Photo photo, HttpSession session) {	
 		logger.info("addPhoto()");
@@ -44,7 +78,7 @@ public class PhotoController {
 		if(photo.getAttach() != null) {
 			String photo_original_file_name = photo.getAttach().getOriginalFilename();
 			String photo_filesystem_name = System.currentTimeMillis() + "-" + photo_original_file_name;
-			String photo_content = photo.getAttach().getContentType();
+			String photo_content_type = photo.getAttach().getContentType();
 			if(!photo.getAttach().isEmpty()) {	
 				//파일에 저장하기
 				try {
@@ -53,7 +87,7 @@ public class PhotoController {
 			}
 			photo.setPhoto_original_file_name(photo_original_file_name);
 			photo.setPhoto_filesystem_name(photo_filesystem_name);
-			photo.setPhoto_content(photo_content);
+			photo.setPhoto_content_type(photo_content_type);
 		}
 		
 		photoService.addPhoto(photo);
