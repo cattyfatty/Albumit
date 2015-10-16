@@ -114,7 +114,7 @@ public class PhotoController {
 	public String updatePhoto(Photo photo, HttpSession session){
 		photoService.modifyPhoto(photo);
 		
-		return "redirect:/photoDetail?photo_no="+photo.getPhoto_no();
+		return "redirect:/photoDetail?photo_no="+photo.getPhoto_no()+"&&album_no="+photo.getAlbum_no();
 	}
 	
 	//사진 옮기기

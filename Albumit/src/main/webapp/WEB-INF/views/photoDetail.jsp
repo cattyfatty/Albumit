@@ -108,7 +108,7 @@
 		</div>
 		
 		<div id="buttonGroup">
-			<a href="photoList">목록</a>
+			<a href="photoList?album_no=${photo.album_no }">목록</a>
 			<a href="photoUpdateForm?album_no=${photo.album_no}&&photo_no=${photo.photo_no}">수정</a>
 			<a href="delete/${photo.album_no }&&${photo.photo_no}">삭제</a>
 		</div>		
