@@ -5,10 +5,11 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>Albumit! Album</title>
+	<title>Albumit!</title>
 	
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<!-- 파비콘설정 -->
+	<link rel="icon"  href="${pageContext.request.contextPath}/resources/image/favicon.ico" type="image/x-icon"/> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script type="text/javascript"
 		src='${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js'></script>
 	<link rel="stylesheet"
@@ -35,7 +36,8 @@
 	
 			});
 	
-			$("#opener").click(function() {
+			//$("#opener").click(function() {
+				$("#myinfo").click(function(){
 				$("#dialog").dialog("open");
 				$("#tabs").tabs();
 			});
@@ -144,24 +146,34 @@
 		     
 		     body{
 		      width: 1000px;
-		      height : 600px;
+		      height : 100%;
 		      background-color: gray;
+		      margin: 0 auto;
 		     }
 		      
 		     #pagewrapper{
-		 	    width:100%;
+		 	   width:100%; 
 		     }
+		     
+		     
+		     /*  메뉴바 부분 -------------------------------------------------------------------------------------------------------------- */
+		     
 		     
 			.menu {
 				 display: inline; 
+				 float: left; 
+				 
 			}
 			
 			#menubar {
-				/* background-color: rgba(255,255,255,0.5); */
-				background-image: url('${pageContext.request.contextPath}/resources/image/watercolor.jpg');
-		    	background-repeat: no-repeat;
-		    	background-size: cover;
-				width: 100%;
+				width: 960px;
+				height: 60px;
+				background-color: #666699;
+				padding: 10px;
+			}
+			
+			#btn_myinfo, #searchContent{
+				float:left;
 			}
 			
 			.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front.ui-draggable.ui-resizable{
@@ -176,6 +188,46 @@
 			    right: 0;
 			    left: 0;
 			    z-index: 10000;
+			
+			}
+			
+			#myinfo{
+			height: 25px;
+			border: none;
+			text-align: center;
+			color: white;
+			}
+			
+			
+			
+			#logo{
+			 width: 150px;
+			 height: 45px;
+			 float:left;
+			 margin: 10px;
+			}
+			
+			#search{
+			margin: 0 auto;
+			}
+			
+			#searchContent{
+				width: 200px;
+				height: 25px;
+				padding: 2px;
+				text-align: center;
+				color: red;
+				background-color: gray; 
+				border: none;
+				float: left;
+				
+			}
+			
+			#btn_search{
+				height: 25px;
+				border: none;
+				text-align: center;
+				color: white;
 			}
 			
 			.album{
@@ -189,46 +241,113 @@
 			}
 			
 			fieldset {padding:0; border:0; margin-top: 5px;}
+			
+			#small_wapper{
+			 height: 30px;
+			 width: 700px;
+			 margin: 10px; 
+			 padding: 10px;
+			  
+			}
+			
+			.fa{
+				font-size: 50px;
+				color: white;
+				padding: 10px;
+			}
+			
+			
+			#right{
+			float: right;
+			}
+			
+			#menu{
+				width: 100px;
+				height: 50px;
+			}
+			
 		</style>
 	
 	</head>
 	
 	<body>
 		<div id="pagewrapper">
-			<header id="menubar">
-			
-				<div class="menu">
-					<input type="button" id="opener" value="${member.member_email}" />
 		
+<!-- ////////////////////////-메뉴바 부분-///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+			
+			
+			<header id="menubar">
+			<!-- -------------------------------------------------------------------------------------------------------------------- -->
+			
+				<div id="menu_wrapper">
+				
+				
+				<!-- ------ 1. Albumit 로고 --------------------------------------------------------------------------------------------- -->
+				
+					<div id="albumitlogo">
+						<img src="${pageContext.request.contextPath}/resources/image/logo.png" alt="Albumit" title="Albumit" id="logo" >
+					</div>
+					
+					<!-- -------------------------------------------------------------------------------------------------------------------- -->
+					<div id="small_wapper">
+				<!-- -------2. 내정보----------------------------------------------------------------------------------------------------- -->
+				
+					<!-- <div class="menu"> -->
+					<div id="btn_myinfo"  class="menu">
+						<%-- <input type="button" id="opener" value="${member.member_email}" /> --%>
+						<input type="button"  id="myinfo" value="${member.member_email}" />
+					</div>
+				
+				<!-- --------3. 검색------------------------------------------------------------------------------------------------------- -->
+				
+				<!-- <div class="input-group margin-bottom-sm menu"> -->
+					<div id="search" class="input-group margin-bottom-sm menu">
+					<!-- 	 <span class="input-group-addon">
+						<i class="fa fa-search fa-fw"></i>
+						</span> -->
+						<input id="searchContent" type="text" placeholder="Search">
+						<button id="btn_search" onclick="search()">search!</button>
+						
+						<p id="validation">
+							<em title="Please enter something you want to search"></em>
+						</p>
+			
+						<div id="validation-content"></div>
+					</div>
+					
+				<!-- -------- 4. album/friend 옵션 선택 ----------------------------------------------------------------------------------- -->
+				<div id="right">
+				
+					<div id="menu" class="menu">
+						<select id="option">	
+							<option> ALBUM </option>
+							<option> PHOTO </option>
+						</select>
+					</div>
+					
+				<!-- ------ 5. 앨범추가 --------------------------------------------------------------------------------------------------- -->
+				
 					<div class="menu">
 						<a href="#" id="addAlbumButton"><i class="fa fa-plus-square"></i></a>
 					</div>
+		        <!-- ------ 6. 채팅 ------------------------------------------------------------------------------------------------------- -->
+					<div class="menu">
+						<a href="#" id="chat_btn"><i class="fa fa-comments-o"></i></a>
+					</div>
+					
+					</div>
+					
+					<!-- --------------------------------------------------------------------------------------------------------------------- -->
+					</div>
+				 <!-- --------------------------------------------------------------------------------------------------------------------- -->
 				</div>
-				
-				<div id="albumit">
-					<img src="#" alt="Albumit" title="Albumit"  >
-				</div>
-	         
-				
-				<div class="menu">
-					<select id="search">
-						<option> ALBUM </option>
-						<option> PHOTO </option>
-					</select>
-				</div>
-		
-				<div class="input-group margin-bottom-sm menu">
-					<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
-					<input id="searchContent" type="text" placeholder="Search">
-					<button onclick="search()">search!</button>
-					<p id="validation">
-						<em title="Please enter something you want to search"></em>
-					</p>
-		
-					<div id="validation-content"></div>
-				</div>
-				
+			 <!-- --------------------------------------------------------------------------------------------------------------------- -->	
 			</header>
+		
+<!-- ////////////////////////-메뉴바 끝///////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+		
+		
+		
 		
 		<!-- --------------------------------------------------------------------------------------------------------- -->
 			<div id="dialog">
@@ -323,5 +442,14 @@
 	
 
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

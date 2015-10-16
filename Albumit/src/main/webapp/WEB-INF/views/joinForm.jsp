@@ -7,6 +7,8 @@
    <head>
       <meta charset="UTF-8">
       <title>Albumit</title>
+		<!-- 파비콘설정 -->
+		<link rel="icon"  href="${pageContext.request.contextPath}/resources/image/favicon.ico" type="image/x-icon"/> 
       <style type="text/css">
          * {
             margin: 0px;
