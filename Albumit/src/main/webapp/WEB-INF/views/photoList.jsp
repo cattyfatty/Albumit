@@ -130,7 +130,7 @@
 					<td>${photo.photo_title}</td>
 					<td>${photo.photo_content}</td> --%>
 					<td><a href="photoDetail?album_no=${photo.album_no}&&photo_no=${photo.photo_no}">
-						<img src="${pageContext.request.contextPath}/resources/uploadfiles/${photo.photo_filesystem_name}" width="300px"/></a></td>
+						<img src="${pageContext.request.contextPath}/resources/image/${photo.photo_filesystem_name}" width="300px"/></a></td>
 					<%-- <td>${photo.uid}</td>
 					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td> --%>
 				</c:forEach>
