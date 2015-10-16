@@ -22,8 +22,9 @@
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 		
 		<script>
-		/*$(function() {
+		$(function() {
 			$("#opener").click(function() {
+				
 				$("#dialog").dialog("open");
 			
 		});
@@ -33,21 +34,27 @@
 				height : 500,
 				width : 350,
 				left : 0,
-				aspectRatio : true,
-				show : {
-					effect : "blind",
-					duration : 1000
+				modal: true,
+				buttons:{
+					"확인": confirm,
+					cancel: function(){
+						dialog.dialog("close");
+					}
 				},
-				hide : {
-					effect : "explode",
-					duration : 1000
+				close: function(){
+					form[0].reset();
+					allFields.removeClass("ui-state-error");
 				}
 				
-				
 			});
-			event.preventDefault();
 			
-		});*/
+			form = dialog.find("form").on("submit", function(event){
+				event.preventDefault();
+				confirm();
+			});
+		
+			
+		});
 		
 		</script>
 		
@@ -60,7 +67,7 @@
 		<input type="hidden" name="album_no" value="${album_no}"/>
 				<p>첨부</p>
 				<input type="file" name="attach"/>
-				<input type="submit" value="확인"/>
+				<input id="submit" type="submit" value="확인"/>
 		</form>
 		</div>
 		
@@ -93,9 +100,7 @@
 					</td>
 				</tr>
 				<tr>
-				<td>
-					<input type="file" name="attach"/>
-				</td>
+			
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: center;">
