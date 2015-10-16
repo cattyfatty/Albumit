@@ -44,7 +44,8 @@
 		<form id="modifyForm" name="modifyForm" method="post" action="photoUpdateForm">		
 			<span class="title">번호:</span> 
 			<span class="content">${photo.photo_no}</span> 
-			<input type="hidden" name="no" value="${photo.photo_no}"/><br/>
+			<input type="hidden" name="photo_no" value="${photo.photo_no}"/><br/>
+			<input type="hidden" name="album_no" value="${photo.album_no }"/><br/>
 			
 			<span class="title">제목:</span> 
 			<input id="title" type="text" name="title" value="${photo.photo_title}"/> <br/>
@@ -63,7 +64,7 @@
 		</form>
 		<div id="buttonGroup">
 			<a href="javascript:sendData()">수정</a>
-			<a href="photoDetail?photo_no=${photo.photo_no}">취소</a>
+			<a href="photoDetail?photo_no=${photo.photo_no}&&album_no=${photo.album_no}">취소</a>
 		</div>		
 	</body>
 </html>

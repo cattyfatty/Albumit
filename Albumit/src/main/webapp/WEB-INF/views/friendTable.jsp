@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
 .blockCheck{
 	display:none;
@@ -91,6 +92,13 @@ function commitBlock(){
 	
 }
 
+function ab(a){
+	 console.log("row:  "+a.rowIndex);
+	 var ab= a.rowIndex;
+	 console.log("email:  "+document.getElementById("myTable").rows[ab].cells.namedItem("email").innerHTML);
+	var ce= $( "input:checked" ).val();
+	
+	alert(ce);
 function ab(){
 	var a = $(this).index();
 	console.log("a:::"+a);
@@ -98,7 +106,7 @@ function ab(){
 
 </script>
 
-<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
+
 <table>
 	<tr>
 		<td>email</td>
@@ -125,3 +133,4 @@ function ab(){
 </table>
 
 <input type="hidden" id="blockfriend" value="${f.member_email}"/>
+<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>

@@ -196,8 +196,32 @@
                   <form:errors path="member_profile"/>
                </div>
             
+            <!-- 
+            	<div id="fileUpload">
+            		
+            		파일 등록 : <input type="file" name="attach" />
+            	</div> -->
             </div>
    <!--  --------------------------------------------------------------------------------- -->
+            
+<!--             <div class="filebox preview-image">
+			  <input class="upload-name" value="파일선택" disabled="disabled" >
+				Upload your Photo<br/>
+			  <input type="file" id="input-file" class="upload-hidden"> 
+			</div>
+ -->
+
+			<!-- 지인언니 여기서 자꾸 오류가 나내요;;; 주석처리 해놨어요
+			
+			<h3 id="uploadtitle">Upload your Photo!!</h3>
+			<br/>
+			<input type="text" name="attach" id="fileName" class="file_input_textbox" readonly="readonly">
+			 
+			<div class="file_input_div">
+			  <input type="button" value="Search files" class="file_input_button" />
+			  <input type="file"  class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
+			</div> -->
+			
             <div class="filebox">
                Upload your Photo<br/>
                <lable for="ex_file">업로드</lable>
@@ -205,7 +229,7 @@
             </div>      
    <!--  --------------------------------------------------------------------------------- -->         
 			<div>
-             	<input type="reset"  value= "Reret"  id="reset" class="btn"/>
+             	<input type="reset"  value= "Reet"  id="reset" class="btn"/>
                <input type="submit" value="Join" id="join" class="btn"/>
             </div>
          </form:form>

@@ -129,7 +129,6 @@ public class PhotoController {
 		
 		photoService.addHitcount(photo_no, album_no);
 		Photo photo = photoService.getPhoto(photo_no);
-		photo = photoService.getPhoto(album_no);
 		model.addAttribute("photo",photo);
 		return "/photoDetail";
 		
@@ -149,7 +148,7 @@ public class PhotoController {
 	public String updatePhoto(Photo photo, HttpSession session){
 		photoService.modifyPhoto(photo);
 		
-		return "redirect:/photoDetail?photo_no="+photo.getPhoto_no();
+		return "redirect:/photoDetail?photo_no="+photo.getPhoto_no()+"&&album_no="+photo.getAlbum_no();
 	}
 	
 	//사진 옮기기
