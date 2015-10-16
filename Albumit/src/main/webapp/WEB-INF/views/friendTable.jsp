@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
 .blockCheck{
 	display:none;
@@ -69,7 +70,12 @@
 </style>
 
 <script>
-
+function block(){
+	$(".blockCheck").css("display","block");
+	$("#blockBtn").css("display","none");
+	$("#commitBlock").css("display","block");
+	
+}
 function commitBlock(){
 	alert("commitBlock !!! check~!!#!");
 	var contextpath = $("#contextpath").val();
@@ -87,23 +93,21 @@ function commitBlock(){
 }
 
 function ab(a){
-	 alert("row:  "+a.rowIndex);
+	 console.log("row:  "+a.rowIndex);
 	 var ab= a.rowIndex;
-	 alert("email:  "+document.getElementById("myTable").rows[ab].cells.namedItem("email").innerHTML);
+	 console.log("email:  "+document.getElementById("myTable").rows[ab].cells.namedItem("email").innerHTML);
 	var ce= $( "input:checked" ).val();
-	if(ce=="on"){
-		alert("차단");
-	}
-	else{
-		alert("차단해제");
-	}
-	 
+	
+	alert(ce);
+function ab(){
+	var a = $(this).index();
+	console.log("a:::"+a);
 }
 
 </script>
 
-<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
-<table id="myTable">
+
+<table>
 	<tr>
 		<td>email</td>
 		<td>profile</td>
@@ -112,12 +116,12 @@ function ab(a){
 	
 	
 	<c:forEach var="f" items="${friendsList}">
-		<tr id="status" onclick="ab(this)"  >
-			<td id="email">${f.member_email}</td>
+		<tr id="status">
+			<td class="email">${f.member_email}</td>
 			<td>${f.member_nickname}</td>
 			<td>${f.friend_block}</td>
 			<td><label id="sliderLabel">
-    			<input type="checkbox" />
+    			<input type="checkbox" onclick="ab(this)" />
     			
     			<span id="slider"></span>
     			<span id="sliderOn">Block</span>
@@ -129,3 +133,4 @@ function ab(a){
 </table>
 
 <input type="hidden" id="blockfriend" value="${f.member_email}"/>
+<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
