@@ -7,47 +7,110 @@
 		<title>Insert title here</title>
 		<style type="text/css">
 			body {
-				font-size: small;
-			
+				font-family: "돋움";
+				font-size: 12px;
+			}
+			span {
+				display: inline-block;
+				margin: 2px 10px;
 			}
 			
-			input {
+			span.title {
+				margin: 2px 10px;
+				border: 1px solid darkgray;
+				background: lightgray;
+				width: 70px;
+				text-align: center;
+				color: black;
+			}
+			
+			pre {
+				margin: 10px;
+				border: 1px solid darkgray;
+				padding: 10px;
+				width: 90%;
+				height: 100px;
 				font-size: 12px;
+			}
+			
+			#part1 {
+				display: flex;
+			}
+			#part1_1 {
+				flex: 1;
+			}
+			#part1_2 {
+				width: 120;
+				margin-right: 10px;
+				text-align: center;
+			}
+			#part1_2 img {
+				display: block;
+				padding: 10px;
+			}
+			
+			#buttonGroup {
+				margin: 10px;
+				text-align: center;
+			}
+			
+			#buttonGroup a {
+				display:inline-block;
+				width: 70px;
+				line-height: 30px;
+				text-decoration: none;
+				font-size: small;
+				color: white;
+				border: 1px solid darkgray;
+				background-color: gray;
+				font-weight: bold;
+			}
+			
+			#buttonGroup a:hover {
+				color: black;
+				background-color: lightgray;
 			}
 		</style>
 	</head>
 	
 	<body>
+		<h4>게시물 보기</h4>
+		<div id="part1">
+			<div id="part1_1">	
+				<span class="title">사진</span> 
+				<span class="content">${photo.photo_original_file_name}</span> <br/>
+				
+				<span class="title">제목:</span> 
+				<span class="content">${photo.photo_title}</span> <br/>
+				
+				<span class="title">글쓴이:</span> 
+				<span class="content">${photo.uid}</span> <br/>
+				
+				<span class="title">날짜:</span> 
+				<span class="content">${photo.photo_date}</span> <br/>
+				
+				<span class="title">조회수:</span> 
+				<span class="content">${photo.photo_hitcount}</span> <br/>
+				
+				<span class="title">좋아요:</span>
+				<span class="content">${photo.photo_like}</span>
+			</div>
+			
+			<div id="part1_2">
+				<img src="${pageContext.request.contextPath}/resources/uploadfiles/${photo.photo_filesystem_name}" width="100px" height="100px"/>
+				<button>다운로드</button>
+			</div>
+		</div>
 		
-			<table>
-				<tr>
-					<td>제목</td>
-					<td><input type="text" name="photo_title" value="${photo.photo_title}"/></td>
-				</tr>
-				<tr>
-					<td>내용</td>
-					<td><textarea name="text" rows="5" cols="50" value="${photo.photo_content}"></textarea></td>
-				</tr>
-				<tr>
-					<td>장소</td>
-					<td><input type="text" name="photo_place" value="${photo.photo_place}"/></td>
-				</tr>
-				<tr>
-					<td>앨범</td>
-					<td><input type="text" name="album_no" value="${photo.album_no}"/></td>
-				</tr>
-				<tr>
-					<td>첨부</td>
-					<td><input type="file" name="attach"/></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: center;">
-						<br/>
-						<input type="submit" value="글올리기"/>
-						<input type="reset" value="다시작성"/>					
-					</td>
-				</tr>
-			</table>
+		<div id="part2">
+			<span class="title">내용:</span> <br/>
+			<pre>${photo.photo_content}</pre>
+		</div>
 		
+		<div id="buttonGroup">
+			<a href="photoList">목록</a>
+			<a href="photoUpdateForm?album_no=${photo.album_no}&&photo_no=${photo.photo_no}">수정</a>
+			<a href="delete/${photo.album_no }&&${photo.photo_no}">삭제</a>
+		</div>		
 	</body>
 </html>
