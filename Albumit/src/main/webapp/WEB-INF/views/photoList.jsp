@@ -108,7 +108,7 @@
 		<hr/>
 		
 		<table>
-			<tr>
+			<!-- <tr>
 				<th style="width:50px">사진번호</th>
 				<th style="width:50px">앨범번호</th>
 				<th>제목</th>
@@ -118,20 +118,22 @@
 				<th style="width:100px">날짜</th>
 				
 				
-			</tr>
+			</tr> -->
 			
 
 			<c:forEach  var="photo" items="${laList}">
+			
 				<tr>
-					<td>${photo.photo_no}</a></td>
+				<c:forEach var="i" begin="1" end="3">
+					<%-- <td>${photo.photo_no}</a></td>
 					<td>${photo.album_no}</td>
 					<td>${photo.photo_title}</td>
-					<td>${photo.photo_content}</td>
-					<td><a href="photoDetail?album_no=${photo.album_no}&&photo_no=${photo.photo_no}">${photo.photo_original_file_name}</a></td>
-					<td>${photo.uid}</td>
-					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td>
-				
-					
+					<td>${photo.photo_content}</td> --%>
+					<td><a href="photoDetail?album_no=${photo.album_no}&&photo_no=${photo.photo_no}">
+						<img src="${pageContext.request.contextPath}/resources/uploadfiles/${photo.photo_filesystem_name}" width="300px"/></a></td>
+					<%-- <td>${photo.uid}</td>
+					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td> --%>
+				</c:forEach>
 				</tr>
 			</c:forEach>
 		</table>
