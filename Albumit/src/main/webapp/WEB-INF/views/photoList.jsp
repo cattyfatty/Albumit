@@ -17,7 +17,7 @@
 				font-size: small;
 			}
 			table, th, td {
-				border: 1px solid white;
+				border: 1px solid black;
 				text-align: center;
 			}
 			th {
