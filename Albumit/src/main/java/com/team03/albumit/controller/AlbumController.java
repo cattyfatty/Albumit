@@ -27,6 +27,10 @@ public class AlbumController {
 		Map<Album, Thumbnail> albumList = albumService.showAllAlbumList();
 		model.addAttribute(albumList);
 		
+		//친구목록 모델에 추가하기!!
+		List<FriendList> friends = memberService.friendList(member);
+		//System.out.println("컨트롤러에서 친구목록: "+friends.get(0).getMember_email()+"  ->이게 d이여야 한다!");
+		model.addAttribute("friendList", friends);
 		return "albumList";
 	}
 	
