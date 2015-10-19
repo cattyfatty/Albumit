@@ -70,8 +70,6 @@ public class PhotoController {
 		photo.setUid(m.getUid());
 	
 		
-		
-		
 		//파일 정보 얻기
 		ServletContext application = session.getServletContext();
 		String dirPath = application.getRealPath("/resources/uploadfiles");
