@@ -117,7 +117,7 @@
 				<th style="width:60px">글쓴이</th>
 				<th style="width:100px">날짜</th>
 				
-				
+				ddd
 			</tr> -->
 			
 
