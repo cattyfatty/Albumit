@@ -80,6 +80,24 @@
 				}
 				});
 			
+			/* 친구목록 가져오기 */
+			$("#flist").click(function(){
+				var loginEmail= $("#loginEmail").val();
+					var contextpath= $("#contextpath").val();
+					console.log(contextpath);
+					$.ajax({
+						type: "post",
+						url: contextpath+"/friendList",
+						  data : { "loginEmail" :loginEmail },
+						dataType : "html",
+						success : function(data){
+							console.log(data);
+							$("#frtable2").html(data);
+						}
+					});
+				
+				});  
+			
 			addAlbumBox = $("#addAlbumBox").dialog({
 				autoOpen : false,
 				height : 300,
@@ -348,7 +366,7 @@
 		
 		
 		
-		
+
 		<!-- --------------------------------------------------------------------------------------------------------- -->
 			<div id="dialog">
 				<div id="tabs">
@@ -382,10 +400,26 @@
 					
 		<!-- --------------------------------------------------------------------------------------------------------- -->
 					<div id="flist">
+					<table>
+							<tr>
+							<td>email</td>
+							<td>block</td>
+							</tr>
+							 <c:forEach var="fr" items="${friendList}" >
+							 <tr>
+								<td>ds<c:out value="${fr.member_email}"></c:out></td>
+								<td>cd<c:out value="${fr.friend_block}"></c:out></td>
+							</tr>
+							</c:forEach> 
+							</table>
 						<input type="text" id="femail" placeholder="Enter Friend's email"/>
 						<input type="hidden" id="contextpath" value="${pageContext.request.contextPath}"/>
 						<button id="addfriend">Add Friend</button>
 							<div id="frtable">
+						
+							
+							</div>
+							<div id="frtable2">
 							</div>
 					</div>
 				</div>
