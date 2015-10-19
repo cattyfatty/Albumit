@@ -16,7 +16,7 @@
 				font-size: 12px;
 			}
 			
-			div{
+			#content{
 				background-color: pink;
 				padding: 10px;
 				display:inline-block;
