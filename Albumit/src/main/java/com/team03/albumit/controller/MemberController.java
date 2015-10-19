@@ -49,10 +49,7 @@ public class MemberController {
 			Member m =(Member) session.getAttribute("loginmember");
 			System.out.println("로그인시 session: "+m.getMember_email());
 			
-			//친구목록 모델에 추가하기!!
-			List<FriendList> friends = memberService.friendList(loginMem);
-			//System.out.println("컨트롤러에서 친구목록: "+friends.get(0).getMember_email()+"  ->이게 d이여야 한다!");
-			model.addAttribute("friendList", friends);
+		
 			
 			logger.info("로그인성공");
 			return "redirect:/allAlbumList";
