@@ -9,12 +9,33 @@
 		<style type="text/css">
 			body {
 				font-size: small;
-			
+				height: 100%;
 			}
 			
 			input {
 				font-size: 12px;
 			}
+			
+			div{
+				background-color: pink;
+				padding: 10px;
+				display:inline-block;
+				width: 1000px;
+				height: 500px;
+				display: flex;
+				margin:50% auto;
+				
+			}
+			
+			#image{
+				flex:1;
+			}
+			
+			#content{
+				flex:2;
+			}
+			
+			
 		</style>
 		<script type="text/javascript"
 		src='${pageContext.request.contextPath}/resources/js/jquery-1.11.3.min.js'></script>
@@ -23,13 +44,13 @@
 		
 		<script>
 		$(function() {
-			$("#opener").click(function() {
-				
-				$("#dialog").dialog("open");
+			var dialog, form;
 			
-		});
+		function confirm(){
 			
-		$("#dialog").dialog({
+		}
+			
+		dialog = $("#dialog").dialog({
 				autoOpen : false,
 				height : 500,
 				width : 350,
@@ -43,9 +64,8 @@
 				},
 				close: function(){
 					form[0].reset();
-					allFields.removeClass("ui-state-error");
+					
 				}
-				
 			});
 			
 			form = dialog.find("form").on("submit", function(event){
@@ -53,6 +73,9 @@
 				confirm();
 			});
 		
+			$("#button").on("click", function(){
+				dialog.dialog("open");
+			});
 			
 		});
 		
@@ -61,18 +84,20 @@
 	</head>
 	
 	<body>
-		
-		<div id="dialog">
+		<div>
+		<div id="dialog" style="background-color: blue">
 		<form method="post" action="preaddPhoto" enctype="multipart/form-data">
 		<input type="hidden" name="album_no" value="${album_no}"/>
 				<p>첨부</p>
 				<input type="file" name="attach"/>
-				<input id="submit" type="submit" value="확인"/>
 		</form>
 		</div>
+		<div id="image">
+			<img src="${pageContext.request.contextPath}/resources/uploadfiles/${photo.photo_filesystem_name}" width="300px" height="300px"/>
+		</div>
 		
-		
-		<h4>글쓰기</h4>
+
+		<div id="content">
 		<form method="post" action="addPhoto" enctype="multipart/form-data">
 			<table>
 				<tr>
@@ -96,7 +121,7 @@
 				</tr>
 				<tr>
 					<td>
-					<input type="button" id="opener"/>
+					<input type="button" id="button" value="사진등록"/>
 					</td>
 				</tr>
 				<tr>
@@ -111,7 +136,8 @@
 				</tr>
 			</table>
 		</form>
-		
+		</div>
+		</div>
 			
 	</body>
 </html>
