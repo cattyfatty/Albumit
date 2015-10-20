@@ -30,7 +30,7 @@ public class AlbumDao {
 				PreparedStatement pstmt = conn.prepareStatement(sql, new String[] { "album_no" });
 				pstmt.setString(1, album.getAlbum_name());
 				pstmt.setBoolean(2, album.isAlbum_publicity());
-				pstmt.setInt(3, album.getThumbnail_no());
+				pstmt.setInt(3, 1);
 				pstmt.setInt(4, album.getUid());
 				return pstmt;
 			}
