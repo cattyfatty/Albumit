@@ -148,7 +148,7 @@ public class PhotoDao {
 					Photo photo = new Photo();
 					photo.setPhoto_no(rs.getInt("photo_no"));
 					photo.setAlbum_no(rs.getInt("album_no"));
-					photo.setPhoto_date(rs.getTime("photo_date"));
+					photo.setPhoto_date(rs.getTimestamp("photo_date"));
 					photo.setPhoto_original_file_name(rs.getString("photo_original_file_name"));
 					photo.setPhoto_filesystem_name(rs.getString("photo_filesystem_name"));
 					photo.setPhoto_content_type(rs.getString("photo_content_type"));  

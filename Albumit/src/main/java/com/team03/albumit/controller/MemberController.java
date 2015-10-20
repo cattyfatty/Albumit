@@ -12,7 +12,6 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.*;
 
 import com.team03.albumit.dao.*;
 import com.team03.albumit.dto.*;
@@ -49,6 +48,9 @@ public class MemberController {
 			session.setAttribute("loginmember",loginMem);
 			Member m =(Member) session.getAttribute("loginmember");
 			System.out.println("로그인시 session: "+m.getMember_email());
+			
+		
+			
 			logger.info("로그인성공");
 			return "redirect:/allAlbumList";
 		}
@@ -134,10 +136,11 @@ public class MemberController {
 		else if(check==3){
 			logger.info("친구추가");
 			List<FriendList> flist= memberService.friendList(mem);
-			model.addAttribute("friendsList",flist);
+			model.addAttribute("friends",flist);
+			return "confirmAad";
 		}
 
-		return "friendTable";
+		return "confirmAad";
 	}
 
 	@RequestMapping(value="leave",method={RequestMethod.POST,RequestMethod.GET})
@@ -155,7 +158,7 @@ public class MemberController {
 	@RequestMapping(value="modifyProfile", method={RequestMethod.GET,RequestMethod.POST})
 	public String modifyProfile(@RequestParam("email")String email,HttpSession session, Model model) {
 		Member Modifiedmem = memberService.findMember(email);	
-		System.out.println("모디파이 프로필 컨트롤러 :"+Modifiedmem.getMember_email());
+		System.out.println("모디파이 프로필 컨트롤러!!!!!! :"+email);
 		model.addAttribute("Modifiedmem",Modifiedmem);
 		return "modifyForm_mem";
 	}
@@ -204,9 +207,30 @@ public class MemberController {
 	@RequestMapping(value="blockFriend", method={RequestMethod.GET,RequestMethod.POST})
 	public String blockFriend (@RequestParam("blockFriend")String blockFriend, Model model, HttpSession session){
 		Member member = (Member) session.getAttribute("loginmember");
+		System.out.println("blockFriend 컨트롤러에서 :"+blockFriend);
 		memberService.block(member, blockFriend);
-		return "";
+		return "Blockfriend";
+	
 	}
+	
+	@RequestMapping(value="friendList", method={RequestMethod.GET, RequestMethod.POST })
+	public String friendList(HttpSession session, Model model){
+		Member mem = (Member) session.getAttribute("loginmember");
+		System.out.println("친구리스트 컨트롤러에서 유아이디::"+mem.getUid());
+		List<FriendList> flist= memberService.friendList(mem);
+		model.addAttribute("flist",flist);
+	
+		return "friendLists";
+	}
+	@RequestMapping(value="blockPage", method={RequestMethod.GET, RequestMethod.POST })
+	public String blockPage(HttpSession session, Model model){
+		Member mem = (Member) session.getAttribute("loginmember");
+		List<FriendList> flist= memberService.friendList(mem);
+		model.addAttribute("flist",flist);
+		
+		return "friendTable";
+	}
+	
 }
 
 

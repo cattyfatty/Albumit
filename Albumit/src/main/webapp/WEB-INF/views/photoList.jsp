@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
 				font-size: small;
 			}
 			table, th, td {
-				border: 1px solid white;
+				border: 1px solid black;
 				text-align: center;
 			}
 			th {
@@ -71,28 +71,22 @@
 				color: aqua;
 			}
 			
-			.title {
-				text-decoration: none;
-				color: white;
-			}	
-			.title:hover {
-				color: orange;
-			}
+			
 		</style>
 		<script type="text/javascript">
 			function arrayfun(sel) {
 			    var x = sel.options[sel.selectedIndex].value;
-			  
+			    
 			    if(x == "latest"){
 			    	
-			    	document.all["latest"].style.display="";
-			    	document.all["popularity"].style.display="none";
+			    	document.getElementById("latest").style.display="";
+			    	document.getElementById("popularity").style.display="none";
 			    }
 			    
 			    if(x == "popularity"){
 			    	
-			    	document.all["latest"].style.display="none";
-			    	document.all["popularity"].style.display="";
+			    	document.getElementById("latest").style.display="none";
+			    	document.getElementById("popularity").style.display="";
 			    	
 			    }
 			}
@@ -103,7 +97,7 @@
 	<body>
 	
 		<select id="photoArray" size="1" onchange="arrayfun(this)">
-			<option value="latest">최신순</option>
+			<option value="latest" selected="selected" >최신순</option>
 			<option value="popularity">인기순</option>
 		</select>
 		
@@ -114,53 +108,64 @@
 		<hr/>
 		
 		<table>
-			<tr>
-				<th style="width:50px">번호</th>
+			<!-- <tr>
+				<th style="width:50px">사진번호</th>
+				<th style="width:50px">앨범번호</th>
 				<th>제목</th>
+				<th>내용</th>
+				<th style="width:150px">사진</th>
 				<th style="width:60px">글쓴이</th>
-				<th style="width:80px">날짜</th>
-				<th style="width:60px">사진</th>
+				<th style="width:100px">날짜</th>
 				
-				
-			</tr>
+				ddd
+			</tr> -->
 			
 
 			<c:forEach  var="photo" items="${laList}">
+			
 				<tr>
-					<td>${photo.photo_no}</td>
+				<c:forEach var="i" begin="1" end="3">
+					<%-- <td>${photo.photo_no}</a></td>
+					<td>${photo.album_no}</td>
 					<td>${photo.photo_title}</td>
-					<td>${photo.uid}</td>
-					<td>${photo.photo_date}</td>
-					<td><a class="title" href="photoDetail?photo_no=${photo.photo_no}">${photo.photo_original_file_name}</a></td>
-				
-					
+					<td>${photo.photo_content}</td> --%>
+					<td><a href="photoDetail?album_no=${photo.album_no}&&photo_no=${photo.photo_no}">
+						<img src="${pageContext.request.contextPath}/resources/image/${photo.photo_filesystem_name}" width="300px"/></a></td>
+					<%-- <td>${photo.uid}</td>
+					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td> --%>
+				</c:forEach>
 				</tr>
 			</c:forEach>
 		</table>
 		</div>
 		
 		
-		<div id="popularity">
+		<div id="popularity" style="display: none;">
 		<hr/><h4>좋아요순</h4><hr/>
 		<table>
-		<tr>
-				<th style="width:50px">번호</th>
+			<tr>
+				<th style="width:50px">사진번호</th>
+				<th style="width:50px">앨범번호</th>
 				<th>제목</th>
+				<th>내용</th>
+				<th style="width:150px">사진</th>
 				<th style="width:60px">글쓴이</th>
-				<th style="width:80px">날짜</th>
-				<th style="width:60px">사진</th>
+				<th style="width:100px">날짜</th>
+				
+				
 			</tr>
-			
 
 	
 			
 			<c:forEach var="photo" items="${liList}">
 				<tr>
-					<td>${photo.photo_no}</td>
+					<td>${photo.photo_no}</a></td>
+					<td>${photo.album_no}</td>
 					<td>${photo.photo_title}</td>
+					<td>${photo.photo_content}</td>
+					<td><a href="photoDetail?album_no=${photo.album_no}&&photo_no=${photo.photo_no}">${photo.photo_original_file_name}</a></td>
 					<td>${photo.uid}</td>
-					<td>${photo.photo_date}</td>
-					<td>${photo.photo_original_file_name}</td>
+					<td><fmt:formatDate value="${photo.photo_date}" pattern="yyyy-MM-dd"/></td>
 				
 					
 				</tr>
